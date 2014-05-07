@@ -1,0 +1,159 @@
+﻿<%@ Master 
+    Language="C#" 
+    AutoEventWireup="true" 
+    CodeBehind="Window.master.cs" 
+    Inherits="Vmgr.SharePoint.WindowMaster, Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe" 
+    %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2013.3.1015.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+<%@ Register TagPrefix="Vmgr" TagName="WindowManagersControl" Src="~/_CONTROLTEMPLATES/Vmgr/WindowManagersControl.ascx" %>
+<%@ Assembly Name="Vmgr, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"%> 
+<%@ Assembly Name="Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"%> 
+<%@ Register Assembly="Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"  Namespace="Vmgr.SharePoint" TagPrefix="cc" %>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <link rel="shortcut icon" href="/_layouts/images/vmgr/favicon.ico" type="image/x-icon" />
+    <style type="text/css">
+    
+        * {
+	        margin: 0;
+        }
+
+        html, body, form {
+	        height: 100%;
+	        font-size: 8pt;
+        }
+
+        .wrapper {
+	        min-height: 100%;
+	        height: auto !important;
+	        height: 100%;
+	        margin: 0 auto -75px;
+        }
+
+        .footer, .push {
+	        height: 75px;
+	        clear: both;
+        }
+    
+        .footer {
+            background-color: #EFEFEF;
+        }
+    
+        .footer-content {
+            padding: 5px;
+        }
+    
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <telerik:RadScriptManager ID="radScriptManager" runat="server">
+        </telerik:RadScriptManager>
+        <telerik:RadCodeBlock runat="server">
+            <script type="text/javascript">
+
+                var signalrFunctionHubRegistry = new FunctionArray();
+                var signalrScriptLoaded = false;
+
+                function getParentWindow() {
+                    var w = null;
+                    if (window.radWindow)
+                        w = window.radWindow;
+                    else if (window.frameElement && window.frameElement.radWindow)
+                        w = window.frameElement.radWindow;
+                    return w;
+                }
+
+                function OnClose(args) {
+                    if (args == true) {
+                        var parentWindow = getParentWindow();
+                        if (parentWindow != null) {
+                            <%= redirectServerUrl %>
+                            parentWindow.close(null);
+                        }
+                    }
+                }
+
+                function configureGlobalSignal() {
+
+                    if (!signalrScriptLoaded) {
+                        $.getScript('<%= this.GetHubConnectionUrl() + "/signalr/hubs" %>')
+                            .done(function (script, status) {
+                                signalrScriptLoaded = true;
+                                initializeSignalRHubs();
+                            }
+                            )
+                            .fail(function (jqxhr, settings, exception) {
+                                signalrScriptLoaded = false;
+                            }
+                        )
+                        ;
+                    }
+                }
+
+                function initializeSignalRHubs() {
+                    signalrFunctionHubRegistry.executeAll(null);
+                }
+
+                function OnIsStarted() {
+                    if (pollCount <= 5) {
+                        $.ajax({
+                            type: "POST",
+                            url: "<%= pollingServiceUrl %>",
+                                cache: false,
+                                contentType: "application/json; charset=utf-8",
+                                data: "{ 'serverId':'<%= serverId %>' }",
+                                dataType: "json",
+                                success: OnPollingServiceSuccess,
+                                error: OnPollingServiceFail
+                            });
+                        }
+                        pollCount++;
+                    }
+
+                    function OnPollingServiceSuccess(data, status) {
+                        if (data.d) {
+                            configureGlobalSignal();
+                        }
+
+                        pollCount--;
+                    }
+
+                    function OnPollingServiceFail(xmlRequest) {
+                        pollCount++;
+                    }
+
+                    var pollInterval = setInterval(function () { OnIsStarted() }, 1000);
+
+                    var pollCount = 0;
+
+            </script>
+        </telerik:RadCodeBlock>
+        <Vmgr:WindowManagersControl 
+            ID="windowManagersControl" 
+            runat="server">
+        </Vmgr:WindowManagersControl>
+         <div class="wrapper">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolderMain" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolderPush" runat="server">
+            <div class="push"></div>
+            </asp:ContentPlaceHolder>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderFooter" runat="server">
+            <div class="footer">
+                <div class="footer-content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolderFooterContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

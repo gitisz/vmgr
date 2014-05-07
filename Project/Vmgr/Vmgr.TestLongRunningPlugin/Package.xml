@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    name="Test Long"
+    description="Test"
+    uniqueId="aafc4499-325e-4011-9a40-4d062d5aaf19"
+    >
+    <assemblies>
+        <assembly location="Vmgr.TestLongRunningPlugin.dll" />
+    </assemblies>
+</package>

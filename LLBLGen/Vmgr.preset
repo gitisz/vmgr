@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preset name="Vmgr" lastModifiedOn="2010-10-06T11:12:35.0408232-04:00" createdBy="" isSealed="false" xmlns="http://sd/llblgen/pro/presetElementDefinitions.xsd">
+  <supportedPlatforms>
+    <platform name=".NET 3.5" />
+  </supportedPlatforms>
+  <supportedTemplateGroups>
+    <templateGroup name="Adapter" />
+  </supportedTemplateGroups>
+  <supportedFrameworks>
+    <framework name="LLBLGen Pro Runtime Framework" />
+  </supportedFrameworks>
+  <taskPresets>
+    <taskGroupPreset name="SD.Tasks.Adapter.DatabaseGeneric" additionalDestinationFolder="Vmgr\Data\Generic" additionalRootNamespace="Data.Generic" requiresCleanCache="false">
+      <performRule isEnabled="false" settingName="" operator="0" operand="" />
+      <taskGroupPreset name="SD.Tasks.Generic.DirectoryCreators" requiresCleanCache="false">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <taskPreset name="SD.Tasks.Generic.EntityClassesDirectoryCreator">
+          <performRule isEnabled="false" settingName="" operator="0" operand="" />
+          <parameters>
+            <parameter name="folderToCreate" value="[dbgenericSubFolder]\EntityClasses" />
+          </parameters>
+        </taskPreset>
+        <taskPreset name="SD.Tasks.Generic.FactoryClassesDirectoryCreator">
+          <performRule isEnabled="false" settingName="" operator="0" operand="" />
+          <parameters>
+            <parameter name="folderToCreate" value="[dbgenericSubFolder]\FactoryClasses" />
+          </parameters>
+        </taskPreset>
+        <taskPreset name="SD.Tasks.Generic.HelperClassesDirectoryCreator">
+          <performRule isEnabled="false" settingName="" operator="0" operand="" />
+          <parameters>
+            <parameter name="folderToCreate" value="[dbgenericSubFolder]\HelperClasses" />
+          </parameters>
+        </taskPreset>
+        <taskPreset name="SD.Tasks.Generic.RelationClassesDirectoryCreator">
+          <performRule isEnabled="false" settingName="" operator="0" operand="" />
+          <parameters>
+            <parameter name="folderToCreate" value="[dbgenericSubFolder]\RelationClasses" />
+          </parameters>
+        </taskPreset>
+        <taskPreset name="SD.Tasks.Generic.TypedListClassesDirectoryCreator">
+          <performRule isEnabled="false" settingName="" operator="0" operand="" />
+          <parameters>
+            <parameter name="folderToCreate" value="[dbgenericSubFolder]\TypedListClasses" />
+          </parameters>
+        </taskPreset>
+        <taskPreset name="SD.Tasks.Generic.TypedViewClassesDirectoryCreator">
+          <performRule isEnabled="false" settingName="" operator="0" operand="" />
+          <parameters>
+            <parameter name="folderToCreate" value="[dbgenericSubFolder]\TypedViewClasses" />
+          </parameters>
+        </taskPreset>
+        <taskPreset name="SD.Tasks.Generic.ValidatorClassesDirectoryCreator">
+          <performRule isEnabled="false" settingName="" operator="0" operand="" />
+          <parameters>
+            <parameter name="folderToCreate" value="[dbgenericSubFolder]\ValidatorClasses" />
+          </parameters>
+        </taskPreset>
+        <taskPreset name="SD.Tasks.Generic.LinqDirectoryCreator">
+          <performRule isEnabled="false" settingName="" operator="0" operand="" />
+          <parameters>
+            <parameter name="folderToCreate" value="[dbgenericSubFolder]\Linq" />
+          </parameters>
+        </taskPreset>
+      </taskGroupPreset>
+      <taskPreset name="SD.Tasks.Adapter.EntityCollectionClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.ConstantsEnumsFileGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.FieldInfoProviderClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\HelperClasses" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.TypeDefaultValueClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\HelperClasses" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.InheritanceInfoProviderClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\HelperClasses" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.LinqMetaDataClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\Linq" />
+          <parameter name="templateID" value="SD_LinqMetaDataAdapter" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.QuerySpecFactoryClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.EntityRelationsClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\RelationClasses" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.DynamicRelationClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\RelationClasses" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Adapter.CommonBaseClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.EntityClassesGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\EntityClasses" />
+          <parameter name="templateID" value="SD_EntityAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.EntityFactoryClassesGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\FactoryClasses" />
+          <parameter name="templateID" value="SD_EntityFactoriesAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.EntityFieldFactoryClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\FactoryClasses" />
+          <parameter name="templateID" value="SD_EntityFieldFactoryAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.EntityFieldsFactoryClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\FactoryClasses" />
+          <parameter name="templateID" value="SD_EntityFieldsFactoryAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.ResultsetFieldsClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\HelperClasses" />
+          <parameter name="templateID" value="SD_ResultsetFieldsAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.FieldCreationClassesGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\HelperClasses" />
+          <parameter name="templateID" value="SD_FieldCreationClassesAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.TypedListClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\TypedListClasses" />
+          <parameter name="templateID" value="SD_TypedListAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.TypedViewClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[dbgenericSubFolder]\TypedViewClasses" />
+          <parameter name="templateID" value="SD_TypedViewAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+    </taskGroupPreset>
+    <taskGroupPreset name="SD.Tasks.Adapter.DatabaseSpecific" additionalDestinationFolder="Vmgr\Data\SqlServer" additionalRootNamespace="Data.SqlServer" forSpecificDatabase="All" requiresCleanCache="false">
+      <performRule isEnabled="false" settingName="" operator="0" operand="" />
+      <taskGroupPreset name="SD.Tasks.Generic.DirectoryCreators" requiresCleanCache="false">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+      </taskGroupPreset>
+      <taskPreset name="SD.Tasks.Generic.PersistenceInfoProviderClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[driverShortName]\[dbspecificSubFolder]" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.AppConfigFileGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[driverShortName]\[dbspecificSubFolder]" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.ActionProceduresClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[driverShortName]\[dbspecificSubFolder]" />
+          <parameter name="templateID" value="SD_ActionProceduresAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Generic.RetrievalProceduresClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[driverShortName]\[dbspecificSubFolder]" />
+          <parameter name="templateID" value="SD_RetrievalProceduresAdapterTemplate" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Adapter.DataAccessAdapterClassGenerator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="[driverShortName]\[dbspecificSubFolder]" />
+        </parameters>
+      </taskPreset>
+    </taskGroupPreset>
+    <taskGroupPreset name="SD.Tasks.Base.GenericTaskGroup" displayName="Vmgr.Biz.TaskGroup" additionalDestinationFolder="Vmgr\Data\Biz" additionalRootNamespace="Data.Biz" requiresCleanCache="true">
+      <performRule isEnabled="false" settingName="" operator="0" operand="" />
+      <taskPreset name="SD.Tasks.Base.CreateAFolder" displayName="Create Logging Folder">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="folderToCreate" value="Logging" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.CreateAFolder" displayName="Create MetaData Folder">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="folderToCreate" value="MetaData" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.CreateAFolder" displayName="Create EntityServices Folder">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="folderToCreate" value="EntityServices" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.CreateAFolder" displayName="Create EntityRules Folder">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="folderToCreate" value="EntityRules" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.CreateAFolder" displayName="Create Validation Folder">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="folderToCreate" value="Validation" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create AppService">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="AppService.[extension]" />
+          <parameter name="templateID" value="AppService" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create BaseBiz">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="BaseBiz.[extension]" />
+          <parameter name="templateID" value="BaseBiz" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create BaseBizEntity">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="BaseBizEntity.[extension]" />
+          <parameter name="templateID" value="BaseBizEntity" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create BaseEntityService">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="EntityServices" />
+          <parameter name="filenameFormat" value="BaseEntityService.[extension]" />
+          <parameter name="templateID" value="BaseEntityService" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create ExtensionMethods">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="ExtensionMethods.[extension]" />
+          <parameter name="templateID" value="ExtensionMethods" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create EntityOverwriteSettings">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="EntityOverwriteSettings.[extension]" />
+          <parameter name="templateID" value="EntityOverwriteSettings" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create GenericBizEntity">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="GenericBizEntity.[extension]" />
+          <parameter name="templateID" value="GenericBizEntity" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create IService">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="IService.[extension]" />
+          <parameter name="templateID" value="IService" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create IMetaData">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="IMetaData.[extension]" />
+          <parameter name="templateID" value="IMetaData" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create IAppService">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="IAppService.[extension]" />
+          <parameter name="templateID" value="IAppService" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create IValidationRule">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="IValidationRule.[extension]" />
+          <parameter name="templateID" value="IValidationRule" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create IValidator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="IValidator.[extension]" />
+          <parameter name="templateID" value="IValidator" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create Logger">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="Logging" />
+          <parameter name="filenameFormat" value="Logger.[extension]" />
+          <parameter name="templateID" value="Logger" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create Validator">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="Validator.[extension]" />
+          <parameter name="templateID" value="Validator" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create BaseValidationRule">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="Validation" />
+          <parameter name="filenameFormat" value="BaseValidationRule.[extension]" />
+          <parameter name="templateID" value="BaseValidationRule" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create SimpleValidationRule">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="Validation" />
+          <parameter name="filenameFormat" value="SimpleValidationRule.[extension]" />
+          <parameter name="templateID" value="SimpleValidationRule" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create EntityMetaData">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="MetaData" />
+          <parameter name="filenameFormat" value="[elementName]MetaData.partial.[extension]" />
+          <parameter name="templateID" value="EntityMetaData" />
+          <parameter name="emitType" value="allEntities" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create EntityRuleContainer">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="EntityRules" />
+          <parameter name="filenameFormat" value="[elementName]EntityRuleContainer.[extension]" />
+          <parameter name="templateID" value="EntityRuleContainer" />
+          <parameter name="emitType" value="allEntities" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create EntityService">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="EntityServices" />
+          <parameter name="filenameFormat" value="[elementName]EntityService.partial.[extension]" />
+          <parameter name="templateID" value="EntityService" />
+          <parameter name="emitType" value="allEntities" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create DataAccessAdapterFactory">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="DataAccessAdapterFactory.[extension]" />
+          <parameter name="templateID" value="DataAccessAdapterFactory" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create XActAbortDynamicQueryEngine">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="XActAbortDynamicQueryEngine.[extension]" />
+          <parameter name="templateID" value="XActAbortDynamicQueryEngine" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+      <taskPreset name="SD.Tasks.Base.ConsumeTDLTemplate" displayName="Create XActAbortDataAccessAdapter">
+        <performRule isEnabled="false" settingName="" operator="0" operand="" />
+        <parameters>
+          <parameter name="destinationFolder" value="" />
+          <parameter name="filenameFormat" value="XActAbortDataAccessAdapter.[extension]" />
+          <parameter name="templateID" value="XActAbortDataAccessAdapter" />
+          <parameter name="templateBindingDefinitionName" value="Vmgr" />
+        </parameters>
+      </taskPreset>
+    </taskGroupPreset>
+  </taskPresets>
+</preset>

@@ -1,0 +1,51 @@
+USE [DOM_Config]
+GO
+/****** Object:  Table [vmg].[SecurityRole]    Script Date: 01/14/2014 11:59:55 ******/
+SET IDENTITY_INSERT [vmg].[SecurityRole] ON
+INSERT [vmg].[SecurityRole] ([SecurityRoleId], [Name], [Description], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10000, N'Administrators', N'May perform most actions in the V-Mananger site.', 1, CAST(0x0000A29200000000 AS DateTime), N'SYSTEM', NULL, NULL)
+INSERT [vmg].[SecurityRole] ([SecurityRoleId], [Name], [Description], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10001, N'Schedulers', N'Able to create and modify schedules.', 1, CAST(0x0000A29600E7FEE5 AS DateTime), N'SYSTEM', NULL, NULL)
+INSERT [vmg].[SecurityRole] ([SecurityRoleId], [Name], [Description], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10002, N'Viewers', N'Able to view packages, schedules, and jobs, but not modify them.', 1, CAST(0x0000A29600E89620 AS DateTime), N'SYSTEM', NULL, NULL)
+SET IDENTITY_INSERT [vmg].[SecurityRole] OFF
+/****** Object:  Table [vmg].[SecurityPermission]    Script Date: 01/14/2014 11:59:55 ******/
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (1, N'PageDashboard', N'Access to Dashboard.aspx')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (2, N'PagePackageManager', N'Access to PackageManager.aspx')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (3, N'PageScheduler', N'Access to Schedules.aspx')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (4, N'PageJob', N'Access to Job.aspx')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (5, N'PageLogs', N'Access to Logs.aspx')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (6, N'PageSecurity', N'Access to Security.aspx')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (1000, N'EditPackage', N'Access to upload a package')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (1001, N'MovePackage', N'Access to move a package')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (1002, N'PausePackage', N'Access to pause or play a package')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (1003, N'DeletePacakge', N'Access to delete a package')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (1100, N'EditSchedule', N'Access to add a schedule')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (1101, N'PauseSchedule', N'Access to pause or play a schedule')
+INSERT [vmg].[SecurityPermission] ([SecurityPermissionId], [Name], [Description]) VALUES (1102, N'DeleteSchedule', N'Access to delete a schedule')
+/****** Object:  Table [vmg].[SecuritySiteMap]    Script Date: 01/14/2014 11:59:55 ******/
+SET IDENTITY_INSERT [vmg].[SecuritySiteMap] ON
+INSERT [vmg].[SecuritySiteMap] ([SecuritySiteMapId], [SecurityPermissionId], [Value], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10000, 1, N'/sites/vmgr/{0}Default.aspx', 1, CAST(0x0000A2AB00DC47FF AS DateTime), N'SYSTEM', NULL, NULL)
+INSERT [vmg].[SecuritySiteMap] ([SecuritySiteMapId], [SecurityPermissionId], [Value], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10001, 6, N'/sites/vmgr/{0}Administration/WindowSecurityMembershipEditor.aspx', 1, CAST(0x0000A2AC01039023 AS DateTime), N'SYSTEM', NULL, NULL)
+INSERT [vmg].[SecuritySiteMap] ([SecuritySiteMapId], [SecurityPermissionId], [Value], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10002, 6, N'/sites/vmgr/{0}Administration/WindowSecurityRoleEditor.aspx', 1, CAST(0x0000A2AC0103AADA AS DateTime), N'SYSTEM', NULL, NULL)
+INSERT [vmg].[SecuritySiteMap] ([SecuritySiteMapId], [SecurityPermissionId], [Value], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10003, 6, N'/sites/vmgr/{0}Administration/WindowSecurityRolePermissionEditor.aspx', 1, CAST(0x0000A2AC0103BD38 AS DateTime), N'SYSTEM', NULL, NULL)
+INSERT [vmg].[SecuritySiteMap] ([SecuritySiteMapId], [SecurityPermissionId], [Value], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10004, 1000, N'/sites/vmgr/{0}Plugins/WindowUploadPackage.aspx', 1, CAST(0x0000A2B300BF9D1C AS DateTime), N'SYSTEM', NULL, NULL)
+INSERT [vmg].[SecuritySiteMap] ([SecuritySiteMapId], [SecurityPermissionId], [Value], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10005, 1001, N'/sites/vmgr/{0}Plugins/WindowMovePackage.aspx', 1, CAST(0x0000A2B300BFE467 AS DateTime), N'SYSTEM', NULL, NULL)
+INSERT [vmg].[SecuritySiteMap] ([SecuritySiteMapId], [SecurityPermissionId], [Value], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10007, 1100, N'/sites/vmgr/{0}Scheduler/WindowScheduleEditor.aspx', 1, CAST(0x0000A2B300C014A7 AS DateTime), N'SYSTEM', NULL, NULL)
+SET IDENTITY_INSERT [vmg].[SecuritySiteMap] OFF
+/****** Object:  Table [vmg].[SecurityRolePermission]    Script Date: 01/14/2014 11:59:55 ******/
+SET IDENTITY_INSERT [vmg].[SecurityRolePermission] ON
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10000, 10000, 1, 1, CAST(0x0000A29600FC68AB AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E6C4 AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10006, 10000, 2, 1, CAST(0x0000A2B201010C77 AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E6FE AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10007, 10000, 3, 1, CAST(0x0000A2B201010C81 AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E72D AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10008, 10000, 4, 1, CAST(0x0000A2B201010C89 AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E76A AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10009, 10000, 5, 1, CAST(0x0000A2B201010C92 AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E79A AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10010, 10000, 6, 1, CAST(0x0000A2B201010C9A AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E7DC AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10011, 10001, 1, 1, CAST(0x0000A2B201011E33 AS DateTime), N'SYSTEM', CAST(0x0000A2B300BE305E AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10012, 10001, 2, 1, CAST(0x0000A2B201011E3B AS DateTime), N'SYSTEM', CAST(0x0000A2B300BE3091 AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10013, 10001, 3, 1, CAST(0x0000A2B201011E42 AS DateTime), N'SYSTEM', CAST(0x0000A2B300BE3098 AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10014, 10001, 4, 1, CAST(0x0000A2B201011E4D AS DateTime), N'SYSTEM', CAST(0x0000A2B300BE30A0 AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10015, 10000, 1000, 1, CAST(0x0000A2B300B67599 AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E80D AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10016, 10000, 1001, 1, CAST(0x0000A2B300B675A5 AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E83C AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10017, 10000, 1003, 1, CAST(0x0000A2B300B675AD AS DateTime), N'SYSTEM', CAST(0x0000A2B300B9E86B AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10018, 10001, 1100, 0, CAST(0x0000A2B300BCE2E0 AS DateTime), N'SYSTEM', CAST(0x0000A2B300BE30A7 AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10019, 10001, 1101, 1, CAST(0x0000A2B300BCE2EA AS DateTime), N'SYSTEM', CAST(0x0000A2B300BE30AF AS DateTime), N'SYSTEM')
+INSERT [vmg].[SecurityRolePermission] ([SecurityRolePermissionId], [SecurityRoleId], [SecurityPermissionId], [Active], [CreateDate], [CreateUser], [UpdateDate], [UpdateUser]) VALUES (10020, 10001, 1102, 0, CAST(0x0000A2B300BCE2F1 AS DateTime), N'SYSTEM', CAST(0x0000A2B300BE30B6 AS DateTime), N'SYSTEM')
+SET IDENTITY_INSERT [vmg].[SecurityRolePermission] OFF

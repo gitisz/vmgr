@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Module Name="Scheduler" Url="Scheduler">
+        <File Path="Scheduler\Scheduler.aspx" Name="Scheduler.aspx" Url="Scheduler/Scheduler.aspx" />
+        <File Path="Scheduler\Job.aspx" Name="Job.aspx" Url="Scheduler/Job.aspx" />
+        <File Path="Scheduler\WindowScheduleEditor.aspx" Name="WindowScheduleEditor.aspx" Url="Scheduler/WindowScheduleEditor.aspx" />
+        <File Path="Scheduler\WindowTriggerHistory.aspx" Name="WindowTriggerHistory.aspx" Url="Scheduler/WindowTriggerHistory.aspx" />
+        <File Path="Scheduler\WindowFilterSchedule.aspx" Name="WindowFilterSchedule.aspx" Url="WindowFilterSchedule.aspx" />
+        <File Path="Scheduler\WindowFilterJob.aspx" Name="WindowFilterJob.aspx" Url="WindowFilterJob.aspx" />
+    </Module>
+</Elements>

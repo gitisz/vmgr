@@ -1,0 +1,7 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.TestPlugin\bin\Vmgr.TestPlugin.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.TestPlugin\bin\Vmgr.TestPlugin.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.TestPlugin\obj\Debug\Vmgr.TestPlugin.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.TestPlugin\obj\Debug\Vmgr.TestPlugin.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.TestPlugin\obj\Debug\Vmgr.TestPlugin.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.TestPlugin\bin\Vmgr.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.TestPlugin\bin\Vmgr.pdb

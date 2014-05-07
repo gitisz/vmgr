@@ -1,0 +1,3 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix\bin\cab1.cab
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix\bin\Vmgr.Wix.msi
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix\bin\Vmgr.Wix.wixpdb

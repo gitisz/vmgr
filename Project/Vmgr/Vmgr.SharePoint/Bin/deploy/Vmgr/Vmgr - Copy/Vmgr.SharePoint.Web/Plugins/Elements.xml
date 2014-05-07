@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Module Name="Plugins" Url="Plugins">
+        <File Path="Plugins\PackageManager.aspx" Name="PackageManager.aspx" Url="Plugins/PackageManager.aspx" />
+        <File Path="Plugins\WindowUploadPackage.aspx" Name="WindowUploadPackage.aspx" Url="Plugins/WindowUploadPackage.aspx" />
+        <File Path="Plugins\WindowMovePackage.aspx" Name="WindowMovePackage.aspx" Url="Plugins/WindowMovePackage.aspx" />
+        <File Path="Plugins\WindowFilterPackage.aspx" Name="WindowFilterPackage.aspx" Url="WindowFilterPackage.aspx" />
+    </Module>
+</Elements>

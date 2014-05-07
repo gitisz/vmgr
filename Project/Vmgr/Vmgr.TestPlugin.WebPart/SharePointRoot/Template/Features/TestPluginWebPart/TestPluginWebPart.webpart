@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Vmgr.TestPlugin.WebPart.UI.WebControls.WebParts.TestPluginWebPartWebPart, Vmgr.TestPlugin.WebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=05645e6641d2565d" />
+      <importErrorMessage>Cannot import TestPluginWebPart Web Part.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">TestPluginWebPart</property>
+        <property name="Description" type="string">Returns a message from the Vmgr.TestPlugin plugin loaded in Dominion.Vmg.Services service.</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

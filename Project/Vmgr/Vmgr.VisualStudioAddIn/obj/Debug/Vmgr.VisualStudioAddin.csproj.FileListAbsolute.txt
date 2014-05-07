@@ -1,0 +1,6 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.VisualStudioAddin\bin\Vmgr.VisualStudioAddin.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.VisualStudioAddin\bin\Vmgr.VisualStudioAddin.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.VisualStudioAddin\obj\Debug\Vmgr.VisualStudioAddin.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.VisualStudioAddin\obj\Debug\Vmgr.VisualStudioAddin.csproj.ResolveComReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.VisualStudioAddin\obj\Debug\Vmgr.VisualStudioAddin.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.VisualStudioAddin\obj\Debug\Vmgr.VisualStudioAddin.pdb

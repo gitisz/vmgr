@@ -1,0 +1,25 @@
+﻿<%
+	Project currentProject = _executingGenerator.ProjectDefinition;
+	EntityDefinition currentEntity = (EntityDefinition)((Hashtable)_activeObject)["CurrentEntity"];
+	
+	IList<string> subTypes = _executingGenerator.Entities
+		.Where(e => e.IsSubType)
+		.Where(e => e.GetSuperType().Name == currentEntity.Name)
+		.OrderBy(e => e.Name)
+		.Select(e => e.Name)
+		.ToList()
+		;
+%>
+					<% foreach(string n in subTypes){%><%=
+					n%>Id = <%=n%>Fields.<%=currentEntity.Name%>Id.As("<%=n%>Id").ToValue<int?>(),
+					<%foreach(EntityDefinition subType in currentProject.GetAllSubtypesForEntity(currentEntity)
+						.Where(s => s.Name == n))
+						{
+							foreach(IFieldElementCore field in subType.Fields)
+							{
+					%><%=n%><%=field.Name%> = <%=n%>Fields.<%=field.Name%>.As("<%=n%><%=field.Name%>").ToValue<<%=GeneratorUtils.ProduceDotNetTypeName(field.FieldType.RepresentedType, field.IsOptional, "Nullable<{0}>")%>>(),
+					<%			
+							}
+						}
+					%>
+					<%}%>

@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45B4459B-C2BA-4C67-94CC-2AAD5D59AE3C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vmgr</RootNamespace>
+    <AssemblyName>Vmgr</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>Vmgr.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Net35\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_35</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Net35\</OutputPath>
+    <DefineConstants>TRACE;NET_35</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\Quartz.NET-2.1.2\bin\3.5\release\Quartz\Common.Logging.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\Log4Net\log4net-1.2.11\bin\net\3.5\release\log4net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Quartz, Version=2.0.0.32282, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\Quartz.NET-2.1.2\bin\3.5\release\Quartz\Quartz.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.DQE.SqlServer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\LLBLGen\LLBLGen.4.1\SD.LLBLGen.Pro.DQE.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\LLBLGen\LLBLGen.4.1\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AD\ActiveDirectoryContext.cs" />
+    <Compile Include="AD\ActiveDirectoryHelper.cs" />
+    <Compile Include="AD\Group.cs" />
+    <Compile Include="AD\GroupSet.cs" />
+    <Compile Include="AD\IGroup.cs" />
+    <Compile Include="AD\IUser.cs" />
+    <Compile Include="AD\User.cs" />
+    <Compile Include="AD\UserSet.cs" />
+    <Compile Include="Configuration\CacheConfiguration.cs" />
+    <Compile Include="Configuration\Constants.cs" />
+    <Compile Include="Crypto\CertProperties.cs" />
+    <Compile Include="Crypto\CryptContext.cs" />
+    <Compile Include="Crypto\CryptKey.cs" />
+    <Compile Include="Crypto\DisposableObject.cs" />
+    <Compile Include="Crypto\KeyExchangeKey.cs" />
+    <Compile Include="Crypto\KeyType.cs" />
+    <Compile Include="Crypto\SignatureKey.cs" />
+    <Compile Include="Crypto\Win32ErrorHelper.cs" />
+    <Compile Include="Crypto\Win32Native.cs" />
+    <Compile Include="Data\Biz\AppService.cs" />
+    <Compile Include="Data\Biz\BaseBiz.cs" />
+    <Compile Include="Data\Biz\BaseBizEntity.cs" />
+    <Compile Include="Data\Biz\DataAccessAdapterFactory.cs" />
+    <Compile Include="Data\Biz\EntityOverwriteSettings.cs" />
+    <Compile Include="Data\Biz\EntityRules\FilterEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\JobEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\LogEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\MonitorEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\PackageEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\PluginEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\ScheduleEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\SecurityMembershipEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\SecurityPermissionEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\SecurityRoleEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\SecurityRolePermissionEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\SecuritySiteMapEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\ServerEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\SettingEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityRules\TriggerEntityRuleContainer.cs" />
+    <Compile Include="Data\Biz\EntityServices\BaseEntityService.cs" />
+    <Compile Include="Data\Biz\EntityServices\CompositeSecurityRolePermissionService.cs" />
+    <Compile Include="Data\Biz\EntityServices\RemovePluginService.cs" />
+    <Compile Include="Data\Biz\EntityServices\RemoveFilterService.cs" />
+    <Compile Include="Data\Biz\EntityServices\FilterEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\MonitorEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\RemoveMonitorService.cs" />
+    <Compile Include="Data\Biz\EntityServices\RemoveScheduleService.cs" />
+    <Compile Include="Data\Biz\EntityServices\LogEntityService.custom.cs" />
+    <Compile Include="Data\Biz\EntityServices\JobEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\LogEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\PackageEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\PluginEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\RemovePackageService.cs" />
+    <Compile Include="Data\Biz\EntityServices\ScheduleEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\SecurityMembershipEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\SecurityPermissionEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\SecurityRoleEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\SecurityRolePermission.cs" />
+    <Compile Include="Data\Biz\EntityServices\SecurityRolePermissionEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\SecuritySiteMapEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\ServerEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\SettingEntityService.partial.cs" />
+    <Compile Include="Data\Biz\EntityServices\TriggerEntityService.partial.cs" />
+    <Compile Include="Data\Biz\ExtensionMethods.cs" />
+    <Compile Include="Data\Biz\GenericBizEntity.cs" />
+    <Compile Include="Data\Biz\IAppService.cs" />
+    <Compile Include="Data\Biz\IMetaData.cs" />
+    <Compile Include="Data\Biz\IService.cs" />
+    <Compile Include="Data\Biz\IValidationRule.cs" />
+    <Compile Include="Data\Biz\IValidator.cs" />
+    <Compile Include="Data\Biz\Logging\SmtpLogger.cs" />
+    <Compile Include="Data\Biz\Logging\Logger.cs" />
+    <Compile Include="Data\Biz\MetaData\FilterMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\SecurityMembershipMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\SecurityPermissionMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\SecurityRoleMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\SecurityRolePermissionMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\SecuritySiteMapMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\ServerMetaData.custom.cs" />
+    <Compile Include="Data\Biz\MetaData\MonitorMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\PluginMetaData.custom.cs" />
+    <Compile Include="Data\Biz\MetaData\JobMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\LogMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\PackageMetaData.custom.cs" />
+    <Compile Include="Data\Biz\MetaData\PackageMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\PluginMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\ScheduleMetaData.custom.cs" />
+    <Compile Include="Data\Biz\MetaData\ScheduleMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\ServerMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\SettingMetaData.partial.cs" />
+    <Compile Include="Data\Biz\MetaData\TriggerMetaData.partial.cs" />
+    <Compile Include="Data\Biz\Validation\BaseValidationRule.cs" />
+    <Compile Include="Data\Biz\Validation\SimpleValidationRule.cs" />
+    <Compile Include="Data\Biz\Validator.cs" />
+    <Compile Include="Data\Biz\XActAbortDataAccessAdapter.cs" />
+    <Compile Include="Data\Biz\XActAbortDynamicQueryEngine.cs" />
+    <Compile Include="Data\Generic\ConstantsEnums.cs" />
+    <Compile Include="Data\Generic\EntityClasses\CommonEntityBase.cs" />
+    <Compile Include="Data\Generic\EntityClasses\FilterEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\JobEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\LogEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\MonitorEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\PackageEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\PluginEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\ScheduleEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\SecurityMembershipEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\SecurityPermissionEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\SecurityRoleEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\SecurityRolePermissionEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\SecuritySiteMapEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\ServerEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\SettingEntity.cs" />
+    <Compile Include="Data\Generic\EntityClasses\TriggerEntity.cs" />
+    <Compile Include="Data\Generic\FactoryClasses\EntityFactories.cs" />
+    <Compile Include="Data\Generic\FactoryClasses\EntityFieldFactory.cs" />
+    <Compile Include="Data\Generic\FactoryClasses\EntityFieldsFactory.cs" />
+    <Compile Include="Data\Generic\FactoryClasses\QueryFactory.cs" />
+    <Compile Include="Data\Generic\HelperClasses\EntityCollection.cs" />
+    <Compile Include="Data\Generic\HelperClasses\FieldCreationClasses.cs" />
+    <Compile Include="Data\Generic\HelperClasses\FieldInfoProvider.cs" />
+    <Compile Include="Data\Generic\HelperClasses\InheritanceInfoProvider.cs" />
+    <Compile Include="Data\Generic\HelperClasses\ResultsetFields.cs" />
+    <Compile Include="Data\Generic\HelperClasses\TypeDefaultValue.cs" />
+    <Compile Include="Data\Generic\Linq\LinqMetaData.cs" />
+    <Compile Include="Data\Generic\RelationClasses\DynamicRelation.cs" />
+    <Compile Include="Data\Generic\RelationClasses\FilterRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\JobRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\LogRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\MonitorRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\PackageRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\PluginRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\ScheduleRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\SecurityMembershipRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\SecurityPermissionRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\SecurityRolePermissionRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\SecurityRoleRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\SecuritySiteMapRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\ServerRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\SettingRelations.cs" />
+    <Compile Include="Data\Generic\RelationClasses\TriggerRelations.cs" />
+    <Compile Include="Data\SqlServer\ActionProcedures.cs" />
+    <Compile Include="Data\SqlServer\DataAccessAdapter.cs" />
+    <Compile Include="Data\SqlServer\PersistenceInfoProvider.cs" />
+    <Compile Include="Data\SqlServer\RetrievalProcedures.cs" />
+    <Compile Include="Data\Biz\MetaData\AssemblyMetaData.cs" />
+    <Compile Include="Helpers\EventHandlerHelper.cs" />
+    <Compile Include="Helpers\ResourceHelper.cs" />
+    <Compile Include="Messaging\JobHistory.cs" />
+    <Compile Include="Messaging\MoveProgress.cs" />
+    <Compile Include="Messaging\Schedule.cs" />
+    <Compile Include="Messaging\UploadProgress.cs" />
+    <Compile Include="Messaging\VmgrHub.cs" />
+    <Compile Include="Monitoring\IMonitor.cs" />
+    <Compile Include="Monitoring\IMonitoring.cs" />
+    <Compile Include="Monitoring\Monitor.cs" />
+    <Compile Include="Monitoring\MonitoringManager.cs" />
+    <Compile Include="Operations\IMoveOperation.cs" />
+    <Compile Include="Operations\IPackageOperation.cs" />
+    <Compile Include="Operations\IScheduleOperation.cs" />
+    <Compile Include="Operations\IStatusOperation.cs" />
+    <Compile Include="Operations\IUploadOperation.cs" />
+    <Compile Include="Operations\PackageOperation.cs" />
+    <Compile Include="Operations\ScheduleOperation.cs" />
+    <Compile Include="Operations\StatusOperation.cs" />
+    <Compile Include="Packaging\AssemblyItem.cs" />
+    <Compile Include="Packaging\IPackageInspector.cs" />
+    <Compile Include="Packaging\PackageInspector.cs" />
+    <Compile Include="Packaging\PackageWizardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Packaging\PackageWizardForm.Designer.cs">
+      <DependentUpon>PackageWizardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Packaging\PackageWizard.cs" />
+    <Compile Include="Packaging\Vmgx.cs" />
+    <Compile Include="Permission.cs" />
+    <Compile Include="Plugins\BasePlugin.cs" />
+    <Compile Include="Plugins\IPluginInspector.cs" />
+    <Compile Include="Plugins\IPluginJob.cs" />
+    <Compile Include="Plugins\PluginInspector.cs" />
+    <Compile Include="Plugins\PluginWizard.cs" />
+    <Compile Include="Plugins\PluginWizardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\PluginWizardForm.Designer.cs">
+      <DependentUpon>PluginWizardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduling\BaseScheduler.cs" />
+    <Compile Include="Configuration\Settings.cs" />
+    <Compile Include="Configuration\BaseSettings.cs" />
+    <Compile Include="Configuration\ConnectionStringManager.cs" />
+    <Compile Include="CustomAttributes\KeyAttribute.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="ResourceHelper.cs" />
+    <Compile Include="IAuthentication.cs" />
+    <Compile Include="Impersonation.cs" />
+    <Compile Include="Scheduling\Cron.cs" />
+    <Compile Include="Scheduling\CronDay.cs" />
+    <Compile Include="Scheduling\CronHour.cs" />
+    <Compile Include="Scheduling\CronMinute.cs" />
+    <Compile Include="Scheduling\CronMonth.cs" />
+    <Compile Include="Scheduling\CronSecond.cs" />
+    <Compile Include="Scheduling\CronWeek.cs" />
+    <Compile Include="Scheduling\CronYear.cs" />
+    <Compile Include="Scheduling\Enumerations.cs" />
+    <Compile Include="Scheduling\IScheduler.cs" />
+    <Compile Include="Scheduling\ISchedule.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Packaging\IPackage.cs" />
+    <Compile Include="Data\Biz\IValidationMessage.cs" />
+    <Compile Include="LamdaComparer.cs" />
+    <Compile Include="Packaging\PackageManager.cs" />
+    <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryStringBuilder.cs" />
+    <Compile Include="Scheduling\GlobalJobListener.cs" />
+    <Compile Include="Scheduling\GlobalTriggerListener.cs" />
+    <Compile Include="Scheduling\SchedulerManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Packaging\PackageWizardForm.resx">
+      <DependentUpon>PackageWizardForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\PluginWizardForm.resx">
+      <DependentUpon>PluginWizardForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Data\SqlServer\App.config" />
+    <None Include="Vmgr.snk" />
+    <EmbeddedResource Include="Packaging\Package.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="mscoree">
+      <Guid>{5477469E-83B1-11D2-8B49-00A0C9B7C9C4}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>False</Private>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Generic\TypedListClasses\" />
+    <Folder Include="Data\Generic\TypedViewClasses\" />
+    <Folder Include="Data\Generic\ValidatorClasses\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+</Project>

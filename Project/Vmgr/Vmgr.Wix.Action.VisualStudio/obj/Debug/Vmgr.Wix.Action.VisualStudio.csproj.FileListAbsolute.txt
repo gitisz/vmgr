@@ -1,0 +1,8 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.VisualStudio\bin\Vmgr.Wix.Action.VisualStudio.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.VisualStudio\bin\Vmgr.Wix.Action.VisualStudio.CA.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.VisualStudio\bin\Vmgr.Wix.Action.VisualStudio.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.VisualStudio\bin\Microsoft.Deployment.WindowsInstaller.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.VisualStudio\bin\Microsoft.Deployment.WindowsInstaller.xml
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.VisualStudio\obj\Debug\Vmgr.Wix.Action.VisualStudio.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.VisualStudio\obj\Debug\Vmgr.Wix.Action.VisualStudio.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.VisualStudio\obj\Debug\Vmgr.Wix.Action.VisualStudio.pdb

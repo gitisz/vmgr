@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vmgr.VisualStudioAddin</name>
+    </assembly>
+    <members>
+        <member name="M:Vmgr.VisualStudioAddin.Connect.#ctor">
+            <summary>Implements the constructor for the Add-in object. Place your initialization code within this method.</summary>
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Connect.OnConnection(System.Object,Extensibility.ext_ConnectMode,System.Object,System.Array@)">
+            <summary>
+            Adds the Commandbar to the context menu.
+            </summary>
+            <param name="application"></param>
+            <param name="connectMode"></param>
+            <param name="addInInst"></param>
+            <param name="custom"></param>
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Connect.CreateCommands">
+            <summary>
+            Adds the Commands and Commandbars to the DTE.
+            </summary>
+            <param name="application">DTE object</param>
+            <param name="addInInst">AddIn Instance</param>
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Connect.OnDisconnection(Extensibility.ext_DisconnectMode,System.Array@)">
+            <summary>Implements the OnDisconnection method of the IDTExtensibility2 interface. Receives notification that the Add-in is being unloaded.</summary>
+            <param term='disconnectMode'>Describes how the Add-in is being unloaded.</param>
+            <param term='custom'>Array of parameters that are host application specific.</param>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Connect.OnAddInsUpdate(System.Array@)">
+            <summary>Implements the OnAddInsUpdate method of the IDTExtensibility2 interface. Receives notification when the collection of Add-ins has changed.</summary>
+            <param term='custom'>Array of parameters that are host application specific.</param>
+            <seealso class='IDTExtensibility2' />		
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Connect.OnStartupComplete(System.Array@)">
+            <summary>Implements the OnStartupComplete method of the IDTExtensibility2 interface. Receives notification that the host application has completed loading.</summary>
+            <param term='custom'>Array of parameters that are host application specific.</param>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Connect.OnBeginShutdown(System.Array@)">
+            <summary>Implements the OnBeginShutdown method of the IDTExtensibility2 interface. Receives notification that the host application is being unloaded.</summary>
+            <param term='custom'>Array of parameters that are host application specific.</param>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Library.DTEHandler.GetAllProjectOfSolution">
+            <summary>
+            Get all Projects from Solution
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Library.DTEHandler.StartNewBuildWindow">
+            <summary>
+            Clears the build window and then activates it
+            </summary>
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Library.Menu.VSMenuHandler.GetCommandBar(System.Guid,System.UInt32)">
+            <summary>
+            http://blogs.msdn.com/dr._ex/archive/2007/04/17/using-ivsproffercommands-to-retrieve-a-visual-studio-commandbar.aspx
+            </summary>
+            <param name="guidCmdGroup"></param>
+            <param name="menuID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Vmgr.VisualStudioAddin.Library.Menu.VSMenuHandler.GetCommand(System.String)">
+            <summary>
+            Gets the command.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

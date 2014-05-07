@@ -1,0 +1,356 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Reflection;
+using System.Security.Principal;
+using SD.LLBLGen.Pro.ORMSupportClasses;
+using Vmgr;
+using Vmgr.Data.Generic;
+using Vmgr.Data.Generic.EntityClasses;
+using Vmgr.Data.Generic.HelperClasses;
+using Vmgr.Data.Generic.RelationClasses;
+using Vmgr.Data.Generic.FactoryClasses;
+using Vmgr.Data.Generic.Linq;
+using Vmgr.Data.SqlServer;
+/*
+* THIS CODE WAS AUTO-GENERATED.  DO NOT MAKE MODIFICATIONS.
+*/
+
+namespace Vmgr.Data.Biz.EntityServices
+{
+    internal delegate void SelectingEventHandler<T>(object sender, SelectingEventArgs<T> e, ref IQueryable<T> q) where T : EntityBase2, IEntity2, new();
+
+    internal class SelectingEventArgs<T> : EventArgs where T : EntityBase2, IEntity2, new()
+    {
+        public SelectingEventArgs()
+        {
+        }
+    }
+
+    internal class BeforeProcessingEventArgs : EventArgs
+    {
+		public IMetaData MetaData { get; set; }
+		
+        public BeforeProcessingEventArgs(IMetaData metaData)
+        {
+			this.MetaData = metaData;
+        }
+    }
+
+    internal class ValidatingEventArgs<T> : EventArgs where T : EntityBase2, IEntity2, new()
+    {
+        public GenericBizEntity<T> BizEntity {get ; private set; }
+
+        public ValidatingEventArgs(GenericBizEntity<T> bizEntity)
+        {
+            this.BizEntity = bizEntity;
+        }
+    }
+
+    internal class BeforeSaveEventArgs<T> : EventArgs where T : EntityBase2, IEntity2, new()
+    {
+        public GenericBizEntity<T> BizEntity { get; private set; }
+
+        public BeforeSaveEventArgs(GenericBizEntity<T> bizEntity)
+        {
+            this.BizEntity = bizEntity;
+        }
+    }
+
+    internal class AfterSaveEventArgs<T> : EventArgs where T : EntityBase2, IEntity2, new()
+    {
+        public GenericBizEntity<T> BizEntity { get; private set; }
+
+        public AfterSaveEventArgs(GenericBizEntity<T> bizEntity)
+        {
+            this.BizEntity = bizEntity;
+        }
+    }
+	
+    internal class BeforeDeleteEventArgs<T> : EventArgs where T : EntityBase2, IEntity2, new()
+    {
+        public GenericBizEntity<T> BizEntity { get; private set; }
+
+        public BeforeDeleteEventArgs(GenericBizEntity<T> bizEntity)
+        {
+            this.BizEntity = bizEntity;
+        }
+    }
+
+    internal class AfterDeleteEventArgs<T> : EventArgs where T : EntityBase2, IEntity2, new()
+    {
+        public GenericBizEntity<T> BizEntity { get; private set; }
+
+        public AfterDeleteEventArgs(GenericBizEntity<T> bizEntity)
+        {
+            this.BizEntity = bizEntity;
+        }
+    }
+	
+    internal class ProcessingCompleteEventArgs<T> : EventArgs where T : EntityBase2, IEntity2, new()
+    {
+        public GenericBizEntity<T> BizEntity { get; private set; }
+
+        public ProcessingCompleteEventArgs(GenericBizEntity<T> bizEntity)
+        {
+            this.BizEntity = bizEntity;
+        }
+    }
+	
+    internal abstract class BaseEntityService
+    {
+        #region PRIVATE PROPERTIES
+
+        private LinqMetaData _linqMetaData = null;
+
+        #endregion
+
+        #region PROTECTED PROPERTIES
+
+        protected IAppService appService { get; private set; }
+        
+        protected LinqMetaData linqMetaData
+        {
+            get
+            {
+                if (this._linqMetaData == null)
+                {
+                    //	Used to support RadGrid filtering
+                    FunctionMappingStore store = new FunctionMappingStore();
+                    store.Add(new FunctionMapping(typeof(String), "ToString", 0, "{0}"));
+                    store.Add(new FunctionMapping(typeof(String), "ToUpper", 0, "UPPER({0})"));
+
+                    this._linqMetaData = new LinqMetaData(this.appService.Adapter, store);
+                }
+
+                return this._linqMetaData;
+            }
+        }
+
+        #endregion
+
+        #region PUBLIC PROPERTIES
+
+        public abstract IList<IValidationRule> BrokenRules { get; }
+		
+        #endregion
+
+        #region CTOR
+
+        public BaseEntityService(IAppService appService)
+        {
+            this.appService = appService;
+        }
+
+        #endregion
+
+        #region PRIVATE METHODS
+
+        #endregion
+
+        #region PROTECTED METHODS
+
+        #endregion
+
+        #region PUBLIC METHODS
+
+        public virtual void Invalidate()
+        {
+            this._linqMetaData = null;
+        }
+
+        #endregion
+
+        #region EVENTS
+
+        #endregion
+
+    }
+
+    internal abstract class BaseEntityBizService<T> : BaseEntityService, IService<T> where T : EntityBase2, IEntity2, new()
+    {
+        #region PRIVATE PROPERTIES
+
+        #endregion
+
+        #region PROTECTED PROPERTIES
+      
+        protected IEntity2 _entity;
+
+        internal abstract IEntity2 Entity { get; }
+
+        protected GenericBizEntity<T> bizEntity { get; set; }
+
+        #endregion
+
+        #region PUBLIC PROPERTIES
+
+        public IMetaData MetaData { get; protected set; }
+
+		public override IList<IValidationRule> BrokenRules
+		{
+			get
+			{
+				return this.bizEntity.GetBrokenRules();
+			}
+		}
+		
+		public abstract IList<IService> Services { get; }
+
+        public event SelectingEventHandler<T> Selecting;
+        public event EventHandler<BeforeProcessingEventArgs> BeforeProcessing;
+        public event EventHandler<ValidatingEventArgs<T>> Validating;
+        public event EventHandler<BeforeSaveEventArgs<T>> BeforeSave;
+        public event EventHandler<AfterSaveEventArgs<T>> AfterSave;
+        public event EventHandler<BeforeDeleteEventArgs<T>> BeforeDelete;
+        public event EventHandler<AfterDeleteEventArgs<T>> AfterDelete;
+        public event EventHandler<ProcessingCompleteEventArgs<T>> ProcessingComplete;
+        
+        #endregion
+
+        #region CTOR
+
+        public BaseEntityBizService(IAppService appService)
+            : base(appService)
+        {
+            this.bizEntity = new GenericBizEntity<T>(appService);
+        }
+
+        #endregion
+
+        #region PRIVATE METHODS
+
+        #endregion
+
+        #region PROTECTED METHODS
+
+        #endregion
+
+        #region PUBLIC METHODS
+
+        public abstract bool Save(IMetaData metaData);
+
+        public abstract bool Delete(IMetaData metaData);
+
+        public abstract T ConvertTo(IMetaData metaData);
+
+        public bool Validate()
+        {
+            bool result = true;
+
+            this.bizEntity.OnValidating = this.OnValidating;
+            this.bizEntity.ClearRules();
+
+            result = this.bizEntity.Validate(base.appService);
+
+            return result;
+        }
+
+        public override void Invalidate()
+        {
+            base.Invalidate();
+
+            this.AfterDelete = null;
+            this.AfterSave = null;
+            this.BeforeDelete = null;
+            this.BeforeProcessing = null;
+            this.BeforeSave = null;
+            this.ProcessingComplete = null;
+            this.Selecting = null;
+            this.Validating = null;
+
+            this.bizEntity.Invalidate();
+            this.bizEntity = null;
+
+            if(this.Services != null)
+                this.Services.Clear();
+
+            this._entity = null;
+        }
+
+        #endregion
+
+        #region EVENTS
+
+        protected virtual void OnSelecting(ref IQueryable<T> q)
+        {
+            if (this.Selecting != null)
+            {
+                SelectingEventArgs<T> args = new SelectingEventArgs<T>();
+                Selecting(this, args, ref q);
+            }
+        }
+
+        protected virtual void OnBeforeProcessing(IMetaData metaData)
+        {
+            if (this.BeforeProcessing != null)
+            {
+                BeforeProcessingEventArgs args = new BeforeProcessingEventArgs(metaData);
+                BeforeProcessing(this, args);
+				
+				this.MetaData = args.MetaData;
+            }
+        }
+
+        protected virtual void OnValidating(IAppService appService)
+        {
+            if (this.Validating != null)
+            {
+                ValidatingEventArgs<T> args = new ValidatingEventArgs<T>(this.bizEntity);
+                Validating(this, args);
+            }
+        }
+
+        protected virtual void OnBeforeSave(IAppService appService)
+        {
+            if (this.BeforeSave != null)
+            {
+                BeforeSaveEventArgs<T> args = new BeforeSaveEventArgs<T>(this.bizEntity);
+                BeforeSave(this, args);
+            }
+        }
+
+        protected virtual void OnAfterSave(IAppService appService)
+        {
+            this._entity = null;
+
+            if (this.AfterSave != null)
+            {
+                AfterSaveEventArgs<T> args = new AfterSaveEventArgs<T>(this.bizEntity);
+                AfterSave(this, args);
+            }
+        }
+
+        protected virtual void OnBeforeDelete(IAppService appService)
+        {
+            if (this.BeforeDelete != null)
+            {
+                BeforeDeleteEventArgs<T> args = new BeforeDeleteEventArgs<T>(this.bizEntity);
+                BeforeDelete(this, args);
+            }
+       	}
+
+        protected virtual void OnAfterDelete(IAppService appService)
+        {
+            this._entity = null;
+			
+            if (this.AfterDelete != null)
+            {
+                AfterDeleteEventArgs<T> args = new AfterDeleteEventArgs<T>(this.bizEntity);
+                AfterDelete(this, args);
+            }
+        }
+
+        protected virtual void OnProcessingComplete(IAppService appService)
+        {
+            if (this.ProcessingComplete != null)
+            {
+                ProcessingCompleteEventArgs<T> args = new ProcessingCompleteEventArgs<T>(this.bizEntity);
+                ProcessingComplete(this, args);
+            }
+        }
+		
+		#endregion
+    }
+}

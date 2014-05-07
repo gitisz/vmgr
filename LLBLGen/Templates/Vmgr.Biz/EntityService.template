@@ -1,0 +1,423 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Security.Principal;
+using SD.LLBLGen.Pro.ORMSupportClasses;
+using SD.LLBLGen.Pro.QuerySpec;
+using SD.LLBLGen.Pro.QuerySpec.Adapter;
+<# ProjectSpecificCustomAssemblyReferences #>
+using <[RootNamespace]>.MetaData;
+using <[RootNamespace]>.EntityServices;
+using <[RootNamespace]>.EntityRules;
+
+namespace <[RootNamespace]>.EntityServices
+{
+    internal partial class <[CurrentEntityName]>Service : BaseEntityBizService<<[CurrentEntityName]>Entity>, IService<<[CurrentEntityName]>Entity>
+    {
+        #region PRIVATE PROPERTIES
+		
+        private IList<IService> _services = null;
+
+		#endregion
+
+        #region PROTECTED PROPERTIES
+
+        internal override IEntity2 Entity
+        {
+            get
+            {
+                if (base._entity == null)
+                {
+                     IQueryable<<[CurrentEntityName]>Entity> e = base.linqMetaData.<[CurrentEntityName]>;
+
+                    //  Partial method with which to hook IQueryable expressions from custom code.  Great for adding prefetch paths!
+                    this.OnPartialSelecting(ref e);
+
+                    base.OnSelecting(ref e);
+					
+                    base._entity = e
+						<[Foreach PrimaryKeyEntityField]>.FirstOrDefault(u => u.<[EntityFieldName]> == this.<[CaseCamel CurrentEntityName]>.<[EntityFieldName]>)<[NextForeach]> ?? 
+							new <[CurrentEntityName]>Entity();
+                    
+					base.bizEntity = new GenericBizEntity<<[CurrentEntityName]>Entity>(base._entity as <[CurrentEntityName]>Entity, base.appService);
+                }
+
+                return base._entity;
+            }
+        }
+
+        protected <[CurrentEntityName]>MetaData <[CaseCamel CurrentEntityName]>
+        {
+            get
+            {
+                return base.MetaData as <[CurrentEntityName]>MetaData;
+            }
+            private set
+            {
+                base.MetaData = value;
+            }
+        }
+
+        #endregion
+
+        #region PUBLIC PROPERTIES
+
+        public override IList<IService> Services
+        {
+            get
+            {
+                if (this._services == null)
+                {
+                    this._services = new List<IService> {  };
+                }
+
+                return this._services;
+            }
+        }
+
+        #endregion
+
+        #region CTOR
+
+        public <[CurrentEntityName]>Service(IAppService appService)
+            : base(appService)
+        {
+        }
+
+        public <[CurrentEntityName]>Service(<[CurrentEntityName]>MetaData metaData, IAppService appService)
+            : base(appService)
+        {
+            this.<[CaseCamel CurrentEntityName]> = metaData;
+        }
+
+        public <[CurrentEntityName]>Service(<[CurrentEntityName]>Entity entity, IAppService appService)
+            : base(appService)
+        {
+            if (entity == null)
+                throw new NullReferenceException("The <[CurrentEntityName]>Entity argument must not be undefined.");
+
+            this._entity = entity;
+        }
+
+        #endregion
+
+        #region PRIVATE METHODS
+
+        partial void OnPartialSelecting(ref IQueryable<<[CurrentEntityName]>Entity> entity);
+        partial void OnPartialGet<[CurrentEntityName]>s(ref IQueryable<<[CurrentEntityName]>MetaData> q);
+        partial void OnPartialValidating(IAppService appService);
+        partial void OnPartialBeforeSave(IAppService appService);
+        partial void OnPartialAfterSave(IAppService appService);
+        partial void OnPartialBeforeDelete(IAppService appService);
+        partial void OnPartialAfterDelete(IAppService appService);
+        partial void OnPartialProcessingComplete(IAppService appService);
+
+		#endregion
+
+        #region PROTECTED METHODS
+
+        #endregion
+
+        #region PUBLIC METHODS
+
+        public override bool Save(IMetaData metaData)
+        {
+            this.ConvertTo(metaData);
+
+			base.bizEntity.OnValidating = this.OnValidating;
+			base.bizEntity.OnBeforeSave = this.OnBeforeSave;
+            base.bizEntity.OnAfterSave = this.OnAfterSave;
+
+			//	Validation will automatically occur
+            bool result = base.bizEntity.Save(true);
+
+			if(result)
+			{
+				this.ConvertBack();
+			}
+
+            this.OnProcessingComplete(base.appService);
+
+			return result;
+        }
+
+        public override bool Delete(IMetaData metaData)
+        {
+            this.ConvertTo(metaData);
+			
+            base.bizEntity.OnValidating = this.OnValidating;
+            base.bizEntity.OnBeforeDelete = this.OnBeforeDelete;
+            base.bizEntity.OnAfterDelete = this.OnAfterDelete;
+
+            bool result =  base.bizEntity.Delete();
+
+            this.OnProcessingComplete(base.appService);
+
+			return result;
+        }
+
+        public override <[CurrentEntityName]>Entity ConvertTo(IMetaData metaData)
+        {
+            this.<[CaseCamel CurrentEntityName]> = metaData as <[CurrentEntityName]>MetaData;
+			
+            this.OnBeforeProcessing(this.<[CaseCamel CurrentEntityName]>);
+			
+			<[CurrentEntityName]>Entity e = this.Entity as <[CurrentEntityName]>Entity;
+			<[Foreach EntityField IncludeInheritedPk ]><[If IsPrimaryKey ]>e.SetNewFieldValue("<[EntityFieldName]>", this.<[CaseCamel CurrentEntityName]>.<[EntityFieldName]>);<[EndIf]><[NextForeach]> 
+			<[Foreach EntityField IncludeInherited ]><[If Not IsPrimaryKey ]><[If Not StringValueEquals EntityFieldName "CreateUser"]><[If Not StringValueEquals EntityFieldName "UpdateUser"]><[If Not StringValueEquals EntityFieldName "CreateDate"]><[If Not StringValueEquals EntityFieldName "UpdateDate"]>e.<[EntityFieldName]> = this.<[CaseCamel CurrentEntityName]>.<[EntityFieldName]>;<[Else]>e.<[EntityFieldName]> = this.<[CaseCamel CurrentEntityName]>.<[EntityFieldName]>;<[EndIf]>
+			<[EndIf]><[EndIf]><[EndIf]><[EndIf]><[EndIf]><[NextForeach]>
+			if (this.Entity.IsNew)
+            {<[If HasEntityField "CreateUser" IncludeInherited ]>
+                e.CreateUser = base.appService.User.Name;<[EndIf]>
+            }
+            else
+            {<[If HasEntityField "UpdateUser" IncludeInherited ]>
+                e.UpdateUser = base.appService.User.Name;<[EndIf]>
+            }
+			
+			return e;
+        }
+		
+        public virtual <[CurrentEntityName]>MetaData ConvertBack()
+		{
+            this.<[CaseCamel CurrentEntityName]> = this.<[CaseCamel CurrentEntityName]> ?? new <[CurrentEntityName]>MetaData();			
+			<[Foreach EntityField IncludeInheritedPk ]><[If IsPrimaryKey ]>
+			this.<[CaseCamel CurrentEntityName]>.<[EntityFieldName]> = (<[TypeOfField]><[If GenerateAsNullableType]> ? <[EndIf]>)base.bizEntity.PrimaryKey;<[EndIf]><[NextForeach]>
+			<[Foreach EntityField IncludeInherited ]><[If Not IsPrimaryKey ]>this.<[CaseCamel CurrentEntityName]>.<[EntityFieldName]> = base.bizEntity.Entity.<[EntityFieldName]>;
+			<[EndIf]><[NextForeach]>
+
+			//	TODO: Figure out why this doesn't work... Mapped fields on related field.<[Foreach RelatedEntityField ]>
+			//this.<[CaseCamel CurrentEntityName]>.<[MappedFieldNameRelatedField]> = base.bizEntity.Entity.<[MappedFieldNameRelatedField]>;<[NextForeach]>
+
+			return this.<[CaseCamel CurrentEntityName]>;
+		}
+        <[If Not IsInHierarchyType TargetPerEntity]>
+		public <[CurrentEntityName]>MetaData Get<[CurrentEntityName]>(<[Foreach PrimaryKeyEntityField ]><[TypeOfField]><[If GenerateAsNullableType]> ? <[EndIf]><[NextForeach]> id)
+        {
+            return this.Get<[CurrentEntityName]>s().FirstOrDefault(u => u.<[Foreach PrimaryKeyEntityField]><[EntityFieldName]><[NextForeach]> == id);
+        }
+		
+		public virtual IQueryable<<[CurrentEntityName]>MetaData> Get<[CurrentEntityName]>s()
+        {
+            IQueryable<<[CurrentEntityName]>MetaData> q = base.linqMetaData.<[CurrentEntityName]>
+                .Select(c => new <[CurrentEntityName]>MetaData
+                {   <[Foreach EntityField IncludeInheritedPk ]><[If IsPrimaryKey ]>
+                    <[EntityFieldName]> = c.<[EntityFieldName]>,<[EndIf]><[NextForeach]>
+					<[Foreach EntityField IncludeInherited ]><[If Not IsPrimaryKey ]>
+					<[EntityFieldName]> = c.<[EntityFieldName]>,<[EndIf]><[NextForeach]>
+					//	Mapped fields on related field.<[Foreach RelatedEntityField ]>
+					<[MappedFieldNameRelatedField]> = c.<[MappedFieldNameRelation]>.<[RelatedEntityFieldName]>,<[NextForeach]>
+                }
+                )
+                ;
+				
+            this.OnPartialGet<[CurrentEntityName]>s(ref q);
+
+            return q;
+        }<[EndIf]>
+		
+        <[If IsInHierarchyType TargetPerEntity]><[If IsSuperType]>public virtual DynamicQuery<<[CurrentEntityName]>MetaData> Get<[CurrentEntityName]>s()
+        {
+            var qf = new QueryFactory();
+
+            var q = qf.<[CurrentEntityName]>
+                .Select(() => new
+                {
+					<[Foreach EntityField IncludeInheritedPk ]><[If IsPrimaryKey ]>
+                    <[EntityFieldName]> = <[CurrentEntityName]>Fields.<[EntityFieldName]>.ToValue<<[TypeOfField]>>(),<[EndIf]><[NextForeach]>	
+					<[Foreach EntityField IncludeInherited ]><[If Not IsPrimaryKey ]>
+					<[EntityFieldName]> = <[CurrentEntityName]>Fields.<[EntityFieldName]>.ToValue<<[TypeOfField]><[If GenerateAsNullableType]>?<[EndIf]>>(),<[EndIf]><[NextForeach]>
+					
+					//  We can capture what type the source advisory is using these artificial discriminators.<# EntityServiceInclude1 #>
+				}
+                )
+                .WithProjector(t =>
+                {
+                    <[CurrentEntityName]>MetaData s = new <[CurrentEntityName]>MetaData { };
+
+                    <# EntityServiceInclude2 #>
+                    //  Common base type fields<[Foreach EntityField]>
+					s.<[EntityFieldName]> = t.Get<<[TypeOfField]><[If GenerateAsNullableType]>?<[EndIf]>>("<[EntityFieldName]>");<[NextForeach]>
+                    
+					return s;
+                }
+                )
+                ;
+
+            return q;
+        }<[Else]>public <[CurrentEntityName]>MetaData Get<[CurrentEntityName]>(<[Foreach PrimaryKeyEntityField ]><[TypeOfField]><[If GenerateAsNullableType]> ? <[EndIf]><[NextForeach]> id)
+        {
+            return this.Get<[CurrentEntityName]>s().FirstOrDefault(u => u.<[Foreach PrimaryKeyEntityField]><[EntityFieldName]><[NextForeach]> == id);
+        }
+		
+		public virtual IQueryable<<[CurrentEntityName]>MetaData> Get<[CurrentEntityName]>s()
+        {
+            IQueryable<<[CurrentEntityName]>MetaData> q = base.linqMetaData.<[CurrentEntityName]>
+                .Select(c => new <[CurrentEntityName]>MetaData
+                {   <[Foreach EntityField IncludeInheritedPk ]><[If IsPrimaryKey ]>
+                    <[EntityFieldName]> = c.<[EntityFieldName]>,<[EndIf]><[NextForeach]>
+					<[Foreach EntityField IncludeInherited ]><[If Not IsPrimaryKey ]>
+					<[EntityFieldName]> = c.<[EntityFieldName]>,<[EndIf]><[NextForeach]>
+					//	Mapped fields on related field.<[Foreach RelatedEntityField ]>
+					<[MappedFieldNameRelatedField]> = c.<[MappedFieldNameRelation]>.<[RelatedEntityFieldName]>,<[NextForeach]>
+                }
+                )
+                ;
+				
+            this.OnPartialGet<[CurrentEntityName]>s(ref q);
+
+            return q;
+        }<[EndIf]><[EndIf]>
+		
+        public override void Invalidate()
+        {
+            base.Invalidate();
+
+            this._services = null;
+        }
+				
+        #endregion
+
+        #region EVENTS
+
+        protected override void OnBeforeProcessing(IMetaData metaData)
+        {
+			base.OnBeforeProcessing(metaData);
+        }
+
+        protected override void OnValidating(IAppService appService)
+        {
+            base.bizEntity.AddRules(<[CurrentEntityName]>EntityRuleContainer.GetGeneratedRules(this.Entity as <[CurrentEntityName]>Entity));
+
+            this.OnPartialValidating(appService);
+
+	    	base.OnValidating(appService);
+        }
+
+        protected override void OnBeforeSave(IAppService appService)
+        {
+            this.OnPartialBeforeSave(appService);
+
+            base.OnBeforeSave(appService);
+        }
+
+        protected override void OnAfterSave(IAppService appService)
+        {
+            this.OnPartialAfterSave(appService);
+
+            base.OnAfterSave(appService);
+        }
+
+        protected override void OnBeforeDelete(IAppService appService)
+        {
+            this.OnPartialBeforeDelete(appService);
+
+            base.OnBeforeDelete(appService);
+        }
+
+        protected override void OnAfterDelete(IAppService appService)
+        {
+            this.OnPartialAfterDelete(appService);
+
+            base.OnAfterDelete(appService);
+        }
+
+        protected override void OnProcessingComplete(IAppService appService)
+        {
+            this.OnPartialProcessingComplete(appService);
+
+            base.OnProcessingComplete(appService);
+        }
+
+        #endregion
+
+    }
+}
+
+namespace <[RootNamespace]>
+{
+    public partial class AppService
+    {
+        #region PRIVATE PROPERTIES
+
+        private <[CurrentEntityName]>Service _<[CaseCamel CurrentEntityName]>Service;
+
+        #endregion
+
+        #region PROTECTED PROPERTIES
+
+        internal <[CurrentEntityName]>Service <[CaseCamel CurrentEntityName]>Service
+        {
+            get
+            {
+                if (this._<[CaseCamel CurrentEntityName]>Service == null)
+                {
+                    this._<[CaseCamel CurrentEntityName]>Service = new <[CurrentEntityName]>Service(this);
+                }
+                return this._<[CaseCamel CurrentEntityName]>Service;
+            }
+        }
+
+        #endregion
+
+        #region PUBLIC PROPERTIES
+
+        #endregion
+
+        #region CTOR
+
+        #endregion
+
+        #region PRIVATE METHODS
+
+        #endregion
+
+        #region PROTECTED METHODS
+
+        #endregion
+
+        #region PUBLIC METHODS
+
+        <[If Not IsInHierarchyType TargetPerEntity]>public <[CurrentEntityName]>MetaData Get<[CurrentEntityName]>(<[Foreach PrimaryKeyEntityField ]><[TypeOfField]><[If GenerateAsNullableType]> ? <[EndIf]><[NextForeach]> id)
+        {
+            return this.<[CaseCamel CurrentEntityName]>Service.Get<[CurrentEntityName]>(id);
+        }
+
+        public IQueryable<<[CurrentEntityName]>MetaData> Get<[CurrentEntityName]>s()
+        {
+            return this.<[CaseCamel CurrentEntityName]>Service.Get<[CurrentEntityName]>s();
+        }<[EndIf]><[If IsInHierarchyType TargetPerEntity]><[If IsSuperType]>public IQueryable<<[CurrentEntityName]>MetaData> Get<[CurrentEntityName]>s()
+        {
+            IList<<[CurrentEntityName]>MetaData> list = null;
+
+            Impersonation.Impersonate(delegate
+            {
+                list = this.Adapter.FetchQuery(this.<[CaseCamel CurrentEntityName]>Service.Get<[CurrentEntityName]>s());
+            }
+            );
+
+            return list.AsQueryable();
+        }<[Else]>public <[CurrentEntityName]>MetaData Get<[CurrentEntityName]>(<[Foreach PrimaryKeyEntityField ]><[TypeOfField]><[If GenerateAsNullableType]> ? <[EndIf]><[NextForeach]> id)
+        {
+            return this.<[CaseCamel CurrentEntityName]>Service.Get<[CurrentEntityName]>(id);
+        }
+
+        public IQueryable<<[CurrentEntityName]>MetaData> Get<[CurrentEntityName]>s()
+        {
+            return this.<[CaseCamel CurrentEntityName]>Service.Get<[CurrentEntityName]>s();
+        }<[EndIf]><[EndIf]>
+
+        public bool Save(<[CurrentEntityName]>MetaData <[CaseCamel CurrentEntityName]>MetaData)
+        {
+            return this.<[CaseCamel CurrentEntityName]>Service.Save(<[CaseCamel CurrentEntityName]>MetaData);
+        }
+
+        #endregion
+
+        #region EVENTS
+
+        #endregion
+
+    }
+}

@@ -1,0 +1,8 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.Services\bin\Vmgr.Wix.Action.Services.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.Services\bin\Vmgr.Wix.Action.Services.CA.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.Services\bin\Vmgr.Wix.Action.Services.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.Services\bin\Microsoft.Deployment.WindowsInstaller.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.Services\bin\Microsoft.Deployment.WindowsInstaller.xml
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.Services\obj\Debug\Vmgr.Wix.Action.Services.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.Services\obj\Debug\Vmgr.Wix.Action.Services.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix.Action.Services\obj\Debug\Vmgr.Wix.Action.Services.pdb

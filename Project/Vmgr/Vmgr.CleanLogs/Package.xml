@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    name="V-Manager Clean Logs"
+    description="Removes logs after a period of time."
+    uniqueId="62928e78-f9d0-4069-999c-ad290bef3407"
+    >
+    <assemblies>
+        <assembly location="Vmgr.CleanLogs.dll" />
+    </assemblies>
+</package>

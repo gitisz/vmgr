@@ -1,0 +1,31 @@
+<VSTemplate Version="2.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+    <TemplateData>
+        <Name>V-Manager Plugin</Name>
+        <Description>Add a new plugin to a V-Manager package.</Description>
+        <ProjectType>CSharp</ProjectType>
+        <TemplateID>Plugin</TemplateID>
+        <ShowByDefault>true</ShowByDefault>
+        <SortOrder>6</SortOrder>
+        <DefaultName>Plugin</DefaultName>
+        <Icon>__TemplateIcon.ico</Icon>
+        <PreviewImage>__PreviewImage.png</PreviewImage>
+    </TemplateData>
+    <TemplateContent>
+        <References>
+            <Reference>
+                <Assembly>Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e</Assembly>
+            </Reference>
+            <Reference>
+                <Assembly>Quartz, Version=2.1.2.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4</Assembly>
+            </Reference>
+            <Reference>
+                <Assembly>Vmgr, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe</Assembly>
+            </Reference>
+        </References>
+        <ProjectItem SubType="Code" TargetFileName="$rootname$.cs" ReplaceParameters="true">Plugin.cs</ProjectItem>
+    </TemplateContent>
+    <WizardExtension>
+        <Assembly>Vmgr, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe</Assembly>
+        <FullClassName>Vmgr.Plugins.PluginWizard</FullClassName>
+    </WizardExtension>
+</VSTemplate>

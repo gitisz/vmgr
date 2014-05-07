@@ -1,0 +1,1677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product
+        Id="*"
+        Name="V-Manager (x64)"
+        Language="1033"
+        Version="5.0.0.0"
+        Manufacturer="Dominion Resources Services, Inc."
+        UpgradeCode="57A237AA-9232-4472-8E4B-44672CEDE9F8"
+        >
+        <Package
+            InstallerVersion="200"
+            Compressed="yes"
+            Platform="x64"
+            InstallScope="perMachine"
+            />
+        <Icon Id="VmgrIco" SourceFile="..\..\..\Artwork\Vmgr.ico" />
+        <MediaTemplate />
+        <Property Id="ARPPRODUCTICON" Value="VmgrIco" />
+        <Property Id="PREVIOUSVERSIONSINSTALLED" Secure="yes" />
+        <WixVariable Id="WixUIBannerBmp" Value="..\..\..\Artwork\VmgrBanner.bmp" />
+        <WixVariable Id="WixUIDialogBmp" Value="..\..\..\Artwork\VmgrDialog.bmp" />
+        <Upgrade Id="57A237AA-9232-4472-8E4B-44672CEDE9F8">
+            <UpgradeVersion Minimum="1.0.0.0" Maximum="99.0.0.0" Property="PREVIOUSVERSIONSINSTALLED" IncludeMinimum="yes" IncludeMaximum="no" />
+        </Upgrade>
+        <UIRef Id="uiVmgr" />
+        <UIRef Id="WixUI_ErrorProgressText" />
+        <Feature
+            Id="Complete"
+            Title="V-Manager"
+            Description="Pluggable services."
+            Display="expand"
+            Level="1"
+            ConfigurableDirectory="INSTALLOCATION"
+            >
+            <Feature Id="featureVmgrPackager" Title="Packaging" TypicalDefault="install" Level="1">
+                <ComponentRef Id="componentVmgrPackager" />
+                <Feature Id="featureVmgrVisualStudio" Title="Visual Studio Addin" Level="1000">
+                    <ComponentRef Id="componentVisualStudioItemTemplates" />
+                    <ComponentRef Id="componentVisualStudioProjectTemplates" />
+                    <ComponentRef Id="componentVmgrToolsPathWow" />
+                    <ComponentRef Id="componentVisualStudioRuntimeNet35Dll" />
+                    <ComponentRef Id="componentVisualStudioRuntimeNet40File" />
+                    <ComponentRef Id="componentVmgrVisualStudioAddinDll" />
+                    <ComponentRef Id="componentVmgrVisualStudioAddinXml" />
+                </Feature>
+            </Feature>
+            <Feature Id="featureVmgrServices" Title="Services" Level="1">
+                <ComponentRef Id="componentVmgrServices" />
+                <ComponentRef Id="componentServicesVmgrNet40Dll" />
+                <ComponentRef Id="componentServicesVmgrNet35Dll" />
+            </Feature>
+            <Feature Id="featureVmgrSSLTool" Title="SSL" Display="hidden" Level="1">
+                <ComponentRef Id="componentVmgrSSLTool" />
+            </Feature>
+        </Feature>
+        <Binary
+            Id="binaryPackager"
+            SourceFile="..\Vmgr.Wix.Action.Packager\bin\Vmgr.Wix.Action.Packager.CA.dll"
+            />
+        <Binary
+            Id="binaryVisualStudio"
+            SourceFile="..\Vmgr.Wix.Action.VisualStudio\bin\Vmgr.Wix.Action.VisualStudio.CA.dll"
+            />
+        <Binary
+            Id="binaryServices"
+            SourceFile="..\Vmgr.Wix.Action.Services\bin\Vmgr.Wix.Action.Services.CA.dll"
+            />
+        <CustomAction
+            Id="customActionInstallVmgrPackagerData"
+            Property="customActionInstallVmgrPackager"
+            Value="INSTALLOCATION=[INSTALLOCATION];SQL_CONNECTION_STRING=[SQL_CONNECTION_STRING];"
+            />
+        <CustomAction
+            Id="customActionInstallVmgrPackager"
+            BinaryKey="binaryPackager"
+            DllEntry="OnInstallVmgrPackagerAction"
+            Execute="deferred"
+            Return="check"
+            />
+        <CustomAction
+            Id="customActionUnInstallVmgrPackagerData"
+            Property="customActionUnInstallVmgrPackager"
+            Value="INSTALLOCATION=[INSTALLOCATION];"
+            />
+        <CustomAction
+            Id="customActionUnInstallVmgrPackager"
+            BinaryKey="binaryPackager"
+            DllEntry="OnUnInstallVmgrPackagerAction"
+            Execute="deferred"
+            Return="check"
+            />
+        <CustomAction
+            Id="customActionInstallVisualStudioData"
+            Property="customActionInstallVisualStudio"
+            Value="INSTALLOCATION=[INSTALLOCATION];"
+            />
+        <CustomAction
+            Id="customActionInstallVisualStudio"
+            BinaryKey="binaryVisualStudio"
+            DllEntry="OnInstallVisualStudioAction"
+            Execute="deferred"
+            Return="check"
+            />
+        <CustomAction
+            Id="customActionUnInstallVisualStudioData"
+            Property="customActionUnInstallVisualStudio"
+            Value="INSTALLOCATION=[INSTALLOCATION];"
+            />
+        <CustomAction
+            Id="customActionUnInstallVisualStudio"
+            BinaryKey="binaryVisualStudio"
+            DllEntry="OnUnInstallVisualStudioAction"
+            Execute="deferred"
+            Return="check"
+            />
+        <CustomAction
+            Id="customValidateServiceCredentials"
+            BinaryKey="binaryServices"
+            DllEntry="OnValidateServiceCredentials"
+            Execute="immediate"
+            Return="check"
+            />
+        <CustomAction
+            Id="customValidateSqlServerAuth"
+            BinaryKey="binaryServices"
+            DllEntry="OnValidateSqlServerAuth"
+            Execute="immediate"
+            Return="check"
+            />
+        <CustomAction
+            Id="customActionInstallVmgrServicesData"
+            Property="customActionInstallVmgrServices"
+            Value="INSTALLOCATION=[INSTALLOCATION];SQL_CONNECTION_STRING=[SQL_CONNECTION_STRING];VMGR_USERNAME=[VMGR_USERNAME];VMGR_PASSWORD=[VMGR_PASSWORD];VMGR_RT_PROTOCOL=[VMGR_RT_PROTOCOL];VMGR_WS_PROTOCOL=[VMGR_WS_PROTOCOL];VMGR_CERT_SIZE=[VMGR_CERT_SIZE];VMGR_RT_PORT=[VMGR_RT_PORT];VMGR_WS_PORT=[VMGR_WS_PORT];VMGR_CERTIFICATE_NEEDED=[VMGR_CERTIFICATE_NEEDED];VMGR_CERT_DISTINGUISHEDNAME=[VMGR_CERT_DISTINGUISHEDNAME];VMGR_CERT_ORGANIZATION=[VMGR_CERT_ORGANIZATION];VMGR_CERT_ORGUNIT=[VMGR_CERT_ORGUNIT];VMGR_CERT_STATE=[VMGR_CERT_STATE];VMGR_CERT_LOCATION=[VMGR_CERT_LOCATION];VMGR_CERT_COUNTRY=[VMGR_CERT_COUNTRY];"
+            />
+        <CustomAction
+            Id="customActionInstallVmgrServices"
+            BinaryKey="binaryServices"
+            DllEntry="OnInstallVmgrServicesAction"
+            Execute="deferred"
+            Return="check"
+            />
+        <CustomAction
+            Id="customActionUnInstallVmgrServicesData"
+            Property="customActionUnInstallVmgrServices"
+            Value="INSTALLOCATION=[INSTALLOCATION];"
+            />
+        <CustomAction
+            Id="customActionUnInstallVmgrServices"
+            BinaryKey="binaryServices"
+            DllEntry="OnUnInstallVmgrServicesAction"
+            Execute="deferred"
+            Return="check"
+            />
+        <CustomAction
+            Id="customStartVmgrServices"
+            BinaryKey="binaryServices"
+            DllEntry="OnStartVmgrServicesAction"
+            Execute="immediate"
+            Impersonate="yes"
+            />
+        <CustomAction
+            Id="customActionPopulatePorts"
+            BinaryKey="binaryServices"
+            DllEntry="OnPopulatePorts"
+            Execute="immediate"
+            Return="check"
+            />
+        <CustomAction
+            Id="customValidatePorts"
+            BinaryKey="binaryServices"
+            DllEntry="OnValidatePorts"
+            Execute="immediate"
+            Return="check"
+            />
+        <CustomAction
+            Id="customGenerateCertificate"
+            BinaryKey="binaryServices"
+            DllEntry="OnGenerateCertificate"
+            Execute="immediate"
+            Return="check"
+            />
+        <CustomAction
+            Id="customResetCertificateFields"
+            BinaryKey="binaryServices"
+            DllEntry="OnResetCertificateFields"
+            Execute="immediate"
+            Return="check"
+            />
+        <CustomAction
+            Id="customQtExecRTBindCertToPortData"
+            Property="customQtExecRTBindCertToPort"
+            Value="&quot;[INSTALLOCATION]SSL\Vmgr.SSLTool.exe&quot; -r [VMGR_RT_PORT] -s [VMGR_RT_PROTOCOL] -t [VMGR_CERT_THUMBPRINT] -u  [VMGR_USERNAME] "
+            />
+        <CustomAction
+            Id="customQtExecRTBindCertToPort"
+            BinaryKey="WixCA"
+            DllEntry="CAQuietExec"
+            Execute="deferred"
+            Return="ignore"
+            Impersonate="yes"
+            />
+        <CustomAction
+            Id="customQtExecWSBindCertToPortData"
+            Property="customQtExecWSBindCertToPort"
+            Value="&quot;[INSTALLOCATION]SSL\Vmgr.SSLTool.exe&quot; -r [VMGR_WS_PORT] -s [VMGR_WS_PROTOCOL] -t [VMGR_CERT_THUMBPRINT] -u  [VMGR_USERNAME]"
+            />
+        <CustomAction
+            Id="customQtExecWSBindCertToPort"
+            BinaryKey="WixCA"
+            DllEntry="CAQuietExec"
+            Execute="deferred"
+            Return="ignore"
+            Impersonate="yes"
+            />
+        <InstallExecuteSequence>
+            <RemoveExistingProducts Before="InstallInitialize" />
+            <Custom
+                Action="customActionInstallVmgrPackagerData"
+                Before="customActionInstallVmgrPackager"
+                >
+                <![CDATA[&featureVmgrPackager = 3]]>
+            </Custom>
+            <Custom
+                Action="customActionInstallVmgrPackager"
+                Before="InstallFinalize"
+                >
+                <![CDATA[&featureVmgrPackager = 3]]>
+            </Custom>
+            <Custom
+                Action="customActionUnInstallVmgrPackagerData"
+                After="MsiUnpublishAssemblies"
+                >
+                <![CDATA[Installed AND (!featureVmgrPackager = 3)]]>
+            </Custom>
+            <Custom
+                Action="customActionUnInstallVmgrPackager"
+                After="customActionUnInstallVmgrPackagerData"
+                >
+                <![CDATA[Installed AND (!featureVmgrPackager = 3)]]>
+            </Custom>
+            <Custom
+                Action="customActionInstallVisualStudioData"
+                Before="customActionInstallVisualStudio"
+                >
+                <![CDATA[&featureVmgrVisualStudio = 3]]>
+            </Custom>
+            <Custom
+                Action="customActionInstallVisualStudio"
+                Before="InstallFinalize"
+                >
+                <![CDATA[&featureVmgrVisualStudio = 3]]>
+            </Custom>
+            <Custom
+                Action="customActionUnInstallVisualStudioData"
+                After="MsiUnpublishAssemblies"
+                >
+                <![CDATA[Installed AND (!featureVmgrVisualStudio = 3)]]>
+            </Custom>
+            <Custom
+                Action="customActionUnInstallVisualStudio"
+                After="customActionUnInstallVisualStudioData"
+                >
+                <![CDATA[Installed AND (!featureVmgrVisualStudio = 3)]]>
+            </Custom>
+            <Custom
+                Action="customActionInstallVmgrServicesData"
+                Before="customActionInstallVmgrServices"
+                >
+                <![CDATA[&featureVmgrServices = 3]]>
+            </Custom>
+            <Custom
+                Action="customActionInstallVmgrServices"
+                Before="InstallFinalize"
+                >
+                <![CDATA[&featureVmgrServices = 3]]>
+            </Custom>
+            <Custom
+                Action="customActionUnInstallVmgrServicesData"
+                After="MsiUnpublishAssemblies"
+                >
+                <![CDATA[Installed AND (!featureVmgrServices = 3)]]>
+            </Custom>
+            <Custom
+                Action="customActionUnInstallVmgrServices"
+                After="customActionUnInstallVmgrServicesData"
+                >
+                <![CDATA[Installed AND (!featureVmgrServices = 3)]]>
+            </Custom>
+            <Custom
+                Action="customQtExecRTBindCertToPortData"
+                Before="InstallFinalize"
+                >
+                <![CDATA[NOT Installed AND &featureVmgrServices = 3 ]]>
+            </Custom>
+            <Custom
+                Action="customQtExecRTBindCertToPort"
+                After="customQtExecRTBindCertToPortData"
+                >
+                <![CDATA[NOT Installed AND &featureVmgrServices = 3 ]]>
+            </Custom>
+            <Custom
+                Action="customQtExecWSBindCertToPortData"
+                Before="InstallFinalize"
+                >
+                <![CDATA[NOT Installed AND &featureVmgrServices = 3 ]]>
+            </Custom>
+            <Custom
+                Action="customQtExecWSBindCertToPort"
+                After="customQtExecWSBindCertToPortData"
+                >
+                <![CDATA[NOT Installed AND &featureVmgrServices = 3 ]]>
+            </Custom>
+        </InstallExecuteSequence>
+        <InstallUISequence>
+            <Show Dialog="dialogUserExit" OnExit="success" />
+        </InstallUISequence>
+        <AdminUISequence>
+            <Show Dialog="dialogUserExit" OnExit="success" />
+        </AdminUISequence>
+    </Product>
+    <Fragment>
+        <UI Id="uiVmgr">
+            <UIRef Id="WixUI_Common" />
+            <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+            <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+            <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+            <TextStyle Id="Vmgr_Optional" FaceName="Tahoma" Italic="yes" Size="8" />
+            <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+            <Property Id="WixUI_Mode" Value="FeatureTree" />
+            <Property Id="VMGR_SERVICE_CRED_IS_VALID" Value="0" />
+            <Property Id="VMGR_SQL_AUTHENTICATION_MODE" Value="Windows Authentication"></Property>
+            <Property Id="VMGR_RT_PORT" Value="8080"></Property>
+            <Property Id="VMGR_RT_PROTOCOL" Value="HTTP" />
+            <Property Id="VMGR_WS_PORT" Value="8000"></Property>
+            <Property Id="VMGR_WS_PROTOCOL" Value="HTTP" />
+            <Property Id="VMGR_PORTS_IS_VALID" Value="0"></Property>
+            <Property Id="VMGR_CERTIFICATE_NEEDED" Value="FALSE" Secure="yes" />
+            <Property Id="VMGR_CERT_THUMBPRINT" Secure="yes" />
+            <Property Id="VMGR_CERT_SIZE" Value="2048"></Property>
+            <DialogRef Id="ErrorDlg" />
+            <DialogRef Id="FatalError" />
+            <DialogRef Id="FilesInUse" />
+            <DialogRef Id="MsiRMFilesInUse" />
+            <DialogRef Id="PrepareDlg" />
+            <DialogRef Id="ProgressDlg" />
+            <DialogRef Id="ResumeDlg" />
+            <DialogRef Id="UserExit" />
+            <Publish Dialog="dialogUserExit" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">NOT Installed</Publish>
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">Installed AND PATCH</Publish>
+            <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+            <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="CustomizeDlg">LicenseAccepted = "1"</Publish>
+            <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="1">Installed</Publish>
+            <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg" Order="2">NOT Installed</Publish>
+            <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg"><![CDATA[NOT (&featureVmgrServices = 3) AND NOT (&featureVmgrPackager = 3)]]></Publish>
+            <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="ServiceCredentialDlg"><![CDATA[&featureVmgrServices = 3]]></Publish>
+            <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="DatabaseConnectionDlg"><![CDATA[NOT (&featureVmgrServices = 3) AND (&featureVmgrPackager = 3)]]></Publish>
+            <Publish Dialog="ServiceCredentialDlg" Control="pushButtonBack" Event="NewDialog" Value="CustomizeDlg">NOT Installed</Publish>
+            <Publish Dialog="ServiceCredentialDlg" Control="pushButtonNext" Event="NewDialog" Value="DatabaseConnectionDlg"><![CDATA[VMGR_SERVICE_CRED_IS_VALID = 1]]></Publish>
+            <Publish Dialog="DatabaseConnectionDlg" Control="pushButtonBack" Event="NewDialog" Value="CustomizeDlg" Order="1"><![CDATA[NOT (&featureVmgrServices = 3)]]></Publish>
+            <Publish Dialog="DatabaseConnectionDlg" Control="pushButtonBack" Event="NewDialog" Value="ServiceCredentialDlg" Order="2"><![CDATA[&featureVmgrServices = 3]]></Publish>
+            <Publish Dialog="DatabaseConnectionDlg" Control="pushButtonNext" Event="NewDialog" Value="VerifyReadyDlg" Order="1">1</Publish>
+            <Publish Dialog="DatabaseConnectionDlg" Control="pushButtonNext" Event="NewDialog" Value="UseEncryptionDlg" Order="2"><![CDATA[(&featureVmgrServices = 3)]]></Publish>
+            <Publish Dialog="UseEncryptionDlg" Control="pushButtonBack" Event="NewDialog" Value="CustomizeDlg" Order="1"><![CDATA[NOT (&featureVmgrServices = 3)]]></Publish>
+            <Publish Dialog="UseEncryptionDlg" Control="pushButtonBack" Event="NewDialog" Value="DatabaseConnectionDlg" Order="1"><![CDATA[&featureVmgrServices = 3]]></Publish>
+
+            <Publish Dialog="UseEncryptionDlg" Control="pushButtonNext" Event="NewDialog" Value="CreateCertificateDlg" Order="1"><![CDATA[(VMGR_RT_PROTOCOL = "HTTPS" OR VMGR_WS_PROTOCOL = "HTTPS")]]></Publish>
+            <Publish Dialog="UseEncryptionDlg" Control="pushButtonNext" Event="NewDialog" Value="VerifyReadyDlg" Order="2"><![CDATA[(VMGR_RT_PROTOCOL = "HTTP" AND VMGR_WS_PROTOCOL = "HTTP")]]></Publish>
+
+            <Publish Dialog="CreateCertificateDlg" Control="pushButtonBack" Event="NewDialog" Value="UseEncryptionDlg"><![CDATA[&featureVmgrServices = 3]]></Publish>
+            <Publish Dialog="CreateCertificateDlg" Control="pushButtonNext" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="ServiceCredentialDlg" Order="1"><![CDATA[(NOT Installed OR WixUI_InstallMode = "Change") AND ((&featureVmgrServices=3) AND NOT (&featureVmgrPackager=3))]]></Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="UseEncryptionDlg" Order="2"><![CDATA[(NOT Installed OR WixUI_InstallMode = "Change") AND ((&featureVmgrServices=3) OR (&featureVmgrPackager=3))]]></Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="CreateCertificateDlg" Order="3"><![CDATA[(NOT Installed OR WixUI_InstallMode = "Change") AND ((&featureVmgrServices=3) OR (&featureVmgrPackager=3)) AND (VMGR_RT_PROTOCOL = "HTTPS" OR VMGR_WS_PROTOCOL = "HTTPS")]]></Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">Installed AND NOT PATCH</Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="3">Installed AND PATCH</Publish>
+            <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="ChangeButton" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+            <Publish Dialog="dialogUserExit" Control="Finish" Event="DoAction" Value="customStartVmgrServices"><![CDATA[START_SERVICE_ON_EXIT = "1"]]></Publish>
+            <ProgressText Action="customActionInstallVisualStudio">Deploying V-Manager templates and add-in for Visual Studio...</ProgressText>
+            <ProgressText Action="customActionInstallVmgrServices">Installing V-Manager Service encryption options, ports, and certificate...</ProgressText>
+            <Dialog Id="ServiceCredentialDlg" Width="370" Height="270" Title="[ProductName] Setup" NoMinimize="yes">
+                <Control
+                    Id="bitmapBanner"
+                    Type="Bitmap"
+                    X="0"
+                    Y="0"
+                    Width="370"
+                    Height="44"
+                    TabSkip="no"
+                    Text="WixUI_Bmp_Banner"
+                    />
+                <Control
+                    Id="lineBottom"
+                    Type="Line"
+                    X="0"
+                    Y="234"
+                    Width="370"
+                    Height="0"
+                    />
+                <Control
+                    Id="textTitle"
+                    Type="Text"
+                    X="15"
+                    Y="6"
+                    Width="200"
+                    Height="15"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    >
+                    <Text>{\WixUI_Font_Title}Service Credentials</Text>
+                </Control>
+                <Control
+                    Id="textDescription"
+                    Type="Text"
+                    X="25"
+                    Y="23"
+                    Width="280"
+                    Height="15"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    >
+                    <Text>Enter V-Manager Service credentials:</Text>
+                </Control>
+                <Control
+                    Id="lineBanner"
+                    Type="Line"
+                    X="0"
+                    Y="44"
+                    Width="370"
+                    Height="0"
+                    />
+                <Control
+                            Id="textAddlDescription"
+                            Type="Text"
+                            X="25"
+                            Y="60"
+                            Width="330"
+                            Height="28"
+                            TabSkip="yes"
+                    >
+                    <Text>Network credentials are required in order to appropriately access database and related resources.</Text>
+                </Control>
+                <Control
+                    Id="textLdap"
+                    Type="Text"
+                    X="49"
+                    Y="98"
+                    Width="76"
+                    Height="17"
+                    RightAligned="yes"
+                    NoPrefix="yes"
+                    Transparent="yes"
+                    >
+                    <Text>{\Vmgr_Optional}LDAP (Optional):</Text>
+                </Control>
+                <Control
+                    Id="editLdap"
+                    Type="Edit"
+                    X="128"
+                    Y="94"
+                    Width="208"
+                    Height="15"
+                    Password="no"
+                    Property="VMGR_LDAP"
+                    TabSkip="yes"
+                    />
+                <Control
+                    Id="textUserName"
+                    Type="Text"
+                    X="42"
+                    Y="118"
+                    Width="82"
+                    Height="17"
+                    NoPrefix="yes"
+                    Transparent="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>Domain\Username:</Text>
+                </Control>
+                <Control
+                    Id="editUserName"
+                    Type="Edit"
+                    X="128"
+                    Y="114"
+                    Width="142"
+                    Height="15"
+                    Property="VMGR_USERNAME"
+                    >
+                </Control>
+                <Control
+                    Id="textPassword"
+                    Type="Text"
+                    X="49"
+                    Y="140"
+                    Width="76"
+                    Height="14"
+                    RightAligned="yes"
+                    NoPrefix="yes"
+                    Transparent="yes"
+                    >
+                    <Text>Password:</Text>
+                </Control>
+                <Control
+                    Id="editPassword"
+                    Type="Edit"
+                    X="128"
+                    Y="136"
+                    Width="142"
+                    Height="15"
+                    Password="yes"
+                    Property="VMGR_PASSWORD"
+                    Sunken="yes"
+                    />
+                <Control
+                    Id="pushButtonVerify"
+                    Type="PushButton"
+                    X="211"
+                    Y="155"
+                    Width="59"
+                    Height="17"
+                    Default="yes"
+                    Text="&amp;Verify"
+                    >
+                    <Publish Event="DoAction" Value="customValidateServiceCredentials">1</Publish>
+                    <Publish Property="TMP_VMGR_SERVICE_CRED_IS_VALID" Value="[VMGR_SERVICE_CRED_IS_VALID]">1</Publish>
+                    <Publish Property="VMGR_SERVICE_CRED_IS_VALID" Value="[TMP_VMGR_SERVICE_CRED_IS_VALID]" />
+                </Control>
+                <Control
+                    Id="pushButtonNext"
+                    Type="PushButton"
+                    X="248"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Default="yes"
+                    Text="&amp;Next"
+                    >
+                    <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">CostingComplete = 1</Publish>
+                    <Publish Event="NewDialog" Value="DatabaseConnectionDlg">1</Publish>
+                    <Condition Action="enable"><![CDATA[VMGR_SERVICE_CRED_IS_VALID <> "" AND VMGR_SERVICE_CRED_IS_VALID = "1"]]></Condition>
+                    <Condition Action="disable"><![CDATA[VMGR_SERVICE_CRED_IS_VALID = "" OR VMGR_SERVICE_CRED_IS_VALID = "0"]]></Condition>
+                </Control>
+                <Control
+                    Id="pushButtonBack"
+                    Type="PushButton"
+                    X="192"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Default="no"
+                    Text="&amp;Back"
+                    >
+                    <Publish Event="NewDialog" Value="ServiceCredentialDlg">1</Publish>
+                </Control>
+                <Control
+                    Id="pushButtonCancel"
+                    Type="PushButton"
+                    X="304"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Cancel="yes"
+                    Text="Cancel"
+                    >
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+            </Dialog>
+            <Dialog Id="DatabaseConnectionDlg" Width="370" Height="270" Title="[ProductName] Setup" NoMinimize="yes">
+                <Control
+                    Id="bitMapBanner"
+                    Type="Bitmap"
+                    X="0"
+                    Y="0"
+                    Width="370"
+                    Height="44"
+                    TabSkip="no"
+                    Text="WixUI_Bmp_Banner"
+                    />
+                <Control
+                    Id="lineBottom"
+                    Type="Line"
+                    X="0"
+                    Y="234"
+                    Width="370"
+                    Height="0"
+                    />
+                <Control
+                    Id="textTitle"
+                    Type="Text"
+                    X="15"
+                    Y="6"
+                    Width="200"
+                    Height="15"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    >
+                    <Text>{\WixUI_Font_Title}Database Connection</Text>
+                </Control>
+                <Control
+                    Id="textDescription"
+                    Type="Text"
+                    X="25"
+                    Y="23"
+                    Width="280"
+                    Height="15"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    >
+                    <Text>Enter the database connection:</Text>
+                </Control>
+                <Control
+                    Id="lineBanner"
+                    Type="Line"
+                    X="0"
+                    Y="44"
+                    Width="370"
+                    Height="0"
+                    />
+                <Control
+                    Id="textAddlDescription"
+                    Type="Text"
+                    X="25"
+                    Y="60"
+                    Width="330"
+                    Height="28"
+                    TabSkip="yes"
+                    >
+                    <Text>SQL Server credentials are required to ensure connectivity to the underlying database.  Values defined here will update application configuration files.</Text>
+                </Control>
+                <Control
+                    Id="textSqlServerName"
+                    Type="Text"
+                    X="49"
+                    Y="98"
+                    Width="76"
+                    Height="17"
+                    NoPrefix="yes"
+                    Transparent="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>SQL Server Name:</Text>
+                </Control>
+                <Control
+                    Id="editSqlServerName"
+                    Type="Edit"
+                    X="128"
+                    Y="94"
+                    Width="208"
+                    Height="15"
+                    Password="no"
+                    Property="VMGR_SQL_SERVERNAME"
+                    >
+                </Control>
+                <Control
+                    Id="textAuthentication"
+                    Type="Text"
+                    X="49"
+                    Y="120"
+                    Width="76"
+                    Height="14"
+                    RightAligned="yes"
+                    NoPrefix="yes"
+                    Transparent="yes"
+                    >
+                    <Text>Authentication:</Text>
+                </Control>
+                <Control
+                    Id="comboBoxSqlAuthenticationMode"
+                    Type="ComboBox"
+                    Property="VMGR_SQL_AUTHENTICATION_MODE"
+                    Text="Windows Authentication"
+                    ComboList="yes"
+                    X="128"
+                    Y="114"
+                    Width="142"
+                    Height="16"
+                    Sorted="yes"
+                    >
+                    <ComboBox Property="VMGR_SQL_AUTHENTICATION_MODE">
+                        <ListItem Value="Windows Authentication" Text="Windows Authentication" />
+                        <ListItem Value="Sql Server Authentication" Text="SQL Server Authentication" />
+                    </ComboBox>
+                </Control>
+                <Control
+                    Id="textSqlUserName"
+                    Type="Text"
+                    X="49"
+                    Y="140"
+                    Width="76"
+                    Height="17"
+                    NoPrefix="yes"
+                    Transparent="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>Username:</Text>
+                </Control>
+                <Control
+                    Id="editSqlUserName"
+                    Type="Edit"
+                    X="128"
+                    Y="136"
+                    Width="142"
+                    Height="15"
+                    Property="VMGR_SQL_USERNAME"
+                    >
+                    <Condition Action="enable"><![CDATA[VMGR_SQL_AUTHENTICATION_MODE <> "" AND VMGR_SQL_AUTHENTICATION_MODE = "Sql Server Authentication"]]></Condition>
+                    <Condition Action="disable"><![CDATA[VMGR_SQL_AUTHENTICATION_MODE = "" OR VMGR_SQL_AUTHENTICATION_MODE = "Windows Authentication"]]></Condition>
+                </Control>
+                <Control
+                    Id="textSqlPassword"
+                    Type="Text"
+                    X="49"
+                    Y="160"
+                    Width="76"
+                    Height="14"
+                    RightAligned="yes"
+                    NoPrefix="yes"
+                    Transparent="yes"
+                    >
+                    <Text>Password:</Text>
+                </Control>
+                <Control
+                    Id="editSqlPassword"
+                    Type="Edit"
+                    X="128"
+                    Y="156"
+                    Width="142"
+                    Height="15"
+                    Password="yes"
+                    Property="VMGR_SQL_PASSWORD"
+                    Sunken="yes"
+                    >
+                    <Condition Action="enable"><![CDATA[VMGR_SQL_AUTHENTICATION_MODE <> "" AND VMGR_SQL_AUTHENTICATION_MODE = "Sql Server Authentication"]]></Condition>
+                    <Condition Action="disable"><![CDATA[VMGR_SQL_AUTHENTICATION_MODE = "" OR VMGR_SQL_AUTHENTICATION_MODE = "Windows Authentication"]]></Condition>
+                </Control>
+                <Control
+                    Id="pushButtonVerify"
+                    Type="PushButton"
+                    X="211"
+                    Y="176"
+                    Width="59"
+                    Height="17"
+                    Default="yes"
+                    Text="&amp;Verify"
+                    >
+                    <Publish Event="DoAction" Value="customValidateSqlServerAuth">1</Publish>
+                    <Publish Property="TMP_SQL_AUTH_IS_VALID" Value="[SERVICE_SQL_AUTH_IS_VALID]">1</Publish>
+                    <Publish Property="SQL_AUTH_IS_VALID" Value="[TMP_SQL_AUTH_IS_VALID]" />
+                </Control>
+                <Control
+                    Id="pushButtonNext"
+                    Type="PushButton"
+                    X="248"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Default="yes"
+                    Text="&amp;Next"
+                    >
+                    <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">CostingComplete = 1</Publish>
+                    <Publish Event="NewDialog" Value="VerifyReadyDlg"></Publish>
+                    <Publish Event="DoAction" Value="customActionPopulatePorts">1</Publish>
+                    <Condition Action="enable"><![CDATA[SQL_AUTH_IS_VALID <> "" AND SQL_AUTH_IS_VALID = "1"]]></Condition>
+                    <Condition Action="disable"><![CDATA[SQL_AUTH_IS_VALID = "" OR SQL_AUTH_IS_VALID = "0"]]></Condition>
+                </Control>
+                <Control
+                    Id="pushButtonBack"
+                    Type="PushButton"
+                    X="192"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Default="no"
+                    Text="&amp;Back"
+                    >
+                    <Publish Event="NewDialog" Value="ServiceCredentialDlg">1</Publish>
+                </Control>
+                <Control
+                    Id="pushButtonCancel"
+                    Type="PushButton"
+                    X="304"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Cancel="yes"
+                    Text="Cancel"
+                    >
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+            </Dialog>
+            <Dialog Id="UseEncryptionDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] Setup" NoMinimize="yes">
+                <Control
+                    Id="bitMapBanner"
+                    Type="Bitmap"
+                    X="0"
+                    Y="0"
+                    Width="370"
+                    Height="44"
+                    TabSkip="no"
+                    Text="WixUI_Bmp_Banner"
+                    />
+                <Control
+                    Id="textDescription"
+                    Type="Text"
+                    X="25"
+                    Y="23"
+                    Width="280"
+                    Height="15"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    >
+                    <Text>Encrypt communication between service and clients.</Text>
+                </Control>
+                <Control
+                    Id="textTitle"
+                    Type="Text"
+                    X="15"
+                    Y="6"
+                    Width="200"
+                    Height="15"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    >
+                    <Text>{\WixUI_Font_Title}Service Encryption</Text>
+                </Control>
+                <Control
+                    Id="lineBanner"
+                    Type="Line"
+                    X="0"
+                    Y="44"
+                    Width="370"
+                    Height="0"
+                    />
+                <Control
+                    Id="lineBottom"
+                    Type="Line"
+                    X="0"
+                    Y="234"
+                    Width="370"
+                    Height="2"
+                    />
+                <Control
+                    Id="textAddlDescription"
+                    Type="Text"
+                    X="34"
+                    Y="60"
+                    Width="320"
+                    Height="28"
+                    TabSkip="yes"
+                    >
+                    <Text>Selecting a checkbox will allow the option to create a self-signed certificate to be used for encrypting messages to and from the V-Manager Service.</Text>
+                </Control>
+                <Control
+                    Id="checkBoxRealTime"
+                    Type="CheckBox"
+                    X="81"
+                    Y="92"
+                    Width="14"
+                    Height="18"
+                    Property="VMGR_RT_PROTOCOL"
+                    CheckBoxValue="HTTPS"
+                    TabSkip="no"
+                    >
+                </Control>
+                <Control
+                    Id="textRealTime"
+                    Type="Text"
+                    X="96"
+                    Y="96"
+                    Width="248"
+                    Height="15"
+                    TabSkip="yes"
+                    >
+                    <Text>Use encryption for real-time messaging?</Text>
+                </Control>
+                <Control
+                    Id="checkBoxWebServices"
+                    Type="CheckBox"
+                    X="81"
+                    Y="114"
+                    Width="14"
+                    Height="18"
+                    Property="VMGR_WS_PROTOCOL"
+                    CheckBoxValue="HTTPS"
+                    TabSkip="no"
+                    >
+                </Control>
+                <Control
+                    Id="textWebServices"
+                    Type="Text"
+                    X="96"
+                    Y="118"
+                    Width="159"
+                    Height="15"
+                    TabSkip="yes"
+                    >
+                    <Text>Use encryption for web services?</Text>
+                </Control>
+                <Control
+                            Id="textPortDescription"
+                            Type="Text"
+                            X="34"
+                            Y="146"
+                            Width="310"
+                            Height="22"
+                            TabSkip="yes"
+                    >
+                    <Text>Specify the ports that will be used for real time messaging and for web service communication (leave empty to accept defaults):</Text>
+                </Control>
+                <Control
+                          Id="textRtPort"
+                          Type="Text"
+                          X="100"
+                          Y="177"
+                          Width="75"
+                          Height="15"
+                          TabSkip="yes"
+                          RightAligned="yes"
+                    >
+                    <Text>RT Port (8080):</Text>
+                </Control>
+                <Control
+                          Id="maskedEditRtPort"
+                          Type="MaskedEdit"
+                          X="180"
+                          Y="177"
+                          Width="75"
+                          Height="15"
+                          TabSkip="no"
+                          Property="VMGR_RT_PORT"
+                    >
+                    <Text>######</Text>
+                </Control>
+                <Control
+                            Id="textWsPort"
+                            Type="Text"
+                            X="100"
+                            Y="197"
+                            Width="75"
+                            Height="17"
+                            TabSkip="yes"
+                            RightAligned="yes"
+                    >
+                    <Text>WS Port (8000):</Text>
+                </Control>
+                <Control
+                            Id="maskedEditWsPort"
+                            Type="MaskedEdit"
+                            X="180"
+                            Y="197"
+                            Width="75"
+                            Height="15"
+                            TabSkip="no"
+                            Property="VMGR_WS_PORT"
+                    >
+                    <Text>######</Text>
+                </Control>
+                <Control
+                    Id="pushButtonBack"
+                    Type="PushButton"
+                    X="192"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Default="no"
+                    Text="&amp;Back"
+                    >
+                    <Publish Event="NewDialog" Value="DatabaseConnectionDlg">1</Publish>
+                </Control>
+                <Control
+                    Id="pushButtonNext"
+                    Type="PushButton"
+                    X="248"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    TabSkip="no"
+                    >
+                    <Text>&amp;Next &gt;</Text>
+                    <Publish Event="DoAction" Value="customValidatePorts">1</Publish>
+                    <Publish Property="TMP_VMGR_PORTS_IS_VALID" Value="[VMGR_PORTS_IS_VALID]">1</Publish>
+                    <Publish Property="VMGR_PORTS_IS_VALID" Value="[TMP_VMGR_PORTS_IS_VALID]" />
+                </Control>
+                <Control
+                    Id="pushButtonCancel"
+                    Type="PushButton"
+                    X="304"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    TabSkip="no"
+                    >
+                    <Text>Cancel</Text>
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+            </Dialog>
+            <Dialog
+                Id="CreateCertificateDlg"
+                X="50"
+                Y="50"
+                Width="370"
+                Height="270"
+                Title="[ProductName] Setup"
+                NoMinimize="yes"
+                >
+                <Control
+                    Id="bitMapBanner"
+                    Type="Bitmap"
+                    X="0"
+                    Y="0"
+                    Width="370"
+                    Height="44"
+                    TabSkip="no"
+                    Text="WixUI_Bmp_Banner"
+                    />
+                <Control
+                    Id="lineBottom"
+                    Type="Line"
+                    X="0"
+                    Y="234"
+                    Width="370"
+                    Height="2"
+                    />
+                <Control
+                    Id="textTitle"
+                    Type="Text"
+                    X="15"
+                    Y="6"
+                    Width="200"
+                    Height="15"
+                    TabSkip="yes"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    >
+                    <Text>{\WixUI_Font_Title}Create Certificate</Text>
+                </Control>
+                <Control
+                    Id="textDescription"
+                    Type="Text"
+                    X="25"
+                    Y="23"
+                    Width="280"
+                    Height="15"
+                    TabSkip="yes"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    >
+                    <Text>Create a self-signed certificate:</Text>
+                </Control>
+                <Control
+                    Id="lineBanner"
+                    Type="Line"
+                    X="0"
+                    Y="44"
+                    Width="370"
+                    Height="2"
+                    />
+                <Control
+                    Id="groupBoxCertificateProperties"
+                    Type="GroupBox"
+                    X="15"
+                    Y="49"
+                    Width="340"
+                    Height="178"
+                    >
+                    <Text>Certificate Properties:</Text>
+                </Control>
+                <Control
+                    Id="textCertificateName"
+                    Type="Text"
+                         X="41"
+                         Y="65"
+                         Width="75"
+                         Height="15"
+                    TabSkip="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>Certificate Name:</Text>
+                </Control>
+                <Control
+                    Id="editCertificateName"
+                    Type="Edit"
+                    X="121"
+                    Y="62"
+                    Width="146"
+                    Height="15"
+                    Property="VMGR_CERT_NAME"
+                    TabSkip="no"
+                    >
+                    <Text></Text>
+                    <Condition Action="enable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "TRUE")]]></Condition>
+                    <Condition Action="disable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "FALSE")]]></Condition>
+                </Control>
+                <Control
+                    Id="textOrganiztion"
+                    Type="Text"
+                    X="34"
+                    Y="85"
+                    Width="82"
+                    Height="15"
+                    TabSkip="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>Organization:</Text>
+                </Control>
+                <Control
+                    Id="editOrganization"
+                    Type="Edit"
+                    X="121"
+                    Y="82"
+                    Width="146"
+                    Height="15"
+                    Property="VMGR_CERT_ORGANIZATION"
+                    TabSkip="no"
+                    >
+                    <Text></Text>
+                    <Condition Action="enable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "TRUE")]]></Condition>
+                    <Condition Action="disable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "FALSE")]]></Condition>
+                </Control>
+                <Control
+                    Id="textOrgUnit"
+                    Type="Text"
+                    X="34"
+                    Y="105"
+                    Width="82"
+                    Height="15"
+                    TabSkip="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>Org Unit:</Text>
+                </Control>
+                <Control
+                    Id="editOrgUnit"
+                    Type="Edit"
+                    X="121"
+                    Y="103"
+                    Width="146"
+                    Height="15"
+                    Property="VMGR_CERT_ORGUNIT"
+                    TabSkip="no"
+                    >
+                    <Text></Text>
+                    <Condition Action="enable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "TRUE")]]></Condition>
+                    <Condition Action="disable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "FALSE")]]></Condition>
+                </Control>
+                <Control
+                    Id="textLocation"
+                    Type="Text"
+                    X="34"
+                    Y="124"
+                    Width="82"
+                    Height="15"
+                    TabSkip="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>Location:</Text>
+                </Control>
+                <Control
+                    Id="editLocation"
+                    Type="Edit"
+                    X="121"
+                    Y="123"
+                    Width="146"
+                    Height="15"
+                    Property="VMGR_CERT_LOCATION"
+                    TabSkip="no"
+                    >
+                    <Text></Text>
+                    <Condition Action="enable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "TRUE")]]></Condition>
+                    <Condition Action="disable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "FALSE")]]></Condition>
+                </Control>
+                <Control
+                    Id="textState"
+                    Type="Text"
+                    X="40"
+                    Y="146"
+                    Width="75"
+                    Height="17"
+                    TabSkip="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>State:</Text>
+                </Control>
+                <Control
+                    Id="editState"
+                    Type="Edit"
+                    X="121"
+                    Y="143"
+                    Width="52"
+                    Height="15"
+                    TabSkip="no"
+                    Property="VMGR_CERT_STATE"
+                    >
+                    <Text></Text>
+                    <Condition Action="enable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "TRUE")]]></Condition>
+                    <Condition Action="disable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "FALSE")]]></Condition>
+                </Control>
+                <Control
+                    Id="textCountry"
+                    Type="Text"
+                    X="80"
+                    Y="166"
+                    Width="38"
+                    Height="15"
+                    TabSkip="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>Country</Text>
+                </Control>
+                <Control
+                    Id="editCountry"
+                    Type="Edit"
+                    X="122"
+                    Y="164"
+                    Width="52"
+                    Height="15"
+                    Property="VMGR_CERT_COUNTRY"
+                    TabSkip="no"
+                    >
+                    <Text></Text>
+                    <Condition Action="enable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "TRUE")]]></Condition>
+                    <Condition Action="disable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "FALSE")]]></Condition>
+                </Control>
+                <Control
+                    Id="textSize"
+                    Type="Text"
+                    X="34"
+                    Y="184"
+                    Width="82"
+                    Height="15"
+                    TabSkip="yes"
+                    RightAligned="yes"
+                    >
+                    <Text>Size:</Text>
+                </Control>
+                <Control
+                    Id="comboBoxSize"
+                    Type="ComboBox"
+                    X="122"
+                    Y="183"
+                    Width="51"
+                    Height="16"
+                    Property="VMGR_CERT_SIZE"
+                    TabSkip="no"
+                    Sorted="yes"
+                    ComboList="yes"
+                    >
+                    <ComboBox Property="VMGR_CERT_SIZE">
+                        <ListItem Text="1024" Value="1024" />
+                        <ListItem Text="2048" Value="2048" />
+                        <ListItem Text="4096" Value="4096" />
+                    </ComboBox>
+                    <Condition Action="enable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "TRUE")]]></Condition>
+                    <Condition Action="disable"><![CDATA[(VMGR_CERTIFICATE_NEEDED = "FALSE")]]></Condition>
+                </Control>
+                <Control
+                    Id="pushButtonGenerateCertificate"
+                    Type="PushButton"
+                    X="122"
+                    Y="203"
+                    Width="145"
+                    Height="16"
+                    Default="yes"
+                    Text="&amp;Generate Certificate"
+                    >
+                    <Publish Event="DoAction" Value="customGenerateCertificate">1</Publish>
+                    <Publish Property="TMP_VMGR_CERTIFICATE_NEEDED" Value="[VMGR_CERTIFICATE_NEEDED]">1</Publish>
+                    <Publish Property="VMGR_CERTIFICATE_NEEDED" Value="[TMP_VMGR_CERTIFICATE_NEEDED]" />
+                    <Condition Action="show"><![CDATA[VMGR_CERTIFICATE_NEEDED = "TRUE"]]></Condition>
+                    <Condition Action="hide"><![CDATA[VMGR_CERTIFICATE_NEEDED = "FALSE"]]></Condition>
+                </Control>
+                <Control
+                    Id="pushButtonResetCertificateFields"
+                    Type="PushButton"
+                    X="122"
+                    Y="203"
+                    Width="145"
+                    Height="16"
+                    Default="yes"
+                    Text="&amp;Reset Certificate"
+                    >
+                    <Publish Event="DoAction" Value="customResetCertificateFields">1</Publish>
+                    <Publish Event="Reset" Value="0">1</Publish>
+                    <Publish Property="TMP_VMGR_CERTIFICATE_NEEDED" Value="[VMGR_CERTIFICATE_NEEDED]">1</Publish>
+                    <Publish Property="VMGR_CERTIFICATE_NEEDED" Value="[TMP_VMGR_CERTIFICATE_NEEDED]" />
+                    <Condition Action="hide"><![CDATA[VMGR_CERTIFICATE_NEEDED = "TRUE"]]></Condition>
+                    <Condition Action="show"><![CDATA[VMGR_CERTIFICATE_NEEDED = "FALSE"]]></Condition>
+                </Control>
+                <Control
+                    Id="pushButtonBack"
+                    Type="PushButton"
+                    X="192"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Default="no"
+                    Text="&amp;Back"
+                    >
+                    <Publish Event="NewDialog" Value="UseEncryptionDlg">1</Publish>
+                </Control>
+                <Control
+                    Id="pushButtonNext"
+                    Type="PushButton"
+                    X="248"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Default="yes"
+                    Text="&amp;Next"
+                    >
+                    <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">CostingComplete = 1</Publish>
+                    <Publish Event="NewDialog" Value="VerifyReadyDlg"></Publish>
+                    <Condition Action="disable"><![CDATA[VMGR_CERTIFICATE_NEEDED = "TRUE"]]></Condition>
+                    <Condition Action="enable"><![CDATA[VMGR_CERTIFICATE_NEEDED = "FALSE"]]></Condition>
+                </Control>
+                <Control
+                    Id="pushButtonCancel"
+                    Type="PushButton"
+                    X="304"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    TabSkip="no"
+                    >
+                    <Text>Cancel</Text>
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+            </Dialog>
+            <Dialog Id="dialogUserExit" Width="370" Height="270" Title="[ProductName] Setup" NoMinimize="yes" >
+                <Control
+                    Id="Finish"
+                    Type="PushButton"
+                    X="236"
+                    Y="243"
+                    Width="56"
+                    Height="17"
+                    Default="yes"
+                    Cancel="yes"
+                    Text="!(loc.WixUIFinish)"
+                    />
+                <Control
+                    Id="Bitmap"
+                    Type="Bitmap"
+                    X="0"
+                    Y="0"
+                    Width="370"
+                    Height="234"
+                    TabSkip="no"
+                    Text="!(loc.ExitDialogBitmap)"
+                    />
+                <Control
+                    Id="BottomLine"
+                    Type="Line"
+                    X="0"
+                    Y="234"
+                    Width="370"
+                    Height="0"
+                    />
+                <Control
+                    Id="Description"
+                    Type="Text"
+                    X="135"
+                    Y="70"
+                    Width="220"
+                    Height="20"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    Text="!(loc.ExitDialogDescription)"
+                    />
+                <Control
+                    Id="Title"
+                    Type="Text"
+                    X="135"
+                    Y="20"
+                    Width="220"
+                    Height="60"
+                    Transparent="yes"
+                    NoPrefix="yes"
+                    Text="!(loc.ExitDialogTitle)"
+                    />
+                <Control
+                    Id="LaunchCheckBox"
+                    Type="CheckBox"
+                    X="135"
+                    Y="109"
+                    Width="10"
+                    Height="10"
+                    Property="START_SERVICE_ON_EXIT"
+                    Hidden="yes"
+                    CheckBoxValue="1"
+                    Text=" "
+                    >
+                    <Condition Action="hide"><![CDATA[NOT (&featureVmgrServices = 3)]]></Condition>
+                    <Condition Action="show"><![CDATA[(&featureVmgrServices = 3)]]></Condition>
+                </Control>
+                <Control Type="Text" Id="textStartService" Width="149" Height="17" X="150" Y="110" Transparent="yes">
+                    <Text>Start the V-Manager Service on exit?</Text>
+                    <Condition Action="hide"><![CDATA[NOT (&featureVmgrServices = 3)]]></Condition>
+                    <Condition Action="show"><![CDATA[(&featureVmgrServices = 3)]]></Condition>
+                </Control>
+            </Dialog>
+        </UI>
+    </Fragment>
+    <Fragment>
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFiles64Folder">
+                <Directory Id="directoryDominion" Name="Dominion">
+                    <Directory Id="INSTALLOCATION" Name="Vmgr">
+                        <Directory Id="directoryPackager" Name="Packager">
+                            <Component Id="componentVmgrPackager" Guid="55e0a3cf-eaf0-408d-b3d1-efc9e8dad592" Win64="yes">
+                                <File Id="filePackagerMicrosoftAspNetSignalRClientDll" Name="Microsoft.AspNet.SignalR.Client.dll" Source="..\packages\Microsoft.AspNet.SignalR.Client.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll"></File>
+                                <File Id="filePackagerMicrosoftAspNetSignalRCoreDll" Name="Microsoft.AspNet.SignalR.Core.dll" Source="..\packages\Microsoft.AspNet.SignalR.Core.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll"></File>
+                                <File Id="filePackagerMicrosoftOwinCorsDll" Name="Microsoft.Owin.Cors.dll" Source="..\packages\Microsoft.Owin.Cors.2.1.0\lib\net45\Microsoft.Owin.Cors.dll"></File>
+                                <File Id="filePackagerMicrosoftOwinDll" Name="Microsoft.Owin.dll" Source="..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll"></File>
+                                <File Id="filePackagerMicrosoftOwinSecurityDll" Name="Microsoft.Owin.Security.dll" Source="..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll"></File>
+                                <File Id="filePackagerMonoCecilDll" Name="Mono.Cecil.dll" Source="..\..\..\Assemblies\Mono.Cecil\Mono.Cecil.dll"></File>
+                                <File Id="filePackagerNewtonsoftJsonDll" Name="Newtonsoft.Json.dll" Source="..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll"></File>
+                                <File Id="filePackagerOwinDll" Name="Owin.dll" Source="..\packages\Owin.1.0\lib\net40\Owin.dll"></File>
+                                <File Id="filePackagerSystemNetHttpExtensionsDll" Name="System.Net.Http.Extensions.dll" Source="..\packages\Microsoft.Net.Http.2.2.22\lib\net40\System.Net.Http.Extensions.dll"></File>
+                                <File Id="filePackagerSystemNetHttpPrimitivesDll" Name="System.Net.Http.Primitives.dll" Source="..\packages\Microsoft.Net.Http.2.2.22\lib\net40\System.Net.Http.Primitives.dll"></File>
+                                <File Id="filePackagerSystemWebCorsDll" Name="System.Web.Cors.dll" Source="..\packages\Microsoft.AspNet.Cors.5.1.2\lib\net45\System.Web.Cors.dll"></File>
+                                <File Id="filePackagerVmgrNET40Dll" Name="Vmgr.dll" Source="..\Vmgr\bin\Net40\Vmgr.dll" KeyPath="yes"></File>
+                                <File Id="filePackagerVmgrPackagerExe" Name="Vmgr.Packager.exe" Source="..\Vmgr.Packager\bin\Vmgr.Packager.exe"></File>
+                                <File Id="filePackagerVmgrPackagerConfig" Name="Vmgr.Packager.exe.config" Source="..\Vmgr.Packager\bin\Vmgr.Packager.exe.config"></File>
+                                <File Id="filePackagerCommonLoggingDll" Name="CommonLogging.dll" Source="..\..\..\Assemblies\Quartz.NET-2.1.2\bin\4.0\release\Quartz\Common.Logging.dll"></File>
+                                <File Id="filePackagerQuartzDll" Name="Quartz.dll" Source="..\..\..\Assemblies\Quartz.NET-2.1.2\bin\4.0\release\Quartz\Quartz.dll"></File>
+                                <File Id="filePackagerLog4NetDll" Name="log4net.dll" Source="..\..\..\Assemblies\Log4Net\log4net-1.2.11\bin\net\4.0\release\log4net.dll"></File>
+                                <File Id="filePackagerDQESqlServerDll" Name="SD.LLBLGen.Pro.DQE.SqlServer.dll" Source="..\..\..\Assemblies\LLBLGen\LLBLGen.4.1\SD.LLBLGen.Pro.DQE.SqlServer.dll"></File>
+                                <File Id="filePackagerORMSupportClassesDll" Name="SD.LLBLGen.Pro.ORMSupportClasses.dll" Source="..\..\..\Assemblies\LLBLGen\LLBLGen.4.1\SD.LLBLGen.Pro.ORMSupportClasses.dll"></File>
+                                <File Id="filePackagerOrmProfilerInterceptor" Name="SD.Tools.OrmProfiler.Interceptor.NET45.dll" Source="..\..\..\Assemblies\LLBLGen\SD.Tools.OrmProfiler.Interceptor.NET45.dll"></File>
+                                <File Id="filePackagerOrmProfilerShared" Name="SD.Tools.OrmProfiler.Shared.dll" Source="..\..\..\Assemblies\LLBLGen\SD.Tools.OrmProfiler.Shared.dll"></File>
+                                <File Id="filePackagerBCLExtensions" Name="SD.Tools.BCLExtensions.dll" Source="..\..\..\Assemblies\LLBLGen\SD.Tools.BCLExtensions.dll"></File>
+                                <File Id="filePackagerAlgorithmia" Name="SD.Tools.Algorithmia.dll" Source="..\..\..\Assemblies\LLBLGen\SD.Tools.Algorithmia.dll"></File>
+                            </Component>
+                        </Directory>
+                        <Directory Id="directoryVisualStudio" Name="VisualStudio">
+                            <Directory Id="directoryVisualStudioItemTemplates" Name="ItemTemplates">
+                                <Component Id="componentVisualStudioItemTemplates" Guid="F7A332BA-81DD-4238-A9B5-A193BCC63C3D" Win64="yes">
+                                    <File Id="fileVmgrPluginZip" Name="VmgrPlugin.zip" Source="..\..\..\..\VisualStudio\VmgrPlugin\VmgrPlugin.zip"></File>
+                                    <File Id="fileVmgrPluginJobZip" Name="VmgrPluginJob.zip" Source="..\..\..\..\VisualStudio\VmgrPluginJob\VmgrPluginJob.zip"></File>
+                                </Component>
+                            </Directory>
+                            <Directory Id="directoryVisualStudioProjectTemplates" Name="ProjectTemplates">
+                                <Component Id="componentVisualStudioProjectTemplates" Guid="927B191F-4920-4A67-9FA8-2C92F7930776" Win64="yes">
+                                    <File Id="fileVmgrPackageZip" Name="VmgrPackage.zip" Source="..\..\..\..\VisualStudio\VmgrPackage\VmgrPackage.zip"></File>
+                                    <File Id="fileVmgrPackageNet40Zip" Name="VmgrPackage.Net40.zip" Source="..\..\..\..\VisualStudio\VmgrPackage.Net40\VmgrPackage.Net40.zip"></File>
+                                </Component>
+                            </Directory>
+                            <Directory Id="directoryVmgrToolsPathWow">
+                                <Component Id="componentVmgrToolsPathWow" Guid="CA56AEE3-F9D3-4A5B-9FA5-96D66DE55B1C" Win64="yes">
+                                    <RegistryKey
+                                        Id="registryVmgrToolsPathWow"
+                                        Root="HKLM"
+                                        Key="SOFTWARE\Wow6432Node\Dominion\Vmgr"
+                                        Action="create"
+                                        >
+                                    </RegistryKey>
+                                    <RegistryKey
+                                        Id="registryVmgrToolsPathPackagerWow"
+                                        Root="HKLM"
+                                        Key="SOFTWARE\Wow6432Node\Dominion\Vmgr\Packager"
+                                        Action="create"
+                                        >
+                                        <RegistryValue
+                                            Id="registryVmgrToolsPathPackagerWowValue"
+                                            Name="VmgrToolsPath"
+                                            Value="[INSTALLOCATION]Packager\"
+                                            Type="string"
+                                            KeyPath="yes"
+                                            Action="write"
+                                            >
+                                        </RegistryValue>
+                                    </RegistryKey>
+                                </Component>
+                            </Directory>
+                            <Directory Id="directoryVisualStudioRuntime" Name="Runtime">
+                                <Directory Id="directoryNet35" Name="Net35">
+                                    <Component Id="componentVisualStudioRuntimeNet35Dll" Guid="7529A257-9D1C-421F-9C97-405ACD89B21C" Win64="yes">
+                                        <File Id="fileVmgrNet35Dll" Name="Vmgr.dll" Source="..\Vmgr\bin\Net35\Vmgr.dll"></File>
+                                        <RegistryKey
+                                            Id="registryVmgrNet35"
+                                            Root="HKLM"
+                                            Key="SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\Vmgr"
+                                            Action="createAndRemoveOnUninstall"
+                                            >
+                                            <RegistryValue
+                                                Id="registryVmgrRunTimeNet35"
+                                                Action="write"
+                                                Value="[INSTALLOCATION]VisualStudio\RunTime\Net35"
+                                                Type="string"
+                                                />
+                                        </RegistryKey>
+                                        <RegistryKey
+                                            Id="registryVmgrNet35Wow"
+                                            Root="HKLM"
+                                            Key="SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\Vmgr"
+                                            Action="createAndRemoveOnUninstall"
+                                            >
+                                            <RegistryValue
+                                                Id="registryVmgrRunTimeNet35Wow"
+                                                Action="write"
+                                                Value="[INSTALLOCATION]VisualStudio\RunTime\Net35"
+                                                Type="string"
+                                                />
+                                        </RegistryKey>
+                                    </Component>
+                                </Directory>
+                                <Directory Id="directoryNet40" Name="Net40">
+                                    <Component Id="componentVisualStudioRuntimeNet40File" Guid="F27956E3-71D4-48CE-A480-1FA54B6DB857" Win64="yes">
+                                        <File Id="fileVmgrNet40Dll" Name="Vmgr.dll" Source="..\Vmgr\bin\Net40\Vmgr.dll"></File>
+                                        <RegistryKey
+                                            Id="registryVmgrNet40"
+                                            Root="HKLM"
+                                            Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\Vmgr"
+                                            Action="createAndRemoveOnUninstall"
+                                            >
+                                            <RegistryValue
+                                                Id="registryVmgrRunTimeNet40"
+                                                Action="write"
+                                                Value="[INSTALLOCATION]VisualStudio\RunTime\Net40"
+                                                Type="string"
+                                                />
+                                        </RegistryKey>
+                                        <RegistryKey
+                                            Id="registryVmgrNet40Wow"
+                                            Root="HKLM"
+                                            Key="SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\Vmgr"
+                                            Action="createAndRemoveOnUninstall"
+                                            >
+                                            <RegistryValue
+                                                Id="registryVmgrRunTimeNet40Wow"
+                                                Action="write"
+                                                Value="[INSTALLOCATION]VisualStudio\RunTime\Net40"
+                                                Type="string"
+                                                />
+                                        </RegistryKey>
+                                    </Component>
+                                </Directory>
+                            </Directory>
+                            <Directory Id="directoryGac40">
+                                <Directory Id="directoryTargetGac40" Name="GAC">
+                                    <Component Id="componentVmgrVisualStudioAddinDll" Guid="160B8FAB-71DF-4B0D-BC3A-1132572C50C5" Permanent="no" Win64="yes">
+                                        <File Id="fileVmgrVisualStudioAddinDll" Name="Vmgr.VisualStudioAddin.dll" KeyPath="yes" Assembly=".net" Source="..\Vmgr.VisualStudioAddin\bin\Vmgr.VisualStudioAddin.dll" />
+                                    </Component>
+                                </Directory>
+                            </Directory>
+                            <Directory Id="CommonAppDataFolder">
+                                <Directory Id="directoryAppdataMfg" Name="Microsoft" >
+                                    <Directory Id="directoryAppDataFolder" Name="MSEnvShared">
+                                        <Directory Id="directoryAddins" Name="Addins">
+                                            <Component Id="componentVmgrVisualStudioAddinXml" Guid="05F54532-CFF6-4717-BAEE-EE59841E4533" Win64="yes">
+                                                <File Id="fileVmgrVisualStudioAddinXml" Name="Vmgr.VisualStudioAddIn.AddIn" KeyPath="yes" Source="..\Vmgr.VisualStudioAddin\Release\Vmgr.VisualStudioAddIn.AddIn" />
+                                            </Component>
+                                        </Directory>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="directoryServices" Name="Services">
+                            <Component Id="componentVmgrServices" Guid="2CCB50DD-6BA6-42CC-B3FA-4244C1AC5C4E" Win64="yes">
+                                <ServiceControl Id="serviceControlVmgrServices" Name="Vmgr.Services" Stop="both"></ServiceControl>
+                                <File Id="fileServicesCommonLoggingDll" Name="Common.Logging.dll" Source="..\..\..\Assemblies\Quartz.NET-2.1.2\bin\4.0\release\Quartz\Common.Logging.dll"></File>
+                                <File Id="fileServicesLog4NetDll" Name="log4net.dll" Source="..\..\..\Assemblies\Log4Net\log4net-1.2.11\bin\net\4.0\release\log4net.dll"></File>
+                                <File Id="fileServicesMicrosoftAspNetSignalRClientDll" Name="Microsoft.AspNet.SignalR.Client.dll" Source="..\packages\Microsoft.AspNet.SignalR.Client.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll"></File>
+                                <File Id="fileServicesMicrosoftAspNetSignalRCoreDll" Name="Microsoft.AspNet.SignalR.Core.dll" Source="..\packages\Microsoft.AspNet.SignalR.Core.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll"></File>
+                                <File Id="fileServicesMicrosoftAspNetSignalRSystemWebDll" Name="Microsoft.AspNet.SignalR.SystemWeb.dll" Source="..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.0.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll"></File>
+                                <File Id="fileServicesMicrosoftOwinCorsDll" Name="Microsoft.Owin.Cors.dll" Source="..\packages\Microsoft.Owin.Cors.2.1.0\lib\net45\Microsoft.Owin.Cors.dll"></File>
+                                <File Id="fileServicesMicrosoftOwinDiagnosticsDll" Name="Microsoft.Owin.Diagnostics.dll" Source="..\packages\Microsoft.Owin.Diagnostics.2.1.0\lib\net40\Microsoft.Owin.Diagnostics.dll"></File>
+                                <File Id="fileServicesMicrosoftOwinDll" Name="Microsoft.Owin.dll" Source="..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll"></File>
+                                <File Id="fileServicesMicrosoftOwinHostHttpListenerDll" Name="Microsoft.Owin.Host.HttpListener.dll" Source="..\packages\Microsoft.Owin.Host.HttpListener.2.1.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll"></File>
+                                <File Id="fileServicesMicrosoftOwinHostingDll" Name="Microsoft.Owin.Hosting.dll" Source="..\packages\Microsoft.Owin.Hosting.2.1.0\lib\net45\Microsoft.Owin.Hosting.dll"></File>
+                                <File Id="fileServicesMicrosoftOwinHostSystemWebDll" Name="Microsoft.Owin.Host.SystemWeb.dll" Source="..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll"></File>
+                                <File Id="fileServicesMicrosoftOwinSecurityDll" Name="Microsoft.Owin.Security.dll" Source="..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll"></File>
+                                <File Id="fileServicesNewtonsoftJsonDll" Name="Newtonsoft.Json.dll" Source="..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll"></File>
+                                <File Id="fileServicesOwinDll" Name="Owin.dll" Source="..\packages\Owin.1.0\lib\net40\Owin.dll"></File>
+                                <File Id="fileServicesQuartzDll" Name="Quartz.dll" Source="..\..\..\Assemblies\Quartz.NET-2.1.2\bin\4.0\release\Quartz\Quartz.dll"></File>
+                                <File Id="fileServicesDQESqlServerDll" Name="SD.LLBLGen.Pro.DQE.SqlServer.dll" Source="..\..\..\Assemblies\LLBLGen\LLBLGen.4.1\SD.LLBLGen.Pro.DQE.SqlServer.dll"></File>
+                                <File Id="fileServicesORMSupportClassesDll" Name="SD.LLBLGen.Pro.ORMSupportClasses.dll" Source="..\..\..\Assemblies\LLBLGen\LLBLGen.4.1\SD.LLBLGen.Pro.ORMSupportClasses.dll"></File>
+                                <File Id="fileServicesOrmProfilerInterceptor" Name="SD.Tools.OrmProfiler.Interceptor.NET45.dll" Source="..\..\..\Assemblies\LLBLGen\SD.Tools.OrmProfiler.Interceptor.NET45.dll"></File>
+                                <File Id="fileServicesOrmProfilerShared" Name="SD.Tools.OrmProfiler.Shared.dll" Source="..\..\..\Assemblies\LLBLGen\SD.Tools.OrmProfiler.Shared.dll"></File>
+                                <File Id="fileServicesBCLExtensions" Name="SD.Tools.BCLExtensions.dll" Source="..\..\..\Assemblies\LLBLGen\SD.Tools.BCLExtensions.dll"></File>
+                                <File Id="fileServicesAlgorithmia" Name="SD.Tools.Algorithmia.dll" Source="..\..\..\Assemblies\LLBLGen\SD.Tools.Algorithmia.dll"></File>
+                                <File Id="fileServiceSystemNetHttpPrimitivesDll" Name="System.Net.Http.Primitives.dll" Source="..\packages\Microsoft.Net.Http.2.2.22\lib\net40\System.Net.Http.Primitives.dll"></File>
+                                <File Id="fileSystemWebCorsDll" Name="System.Web.Cors.dll" Source="..\packages\Microsoft.AspNet.Cors.5.1.2\lib\net45\System.Web.Cors.dll"></File>
+                                <File Id="fileServicesVmgrNET40Dll" Name="Vmgr.dll" Source="..\Vmgr\bin\Net40\Vmgr.dll"></File>
+                                <File Id="fileServicesVmgrCer" Name="Vmgr.cer" Source="..\Vmgr.Services\bin\Vmgr.cer"></File>
+                                <File Id="fileServicesVmgrServicesExe" Name="Vmgr.Services.exe" Source="..\Vmgr.Services\bin\Vmgr.Services.exe"></File>
+                                <File Id="fileServicesVmgrServicesConfig" Name="Vmgr.Services.exe.config" Source="..\Vmgr.Services\bin\Vmgr.Services.exe.config"></File>
+                                <RegistryKey
+                                    Id="registryKeyVmgrServiceWowDominionVmgr"
+                                    Root="HKLM"
+                                    Key="SOFTWARE\Wow6432Node\Dominion\Vmgr"
+                                    Action="create"
+                                    >
+                                </RegistryKey>
+                                <RegistryKey
+                                    Id="registryKeyVmgrServiceWowDominionVmgrSsl"
+                                    Root="HKLM"
+                                    Key="SOFTWARE\Wow6432Node\Dominion\Vmgr\Ssl"
+                                    Action="create"
+                                    >
+                                    <RegistryValue
+                                        Id="registryValueVmgrCertThumbprint"
+                                        Name="Thumbprint"
+                                        Value="[VMGR_CERT_THUMBPRINT]"
+                                        Type="string"
+                                        KeyPath="yes"
+                                        Action="write"
+                                        >
+                                    </RegistryValue>
+                                    <RegistryValue
+                                        Id="registryValueVmgrRtPort"
+                                        Name="RTPort"
+                                        Value="[VMGR_RT_PORT]"
+                                        Type="string"
+                                        Action="write"
+                                        >
+                                    </RegistryValue>
+                                    <RegistryValue
+                                        Id="registryValueVmgrWsPort"
+                                        Name="WSPort"
+                                        Value="[VMGR_WS_PORT]"
+                                        Type="string"
+                                        Action="write"
+                                        >
+                                    </RegistryValue>
+                                    <RegistryValue
+                                        Id="registryValueVmgrRtProtocol"
+                                        Name="RTProtocol"
+                                        Value="[VMGR_RT_PROTOCOL]"
+                                        Type="string"
+                                        Action="write"
+                                        >
+                                    </RegistryValue>
+                                    <RegistryValue
+                                        Id="registryValueVmgrWsProtocol"
+                                        Name="WSProtocol"
+                                        Value="[VMGR_WS_PROTOCOL]"
+                                        Type="string"
+                                        Action="write"
+                                        >
+                                    </RegistryValue>
+                                </RegistryKey>
+                            </Component>
+                            <Directory Id="directoryServicesGac40" Name="GAC">
+                                <Directory Id="directoryServicesTargetGac40" Name="GAC">
+                                    <Component Id="componentServicesVmgrNet40Dll" Guid="307675AA-8AEC-473B-A78A-FB362CCEDE2A" Win64="yes">
+                                        <File Id="fileServicesGacVmgrNet40Dll" Name="Vmgr.dll" KeyPath="yes" Assembly=".net" Source="..\Vmgr\bin\Net40\Vmgr.dll" />
+                                    </Component>
+                                </Directory>
+                            </Directory>
+                            <Directory Id="directoryServicesGac35">
+                                <Directory Id="directoryServicesTargetGac35" Name="GAC">
+                                    <Component Id="componentServicesVmgrNet35Dll" Guid="FD74504A-6FE9-488E-9086-9DAD3024B35D" Win64="yes">
+                                        <File Id="fileServicesVmgrNet35Dll" Name="Vmgr.dll" KeyPath="yes" Assembly=".net" Source="..\Vmgr\bin\Net35\Vmgr.dll" />
+                                    </Component>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="directorySSLTool" Name="SSL">
+                            <Component Id="componentVmgrSSLTool" Guid="25DE8392-8DED-44E9-9BF2-6C0E6F12458C" Win64="yes">
+                                <File Id="fileVmgrSSLToolExe" Name="Vmgr.SSLTool.exe" Source="..\Vmgr.SSLTool\bin\Vmgr.SSLTool.exe"></File>
+                                <File Id="fileVmgrSSLToolExeConfig" Name="Vmgr.SSLTool.exe.config" Source="..\Vmgr.SSLTool\bin\Vmgr.SSLTool.exe.config"></File>
+                                <File Id="fileCommandLineDll" Name="CommandLine.dll" Source="..\Vmgr.SSLTool\bin\CommandLine.dll"></File>
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </Directory>
+    </Fragment>
+</Wix>

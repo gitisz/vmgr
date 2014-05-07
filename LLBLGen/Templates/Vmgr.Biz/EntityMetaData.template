@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+#if NET_40
+using System.ComponentModel.DataAnnotations;
+#else 
+using Vmgr.CustomAttributes;
+#endif
+using System.Linq;
+using System.Text;
+using System.Security.Principal;
+using System.Runtime.Serialization;
+using <[RootNamespace]>;
+
+namespace <[RootNamespace]>.MetaData
+{
+	<[Foreach CustomProperty Entity]><[If StringValueEquals CustomPropertyName "DataContract"]><[If StringValueEquals CustomPropertyValue "true"]>
+	[DataContract (Name = "<[CurrentEntityName]>MetaData")]<[EndIf]><[EndIf]><[NextForeach]>
+    public partial class <[CurrentEntityName]>MetaData : <[If IsInHierarchyType TargetPerEntity]><[If IsSubType]><[SuperTypeName]>MetaData, <[EndIf]><[EndIf]>IMetaData
+    {	<[If Not IsSubType]><[Foreach PrimaryKeyEntityField ]>
+		[Key]<[Foreach CustomProperty Field]><[If StringValueEquals CustomPropertyName "DataMember"]><[If StringValueEquals CustomPropertyValue "true"]>
+		[DataMember]<[EndIf]><[EndIf]><[NextForeach]>
+        public virtual <[TypeOfField]><[If GenerateAsNullableType]> ? <[EndIf]> <[EntityFieldName]> { get; set; }<[NextForeach]><[EndIf]><[Foreach EntityField]><[If Not IsPrimaryKey]><[Foreach CustomProperty Field]><[If StringValueEquals CustomPropertyName "DataMember"]><[If StringValueEquals CustomPropertyValue "true"]>
+		[DataMember]<[EndIf]><[EndIf]><[NextForeach]>
+        public virtual <[TypeOfField]><[If GenerateAsNullableType]> ? <[EndIf]> <[EntityFieldName]> { get; set; }<[EndIf]><[NextForeach]>
+		
+		//	Mapped fields on related field.
+		<[Foreach RelatedEntityField]><[Foreach CustomProperty Field]><[If StringValueEquals CustomPropertyName "DataMember"]><[If StringValueEquals CustomPropertyValue "true"]>
+		[DataMember]<[EndIf]><[EndIf]><[NextForeach]>
+		[DataMember]
+		public <[TypeOfField]><[If GenerateAsNullableType]> ? <[EndIf]> <[MappedFieldNameRelatedField]> { get; set; }<[NextForeach]>
+	}
+}

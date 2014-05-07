@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Module Name="Administration" Url="Administration">
+        <File Path="Administration\Logs.aspx" Name="Logs.aspx" Url="Administration/Logs.aspx" />
+        <File Path="Administration\Security.aspx" Name="Security.aspx" Url="Administration/Security.aspx" />
+        <File Path="Administration\WindowSecurityMembershipEditor.aspx" Name="WindowSecurityMembershipEditor.aspx" Url="Administration/WindowSecurityMembershipEditor.aspx" />
+        <File Path="Administration\WindowSecurityRoleEditor.aspx" Name="WindowSecurityRoleEditor.aspx" Url="Administration/WindowSecurityRoleEditor.aspx" />
+        <File Path="Administration\WindowSecurityRolePermissionEditor.aspx" Name="WindowSecurityRolePermissionEditor.aspx" Url="Administration/WindowSecurityRolePermissionEditor.aspx" />
+    </Module>
+</Elements>

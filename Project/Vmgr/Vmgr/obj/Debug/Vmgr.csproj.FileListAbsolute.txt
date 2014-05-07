@@ -1,0 +1,12 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\bin\Net35\Vmgr.dll.config
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\bin\Net35\Vmgr.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\bin\Net35\Vmgr.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Interop.mscoree.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Vmgr.csproj.ResolveComReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Vmgr.Packaging.PackageWizardForm.resources
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Vmgr.Plugins.PluginWizardForm.resources
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Vmgr.Properties.Resources.resources
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Vmgr.csproj.GenerateResource.Cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Vmgr.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Vmgr.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr\obj\Debug\Vmgr.csprojResolveAssemblyReference.cache

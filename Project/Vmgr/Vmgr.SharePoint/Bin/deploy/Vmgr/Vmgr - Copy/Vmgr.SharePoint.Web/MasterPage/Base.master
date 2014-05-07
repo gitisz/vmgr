@@ -1,0 +1,239 @@
+﻿<%@ Master 
+    Language="C#" 
+    AutoEventWireup="true" 
+    CodeBehind="Base.master.cs" 
+    Inherits="Vmgr.SharePoint.BaseMaster, Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe" %>
+<%@ Register 
+    TagPrefix="telerik" 
+    Namespace="Telerik.Web.UI" 
+    Assembly="Telerik.Web.UI, Version=2013.3.1015.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+<%@ Register TagPrefix="Vmgr" TagName="WindowManagersControl" Src="~/_CONTROLTEMPLATES/Vmgr/WindowManagersControl.ascx" %>
+<%@ Assembly Name="Vmgr, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"%> 
+<%@ Assembly Name="Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"%> 
+<%@ Register Assembly="Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"  Namespace="Vmgr.SharePoint" TagPrefix="cc" %>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head id="head" runat="server">
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+        <title id="onetidTitle">
+            <asp:ContentPlaceHolder ID="PlaceHolderPageTitle" runat="server" />
+        </title>
+        <link rel="shortcut icon" href="/_layouts/images/vmgr/favicon.ico" type="image/x-icon" />
+        <style type="text/css">
+            div.rtsLevel  {
+                padding-left: 5px;
+            }
+        </style>
+    </head>
+    <body onload="OnWindowResize();">
+        <form id="form" runat="server">
+            <telerik:RadScriptManager ID="radScriptManager" runat="server">
+            </telerik:RadScriptManager>
+            <Vmgr:WindowManagersControl 
+                ID="windowManagersControl" 
+                runat="server">
+                </Vmgr:WindowManagersControl>
+            <div class="content">
+                <div id="body-content">
+                    <div id="body-content-body">
+                        <div style="padding: 5px 2px 1px 10px;">
+                            <table  style="border-collapse: collapse; padding: 0px;" >
+                                <tr>
+                                    <td id="onetidPageTitleAreaFrame">
+                                        <table border="0" style="border-collapse: collapse; width: 100%; padding: 0px;">
+                                            <tr>
+                                                <td style="
+                                                    width: 154px; 
+                                                    height: 76px;
+                                                    background: url('/_layouts/images/vmgr/half-vmgr.png') no-repeat bottom left;
+                                                    "
+                                                    >
+                                                    &nbsp;
+                                                </td>
+                                                <td class="ms-titlearea" style="padding-left: 3px; width: auto;">
+                                                    <table border="0" style="padding: 0px;">
+                                                        <tr>
+                                                            <td style="padding-left: 4px;"> 
+                                                                <asp:HyperLink
+                                                                    runat="server"
+                                                                    ID="hyperLinkBreadCrumbSite"
+                                                                    Font-Size="9pt"
+                                                                    ></asp:HyperLink> >
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    ID="labelBreadCrumbSubSite"
+                                                                    Font-Size="9pt"
+                                                                    ></asp:Label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="onetidPageTitle" style="padding-top: 6px; padding-left: 3px;">
+                                                                <h2 class="ms-pagetitle">
+                                                                    <asp:ContentPlaceHolder ID="PlaceHolderPageTitleInTitleArea" runat="server" />
+                                                                </h2>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="Td1" style="padding-top: 3px; font-style: italic;">
+                                                                <h3 class="ms-pagetitle" style="font-size: 8pt;">
+                                                                    <asp:ContentPlaceHolder ID="PlaceHolderTitleDescription" runat="server" />
+                                                                </h3>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <table border="0" style="border-collapse: collapse; width: 100%; table-layout: fixed; padding: 0px;">
+                            <tr>
+                                <td style="padding: 0px; vertical-align: top; background: url('/_layouts/images/Vmgr/black-white-diagonal-stripes.jpg'); ">
+                                    <div style="height: 40px; background-image: url('/_layouts/images/Vmgr/message-bar-background.png'); background-repeat: repeat-x;">
+                                        <table>
+                                            <tr>
+                                                <td style="vertical-align: top; width: 32px; padding-left: 4px; padding-top: 3px;">
+                                                    &nbsp;
+                                                </td>
+                                                <td style="vertical-align: top; padding-left: 5px; padding-top: 8px; width: 120px;">
+                                                    &nbsp;
+                                                </td>
+                                                <td style="vertical-align: top; width: 32px;">
+                                                    &nbsp;
+                                                </td>
+                                                <td style="vertical-align: top; padding-top: 8px;">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div style="">
+                                        <table 
+                                            style="border-collapse: collapse; width: 100%; padding: 0px;"
+                                            runat="server"
+                                            >
+                                            <tr>
+                                                <td style="
+                                                    padding: 0px; 
+                                                    vertical-align: top; 
+                                                    width: 42px;
+                                                    background-color: #696A6C;
+                                                    "
+                                                    runat="server"
+                                                    id="tdMenu"
+                                                    >
+                                                    <div id="menuContent" style="
+                                                        background-color: #696A6C;
+                                                        padding-top: 10px;
+                                                        position: relative; 
+                                                        "
+                                                        >
+                                                        <style type="text/css">
+
+                                                            .RadMenu_Default .rmRootGroup {
+                                                                background-color: #696A6C;
+                                                                border-color: transparent !important;
+                                                            }
+
+                                                            .RadMenu_Default .rmItem {
+                                                                padding: 5px;
+                                                            }
+
+                                                            .RadMenu_Default .rmLink {
+                                                                padding: 0px;
+                                                            }
+
+                                                            .RadMenu_Default a.rmLink {
+                                                                height: 38px;
+                                                                background-color: transparent !important;
+                                                                border-color: transparent !important;
+                                                            }
+                                                    
+                                                            .RadMenu_Default a.rmLink:hover {
+                                                                border-collapse: collapse !important;
+                                                            }
+
+                                                            .RadMenu_Default .rmVertical .rmSlide {
+                                                                margin-top: -1px;
+                                                                margin-left: -10px;
+                                                                border-left-color: transparent !important;
+                                                                z-index: 2999 !important;
+                                                            }
+
+                                                            .RadMenu_Default .rmVertical .rmSlide a:hover {
+                                                                padding-top: 7px;
+                                                                font-size: 11pt;
+                                                                color: white;
+                                                                text-decoration: underline;
+                                                            }
+
+                                                            .RadMenu_Default .rmText {
+                                                                padding-top: 8px !important;
+                                                                padding-left: 8px !important;
+                                                                font-size: 10pt;
+                                                                color: white;
+                                                            }
+
+                                                            .RadMenu_Default .rmLeftImage {
+                                                                margin-right: 5px;
+                                                            }
+
+                                                            .RadMenu_Default .rmVertical .rmSlide .rmText {
+                                                                padding-top: 7px;
+                                                                font-size: 10pt;
+                                                                color: white;
+                                                            }
+
+                                                            .RadMenu_Default .rmGroup, .RadMenu_Default .rmMultiColumn, .RadMenu_Default .rmGroup .rmVertical {
+                                                                border-left-color: transparent !important;
+                                                                background-color: #696A6C !important;
+                                                                background-image: none;
+                                                            }
+
+                                                            .RadMenu_Default .rmRootGroup, .RadMenu_Default a.rmLink, .RadMenu_Default .rmGroup .rmText, .RadMenu_Default .rmVertical .rmText, .RadMenu_Default .rmLeftArrow, .RadMenu_Default .rmRightArrow, .RadMenu_Default .rmTopArrow, .RadMenu_Default .rmBottomArrow {
+                                                                background-image: none;
+                                                                cursor: hand; cursor: pointer;
+                                                            }
+                                                        </style>
+                                                        <telerik:RadMenu
+                                                            runat="server" 
+                                                            ID="menuMain"
+                                                            Skin="Default"
+                                                            Flow="Vertical"
+                                                            Width="40px"
+                                                            >
+                                                        </telerik:RadMenu>
+                                                    </div>
+                                                </td>
+                                                <td style="
+                                                    vertical-align: top; 
+                                                    background: url('/_layouts/images/Vmgr/top-left.png') no-repeat top left; 
+                                                    border-collapse: collapse; 
+                                                    width: auto;
+                                                    border: none;
+                                                    ">
+                                                    <div 
+                                                        id="mainContent" 
+                                                        style="overflow-y: scroll; overflow-x: hidden; position: relative;">
+                                                        <div style="overflow: hidden;">
+                                                            <asp:ContentPlaceHolder id="PlaceHolderMain" runat="server">
+				                                            </asp:ContentPlaceHolder>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="push">
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

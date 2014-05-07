@@ -1,0 +1,12 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\bin\Vmgr.Packager.exe.config
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\bin\Vmgr.Packager.exe
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\bin\Vmgr.Packager.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\bin\Mono.Cecil.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\obj\Debug\Vmgr.Packager.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\obj\Debug\Vmgr.Packager.exe
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\obj\Debug\Vmgr.Packager.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\bin\System.Net.Http.Extensions.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\bin\System.Net.Http.Primitives.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\bin\System.Net.Http.Extensions.xml
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\bin\System.Net.Http.Primitives.xml
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Packager\obj\Debug\Vmgr.Packager.csproj.App.config

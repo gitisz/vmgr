@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Module Name="Dashboard" Url="">
+        <File Path="AccessDenied.aspx" Name="AccessDenied.aspx" Url="AccessDenied.aspx" />
+        <File Path="Dashboard.aspx" Name="Dashboard.aspx" Url="Dashboard.aspx" />
+        <File Path="Server.aspx" Name="Server.aspx" Url="Server.aspx" />
+        <File Path="Package.ashx" Name="Package.ashx" Url="Package.ashx" />
+        <File Path="WindowMonitorPackage.aspx" Name="WindowMonitorPackage.aspx" Url="WindowMonitorPackage.aspx" />
+        <File Path="WindowDirectorySearch.aspx" Name="WindowDirectorySearch.aspx" Url="WindowDirectorySearch.aspx" />
+    </Module>
+</Elements>

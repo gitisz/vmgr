@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<project name="Vmgr" default="compile" basedir=".">
+	<description>Build the V-Manager Application Suite</description>
+	<property name="clean.pattern.bin" value="**/bin/**/*" />
+	<property name="clean.pattern.obj" value="**/obj/**/*" />
+	<property name="clean.pattern.precompiled" value="**/precompiledweb/**/*" />
+	<property name="clean.pattern.assemblyinfo" value="**/assemblyinfo.cs" />
+	<property name="clean.pattern.xml" value="_*.xml" />
+	<property name="build.configuration" value="Release" />
+	<property name="build.outputpath" value="bin/Release" />
+	<property name="build.vmgr.deployment.outputpath" value="bin/deploy/Vmgr" />
+	<property name="build.major" value="5" />
+	<property name="build.minor" value="0" />
+	<property name="build.build" value="0" />
+	<property name="build.revision" value="0" />
+	<property name="svn.revision" value="0" />
+	<property name="counter" value="0" />
+	<target name="svn" description="Get source code from SVN.">
+		<loadtasks assembly="C:/PROGRA~2/Nant/nantcontrib-0.85/bin/NAnt.Contrib.Tasks.dll" />
+		<echo message="LOADED TASKS FROM C:/PROGRA~2/NANT/NANTCONTRIB-0.85/BIN/NANT.CONTRIB.TASKS.DLL." />
+		<svn-update destination="D:/Projects/Vmgr" uri="https://svn.va.dominionnet.com/svn/Vmgr/trunk" />
+		<echo message="RETRIEVING SUBVERSION REVISION NUMBER" />
+		<exec program="C:/PROGRA~2/VisualSVN Server/bin/svn.exe" commandline='log "D:/Projects/Vmgr/" --xml --limit 1' output="D:/Projects/Builds/Vmgr/_revision.xml" failonerror="false" />
+		<xmlpeek file="D:/Projects/Builds/Vmgr/_revision.xml" xpath="/log/logentry/@revision" property="svn.revision" failonerror="false" />
+		<echo message="USING SUBVERSION REVISION NUMBER: ${svn.revision}." />
+	</target>
+	<target name="compile" depends="cleanfiles,svn">
+		<echo message="INSPECTING PROJECT'S ASSEMBLYINFO AND ADJUSTING ASSEMBLYFILEVERSION TO CURRENT REVISION ${build.major}.${build.minor}.${build.build}.${svn.revision}." />
+		<call target="SetAssemblyFileVersion" />
+		
+		<echo message="CLEANING THE FOLLOWING SOLUTION: VMGR.INSTALLER.SLN" />
+		<exec 
+			program="C:/Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe" 
+			commandline="Vmgr.Installer.sln /t:clean" 
+			output="D:/Projects/Builds/Vmgr/_msbuild_vmgr_sln.xml" 
+			failonerror="true" 
+			/>
+		<echo message="SUCCESSFULLY CLEANED: VMGR.INSTALLER.SLN" />
+		<echo message="BUILDING THE FOLLOWING SOLUTION: VMGR.INSTALLER.SLN" />
+		<exec 
+			program="C:/Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe" 
+			commandline="Vmgr.Installer.sln /property:Configuration=${build.configuration}" 
+			output="D:/Projects/Builds/Vmgr/_msbuild_vmgr_installer_sln.xml" 
+			failonerror="true" 
+			/>
+		<echo message="SUCCESSFULLY BUILT: VMGR.INSTALLER.SLN" />		
+		<echo message="CLEAMING THE FOLLOWING SOLUTION: VMGR.SLN" />
+		<exec 
+			program="C:/Windows/Microsoft.NET/Framework64/v3.5/MSBuild.exe" 
+			commandline="Vmgr.sln /t:clean" 
+			output="D:/Projects/Builds/Vmgr/_msbuild_vmgr_sln.xml" 
+			failonerror="true" 
+			/>
+		<echo message="SUCCESSFULLY CLEANED: VMGR.SLN" />		
+		<echo message="BUILDING THE FOLLOWING SOLUTION: VMGR.SLN" />
+		<exec 
+			program="C:/Windows/Microsoft.NET/Framework64/v3.5/MSBuild.exe" 
+			commandline="Vmgr.sln /property:Configuration=${build.configuration}" 
+			output="D:/Projects/Builds/Vmgr/_msbuild_vmgr_sln.xml" 
+			failonerror="true" 
+			/>
+		<echo message="SUCCESSFULLY BUILT: VMGR.SLN" />		
+		<echo message="CREATING WSP INSTALLER FROM: VMGR.SHAREPOINT" />
+		<exec 
+			program="C:/PROGRA~2/WSPTools/WSPBuilderExtensions/WSPBuilder.exe" 
+			commandline="-ProjectPath D:/Projects/Vmgr/Project/Vmgr/Vmgr.SharePoint -SolutionPath D:/Projects/Vmgr/Project/Vmgr/Vmgr.SharePoint -WSPName Vmgr.wsp -CreateDeploymentFolder all" 
+			output="D:/Projects/Builds/Vmgr/_wspbuilder.xml" 
+			failonerror="true" 
+			/>
+		<echo message="SUCCESSFULLY CREATED: VMGR.WSP" />	
+
+
+
+		<echo message="BUILDING CLEANLOG VMGX PACKAGE..." />
+		<exec 
+			program="C:/PROGRA~1/Dominion/Vmgr/Packager/Vmgr.Packager.exe" 
+			commandline="-ProjectPath D:/PROJECTS/Vmgr/Project/Vmgr/Vmgr.CleanLogs -OutputPath D:/PROJECTS/Vmgr/Project/Vmgr/Vmgr.CleanLogs/bin/Release"
+			failonerror="true" 
+			/>
+		
+		<echo message="PACKAGING DEPLOYABLES" />
+
+		
+		
+		<call target="publish" />
+	</target>
+	<target name="cleanfiles" description="Remove generated files.">
+		<delete>
+			<fileset>
+				<include name="${clean.pattern.obj}" />
+				<include name="${clean.pattern.bin}" />
+				<include name="${clean.pattern.precompiled}" />
+				<include name="${clean.pattern.assemblyinfo}" />
+				<include name="${clean.pattern.xml}" />
+			</fileset>
+		</delete>
+	</target>
+	<target name="SetAssemblyFileVersion" description="Increments and Sets the AssemblyFileVersion value.">
+		<foreach item="File" property="filename">
+			<in>
+				<items>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr/Properties/AssemblyInfo.cs"></include>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr.InstallerCustomAction/Properties/AssemblyInfo.cs"></include>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr.Packager/Properties/AssemblyInfo.cs"></include>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr.Services/Properties/AssemblyInfo.cs"></include>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr.SharePoint/Properties/AssemblyInfo.cs"></include>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr.TestPlugin/Properties/AssemblyInfo.cs"></include>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr.TestPlugin.WebPart/Properties/AssemblyInfo.cs"></include>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr.VisualStudioAddin/AssemblyInfo.cs"></include>
+					<include name="D:/Projects/Vmgr/Project/Vmgr/Vmgr.XsdGenerator/Properties/AssemblyInfo.cs"></include>
+                </items>
+            </in>
+			<do>
+				<script language="C#">
+					<references>
+						<include name="System.dll" /> 
+					</references>
+					<imports>
+						<import namespace="System.Text.RegularExpressions" />
+					</imports>
+					<code>
+						<![CDATA[
+							 public static void ScriptMain(Project project) {
+								string contents = "";
+								StreamReader reader = new StreamReader(project.Properties["filename"]);
+								contents = reader.ReadToEnd();
+								reader.Close();
+								string replacement = string.Format(
+									"AssemblyFileVersion(\"{0}.{1}.{2}.{3}\")]",
+									project.Properties["build.major"],
+									project.Properties["build.minor"],
+									project.Properties["build.build"],
+									project.Properties["svn.revision"]
+								);  
+
+								string newText = Regex.Replace(contents, @"AssemblyFileVersion\("".*""\)\]", replacement);
+								StreamWriter writer = new StreamWriter(project.Properties["filename"], false);
+								writer.Write(newText);
+								writer.Close();
+							 }        
+						]]>
+					</code>
+				</script>
+			</do>
+		</foreach>
+	</target>
+	<target name="publish">
+		<property name="publishDirectory" value="D:/Projects/Builds/Vmgr/${build.major}.${build.minor}.${build.build}.${svn.revision}." />
+		<echo message="Publish Directory: ${publishDirectory}" />
+        <mkdir dir="${publishDirectory}" />
+        <mkdir dir="${publishDirectory}/Solutions" />
+        <mkdir dir="${publishDirectory}/Solutions/Vmgr.Installer" />
+        <copy todir="${publishDirectory}/Solutions/Vmgr.Installer">
+            <fileset basedir="D:/Projects/Vmgr/Project/Vmgr/Vmgr.Wix/bin">
+                <include name="*.msi" />
+                <include name="*.exe" />
+                <include name="*.bat" />
+                <include name="*.xml" />
+                <include name="*.cab" />
+                <include name="*.wixpdb" />
+            </fileset>
+        </copy>
+        <mkdir dir="${publishDirectory}/Solutions/Vmgr.SharePoint" />
+		<copy todir="${publishDirectory}/Solutions/Vmgr.SharePoint">
+			<fileset basedir="D:/Projects/Vmgr/Project/Vmgr/Vmgr.SharePoint/${build.vmgr.deployment.outputpath}">
+				<include name="*.dll" />
+				<include name="*.exe" />
+				<include name="*.config" />
+				<include name="*.wsp" />
+				<include name="*.bat" />
+				<include name="*.rtf" />
+				<include name="*.jpg" />
+				<include name="*" />
+			</fileset>
+		</copy>   
+		<copy todir="${publishDirectory}/Solutions/Vmgr.SharePoint">
+			<fileset basedir="D:/Projects/Vmgr/Assemblies/WSPBuilder">
+				<include name="setup.exe" />
+			</fileset>
+		</copy>   
+		<mkdir dir="${publishDirectory}/Plugins" />
+		<copy todir="${publishDirectory}/Plugins">
+			<fileset basedir="D:/Projects/Vmgr/Project/Vmgr/Vmgr.CleanLogs/bin/Release">
+				<include name="*.vmgx" />
+			</fileset>
+		</copy>   
+		<mkdir dir="${publishDirectory}/Database" />
+		<copy todir="${publishDirectory}/Database">
+			<fileset basedir="D:/Projects/Vmgr/Database">
+				<include name="*.sql" />
+				<include name="*.txt" />
+			</fileset>
+		</copy>   
+		<copy todir="${publishDirectory}/Database">
+			<fileset basedir="D:/Projects/Vmgr/Database/${build.major}.${build.minor}.${build.build}">
+				<include name="*.sql" />
+				<include name="*.txt" />
+			</fileset>
+		</copy>   
+		<mkdir dir="${publishDirectory}/Documentation" />
+		<copy todir="${publishDirectory}/Documentation">
+			<fileset basedir="D:/Projects/Vmgr/Documentation">
+				<include name="*.doc" />
+				<include name="*.rtf" />
+				<include name="*.docx" />
+				<include name="*.pdf" />
+			</fileset>
+		</copy>   
+		<copy todir="${publishDirectory}/Documentation">
+			<fileset basedir="D:/Projects/Vmgr/Documentation/${build.major}.${build.minor}.${build.build}">
+				<include name="*.doc" />
+				<include name="*.rtf" />
+				<include name="*.docx" />
+				<include name="*.pdf" />
+			</fileset>
+		</copy>   
+    </target>
+</project>

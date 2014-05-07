@@ -1,0 +1,60 @@
+﻿<%
+	Project currentProject = _executingGenerator.ProjectDefinition;
+	EntityDefinition currentEntity = (EntityDefinition)((Hashtable)_activeObject)["CurrentEntity"];
+	
+	IList<string> subTypes = _executingGenerator.Entities
+		.Where(e => e.IsSubType)
+		.Where(e => e.GetSuperType().Name == currentEntity.Name)
+		.OrderBy(e => e.Name)
+		.Select(e => e.Name)
+		.ToList()
+		;
+
+				int count = 0;
+				foreach(string n in subTypes){
+					
+					if(count == 0)
+					{
+						count++;
+					%>if (t.Get<int?>("<%=n%>Id") > 0)
+                    {
+                        s = new <%=n%>MetaData
+                        {
+                           	<%=currentEntity.Name%>Id = t.Get<int>("<%=n%>Id"),
+							<%foreach(EntityDefinition subType in currentProject.GetAllSubtypesForEntity(currentEntity)
+								.Where(s => s.Name == n))
+								{
+									foreach(IFieldElementCore field in subType.Fields)
+									{
+							%><%=field.Name%> = t.Get<<%=GeneratorUtils.ProduceDotNetTypeName(field.FieldType.RepresentedType, field.IsOptional, "Nullable<{0}>")%>>("<%=n%><%=field.Name%>"),
+							<%			
+									}
+								}
+								%>
+                        }
+                        ;
+                    }<%}else{%>
+					else if(t.Get<int?>("<%=n%>Id") > 0)
+					{
+                        s = new <%=n%>MetaData
+                        {
+                            <%=currentEntity.Name%>Id = t.Get<int>("<%=n%>Id"),
+							<%foreach(EntityDefinition subType in currentProject.GetAllSubtypesForEntity(currentEntity)
+								.Where(s => s.Name == n))
+								{
+									foreach(IFieldElementCore field in subType.Fields)
+									{
+							%><%=field.Name%> = t.Get<<%=GeneratorUtils.ProduceDotNetTypeName(field.FieldType.RepresentedType, field.IsOptional, "Nullable<{0}>")%>>("<%=n%><%=field.Name%>"),
+							<%			
+									}
+								}
+								%>
+                        }
+                        ;
+					}
+					<%
+					}
+				}
+					%>	
+					
+					

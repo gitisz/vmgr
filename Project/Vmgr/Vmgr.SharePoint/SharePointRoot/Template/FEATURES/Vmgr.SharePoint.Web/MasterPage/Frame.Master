@@ -1,0 +1,30 @@
+<%@ Master 
+    Language="C#" 
+    AutoEventWireup="true" 
+    CodeBehind="Frame.Master.cs" 
+    Inherits="Vmgr.SharePoint.FrameMaster, Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe" 
+    %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2013.3.1015.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+<%@ Register TagPrefix="Vmgr" TagName="WindowManagersControl" Src="~/_CONTROLTEMPLATES/Vmgr/WindowManagersControl.ascx" %>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager 
+            ID="ScriptManager" 
+            runat="server" 
+            EnablePageMethods="false" 
+            EnablePartialRendering="true" 
+            EnableScriptGlobalization="false" 
+            EnableScriptLocalization="true" 
+            />
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderMain" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

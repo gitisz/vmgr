@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    name="V-Manager Test Package"
+    description="A package of plugins that do something."
+    uniqueId="E179B68C-199A-4EA3-B767-54333BE9DDD4"
+    >
+    <assemblies>
+        <assembly location="Vmgr.TestPlugin.dll" />
+    </assemblies>
+</package>

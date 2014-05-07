@@ -1,0 +1,1 @@
+devenv "D:\Projects\Dominion\Vmgr\Project\Vmgr\Vmgr.sln" /build Release /project "Vmgr.Installer\Vmgr.Installer.vdproj"

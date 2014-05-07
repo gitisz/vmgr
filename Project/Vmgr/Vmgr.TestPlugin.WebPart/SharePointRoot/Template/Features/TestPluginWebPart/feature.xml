@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature  Id="f31c0502-367c-40bd-9507-3565f8dea8f4"
+          Title="TestPluginWebPart"
+          Description="Returns a message from the Vmgr.TestPlugin plugin loaded in Dominion.Vmg.Services service."
+          Version="1.0.0.0"
+          Hidden="FALSE"
+          Scope="Site"
+          DefaultResourceFile="core"
+          xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ElementManifests>
+    <ElementManifest Location="elements.xml"/>
+    <ElementFile Location="TestPluginWebPart.webpart" />
+  </ElementManifests>
+</Feature>

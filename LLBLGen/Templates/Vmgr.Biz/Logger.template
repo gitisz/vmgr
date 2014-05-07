@@ -1,0 +1,363 @@
+﻿using log4net;
+using log4net.Appender;
+using log4net.Config;
+using log4net.Repository;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Security.Principal;
+using System.Xml;
+using Vmgr.Configuration;
+using Vmgr.Data.Biz.MetaData;
+
+namespace <[RootNamespace]>.Logging
+{
+    public class Logger : Exception
+    {
+        #region PRIVATE PROPERTIES
+
+        private static Logger _logs;
+        private string _serverName { get; set; }
+
+        #endregion
+
+        #region PROTECTED PROPERTIES
+
+        protected LogType logType { get; set; }
+        
+        protected string message { get; set; }
+        
+        protected string applicationName { get; set; }
+        
+        protected Exception innerException { get; set; }
+        
+        protected string serverName
+        {
+            get
+            {
+                if (this._serverName == null)
+                {
+                    this._serverName = System.Environment.GetEnvironmentVariable("COMPUTERNAME");
+                }
+                return this._serverName;
+            }
+        }
+
+        #endregion
+
+        #region PUBLIC PROPERTIES
+
+        public static Logger Logs
+        {
+            get
+            {
+                if (_logs == null)
+                {
+                    _logs = new Logger();
+                }
+                return _logs;
+            }
+        }
+
+        public Guid CorrelationId { get; set; }
+
+        #endregion
+
+        #region CTOR
+
+        public Logger()
+        {
+            Impersonation.Impersonate(delegate
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(Settings.GetSetting(Settings.Setting.VmgrLogger, true));
+                XmlConfigurator.Configure(doc.DocumentElement);
+            }
+            )
+            ;
+        }
+
+        public Logger(string message, LogType logType)
+            : this(null, logType, message, "", true)
+        {
+        }
+
+        public Logger(string message, LogType logType, string applicationName)
+            : this(null, logType, message, applicationName, true)
+        {
+        }
+
+        public Logger(Exception inner, LogType logType)
+            : this(inner, logType, "", "", true)
+        {
+        }
+
+        public Logger(Exception inner, LogType logType, string applicationName)
+            : this(inner, logType, "", applicationName, true)
+        {
+        }
+
+        public Logger(Exception inner, LogType logType, string message, string applicationName, bool persist
+            )
+            : base(message, inner)
+        {
+            Impersonation.Impersonate(delegate
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(Settings.GetSetting(Settings.Setting.VmgrLogger, true));
+                XmlConfigurator.Configure(doc.DocumentElement);
+            }
+            )
+            ;
+
+            this.logType = logType;
+            this.message = message;
+            this.applicationName = applicationName;
+
+            if (persist)
+                this.Save();
+        }
+
+        #endregion
+
+        #region PRIVATE METHODS
+
+        #endregion
+
+        #region PROTECTED METHODS
+
+        #endregion
+
+        #region PUBLIC METHODS
+
+        #endregion
+
+        #region EVENTS
+
+        #endregion
+
+        /// <summary>
+        /// Saves a record of the exception to the database.
+        /// </summary>
+        public ILog Save()
+        {
+            if (this.innerException != null)
+            {
+                if (!(this.innerException is Logger))
+                    this.CorrelationId = Guid.NewGuid();
+                else
+                {
+                    if ((this.innerException as Logger).CorrelationId != Guid.Empty)
+                        this.CorrelationId = (this.innerException as Logger).CorrelationId;
+                }
+            }
+            else
+                this.CorrelationId = Guid.Empty;
+
+            Impersonation.Impersonate(delegate
+            {
+                try
+                {
+                    ILog log = LogManager.GetLogger("VmgrLogger");
+
+                    MDC.Set("user", WindowsIdentity.GetCurrent().Name);
+                    MDC.Set("threadId", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
+                    MDC.Set("applicationName", this.applicationName);
+                    MDC.Set("server", this.serverName);
+                    MDC.Set("correlationId", this.CorrelationId.ToString());
+
+                    switch (this.logType)
+                    {
+                        case LogType.Debug:
+                            log.Debug(this.message, this.innerException);
+                            break;
+                        case LogType.Error:
+                            log.Error(this.message, this.innerException);
+                            break;
+                        case LogType.Warn:
+                            log.Warn(this.message, this.innerException);
+                            break;
+                        case LogType.Info:
+                            log.Info(this.message, this.innerException);
+                            break;
+                        case LogType.Fatal:
+                            log.Fatal(this.message, innerException);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                catch
+                {
+                    ILog log = LogManager.GetLogger("VmgrSmtpLogger");
+
+                    MDC.Set("user", WindowsIdentity.GetCurrent().Name);
+                    MDC.Set("threadId", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
+                    MDC.Set("applicationName", this.applicationName);
+                    MDC.Set("server", this.serverName);
+
+                    switch (this.logType)
+                    {
+                        case LogType.Debug:
+                            log.Debug(this.message, this.innerException);
+                            break;
+                        case LogType.Error:
+                            log.Error(this.message, this.innerException);
+                            break;
+                        case LogType.Warn:
+                            log.Warn(this.message, this.innerException);
+                            break;
+                        case LogType.Info:
+                            log.Info(this.message, this.innerException);
+                            break;
+                        case LogType.Fatal:
+                            log.Fatal(this.message, this.innerException);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                finally
+                {
+                    ILoggerRepository rep = LogManager.GetRepository();
+
+                    foreach (IAppender appender in rep.GetAppenders())
+                    {
+                        var buffered = appender as BufferingAppenderSkeleton;
+
+                        if (buffered != null)
+                        {
+                            buffered.Flush();
+                        }
+                    }
+                }
+            }
+            );
+
+            return null;
+        }
+
+        public Logger Log(string message, LogType logType)
+        {
+            return Log(null, logType, message, Logger.GetExecutingAssemblyName(), true);
+        }
+
+        public Logger Log(string message, LogType logType, string applicationName)
+        {
+            return Log(null, logType, message, applicationName, true);
+        }
+
+        public Logger Log(string message, Exception inner, LogType logType)
+        {
+            return Log(inner, logType, message, Logger.GetExecutingAssemblyName(), true);
+        }
+
+        public Logger Log(string message, Exception inner, LogType logType, string applicationName)
+        {
+            return Log(inner, logType, message, applicationName, true);
+        }
+
+        public Logger Log(Exception inner, LogType logType)
+        {
+            return Log(inner, logType, string.Empty, Logger.GetExecutingAssemblyName(), true);
+        }
+
+        public Logger Log(Exception inner, LogType logType, string applicationName)
+        {
+            return Log(inner, logType, string.Empty, applicationName, true);
+        }
+
+        public Logger Log(Exception inner, LogType logType, string message, string applicationName, bool persist)
+        {
+            this.innerException = inner;
+            this.logType = logType;
+            this.message = message;
+            this.applicationName = applicationName;
+
+            if (persist)
+                this.Save();
+
+            return this;
+        }
+
+        public void BypassLog4Net(LogType logType, string message)
+        {
+            using (AppService app = new AppService())
+            {
+                bool result = app.Save(new LogMetaData
+                {
+                    ApplicationName = Logger.GetExecutingAssemblyName(),
+                    CorrelationId = Guid.Empty.ToString(),
+                    CreateUser = WindowsIdentity.GetCurrent().Name,
+                    CreateDate = DateTime.Now,
+                    Exception = string.Empty,
+                    Level = logType.ToString().ToUpper(),
+                    Logger = "VmgrLogger",
+                    Message = message,
+                    Server = System.Environment.GetEnvironmentVariable("COMPUTERNAME"),
+                    Thread = System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(),
+                    ThreadId = string.Empty,
+                }
+                );
+            }
+        }
+
+        public static string GetExecutingAssemblyName()
+        {
+            string executingAssemblyName = string.Empty;
+
+            Assembly assembly = Assembly.GetEntryAssembly();
+
+            if (assembly != null)
+                executingAssemblyName = assembly.FullName;
+            else
+            {
+                StackFrame[] frames = new StackTrace().GetFrames();
+
+                /*
+                 * Because if this, logging will only report an application name that is from an application in V-Manager.  Plugins should implement 
+                 * their own logging, or provide an application name.
+                 */
+                IList<string> executingAssemblyNames = frames
+                    .Select(f => 
+                        {
+                            var m  = f.GetMethod();
+
+                            if (m != null)
+                            {
+                                if (m.ReflectedType != null)
+                                {
+                                    return m.ReflectedType.AssemblyQualifiedName;
+                                }
+                                else
+                                    return string.Empty;
+                            }
+
+                            return string.Empty;
+                        }
+                        )
+                    .Where(f => f.StartsWith("Vmgr", StringComparison.InvariantCultureIgnoreCase))
+                    .Distinct()
+                    .ToList();
+
+                executingAssemblyName = executingAssemblyNames
+                    .LastOrDefault()
+                    ;
+
+            }
+
+            return executingAssemblyName;
+        }
+    }
+
+    public enum LogType
+    {
+        Debug,
+        Error,
+        Warn,
+        Info,
+        Fatal,
+    }
+}

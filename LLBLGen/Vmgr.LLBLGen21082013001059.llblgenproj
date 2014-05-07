@@ -1,0 +1,1051 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--LLBLGen Pro v3.5 project file. Do not manually edit this file. Incorrect references could lead to an unloadable project file.-->
+<Project Version="3.5" TargetFrameworkName="LLBLGen Pro Runtime Framework">
+  <Properties>
+    <Abbreviations />
+    <Property Name="AdditionalTaskPerformerFolder" Value=".\" />
+    <Property Name="AdditionalTasksFolder" Value=".\" />
+    <Property Name="AdditionalTemplatesFolder" Value=".\" />
+    <Property Name="AdditionalTypeConverterFolder" Value=".\" />
+    <Property Name="AddNewElementsAfterRefresh" Value="0" />
+    <Property Name="AddNewFieldsAfterRefresh" Value="0" />
+    <Property Name="AddNewViewsAsEntitiesAfterRefresh" Value="0" />
+    <Property Name="AutoAddManyToManyRelationships" Value="false" />
+    <Property Name="AutoAssignSequencesToIntegerPks" Value="true" />
+    <Property Name="AutoAssignTypeConverterToFieldMapping" Value="false" />
+    <Property Name="CleanUpVsNetProjects" Value="true" />
+    <Property Name="ConnectionStringKeyNamePattern" Value="VmgrConnectionString" />
+    <Property Name="EncodingToUse" Value="0" />
+    <Property Name="EnforcePascalCasingAlways" Value="true" />
+    <Property Name="EntityFieldNameStripPattern" Value="{}{}" />
+    <Property Name="EntityNameStripPattern" Value="{tbl_, Vmgr_, Plugin_}{}" />
+    <Property Name="ExcludableOrphanedElementDetectedAction" Value="3" />
+    <Property Name="FailCodeGenerationOnWriteError" Value="false" />
+    <Property Name="FieldMappedOntoRelatedFieldPattern" Value="{$RelatedFieldName}" />
+    <Property Name="FkFieldsAreNamedAfterTargetField" Value="true" />
+    <Property Name="ForeignKeyFieldPattern" Value="{$NavigatorName}{$RelatedFieldName}" />
+    <Property Name="GroupUsage" Value="0" />
+    <Property Name="IdentifyingFieldsFollowDBPrimaryKeyConstraints" Value="0" />
+    <Property Name="InsertUnderscoreAtWordBreakCaseInsensitiveDBs" Value="false" />
+    <Property Name="InsertUnderscoreAtWordBreakCaseSensitiveDBs" Value="false" />
+    <Property Name="LengthPrecisionScaleFollowDBLengthPrecisionScale" Value="0" />
+    <Property Name="MakeElementNamePascalCasing" Value="true" />
+    <Property Name="NavigatorMappedOntoManyToManyPattern" Value="{$EndEntityName}CollectionVia{$IntermediateEntityName$S}" />
+    <Property Name="NavigatorMappedOntoOneManyToOnePattern" Value="{$EndEntityName$S}" />
+    <Property Name="NavigatorMappedOntoOneToManyPattern" Value="{$EndEntityName$P}" />
+    <Property Name="NonExcludableOrphanedElementDetectedAction" Value="3" />
+    <Property Name="PreferDecimalOverCurrencyTypes" Value="true" />
+    <Property Name="PreferNaturalCharacterTypes" Value="true" />
+    <Property Name="PreferVariableLengthTypes" Value="true" />
+    <Property Name="ProjectCreator" Value="TSW" />
+    <Property Name="ProjectName" Value="Vmgr" />
+    <Property Name="ReflectNullabilityOfElementFieldInTargetField" Value="0" />
+    <Property Name="RelationalModelDataElementNameCasingCaseInsensitiveDBs" Value="3" />
+    <Property Name="RelationalModelDataElementNameCasingCaseSensitiveDBs" Value="3" />
+    <Property Name="RelationshipsFollowDBForeignKeyConstraints" Value="0" />
+    <Property Name="RemoveUnderscoresFromElementName" Value="true" />
+    <Property Name="RemoveUnmappedElementsAfterRefresh" Value="0" />
+    <Property Name="ResetFieldOrderBasedOnTargetOrderAtRefresh" Value="false" />
+    <Property Name="RetrieveDBCustomProperties" Value="true" />
+    <Property Name="RootNamespace" Value="Vmgr" />
+    <Property Name="SequencePattern" Value="SEQ_{$EntityName}" />
+    <Property Name="SetGroupNameAfterSchemaName" Value="true" />
+    <Property Name="SetSchemaNameAfterGroupName" Value="true" />
+    <Property Name="StoredProcNameStripPattern" Value="{pr_, sp_, usp_}{}" />
+    <Property Name="StoreTimeLastGeneratedIntoProject" Value="false" />
+    <Property Name="SyncMappedElementNamesAfterRefresh" Value="0" />
+    <Property Name="SyncRelationalModelDataElementNameAfterRename" Value="0" />
+    <Property Name="SyncRenamedMappedElementNamesAfterRefresh" Value="0" />
+    <Property Name="TargetPerEntityEdgesRequireBackingFkConstraint" Value="true" />
+    <Property Name="TypedViewFieldNameStripPattern" Value="{}{}" />
+    <Property Name="TypedViewNameStripPattern" Value="{vw_}{}" />
+    <Property Name="UniqueConstraintsFollowDBUniqueConstraints" Value="0" />
+    <Property Name="UpdateCustomPropertiesAfterRefresh" Value="0" />
+    <Property Name="UseCustomFieldOrderingOnNewElements" Value="false" />
+  </Properties>
+  <TypeShortcuts />
+  <CodeGenerationCyclePreferences>
+    <OutputType Value="3">
+      <LastUsedPreferences>
+        <DestinationRootFolder Value="..\Project\Vmgr\" />
+        <FrameworkName Value="LLBLGen Pro Runtime Framework" />
+        <LanguageName Value="C#" />
+        <PlatformName Value=".NET 3.5" />
+        <PresetName Value="Vmgr" />
+        <RootNamespace Value="Vmgr" />
+        <TemplateGroup Value="Adapter" />
+        <TemplateBindings>
+          <Binding Name="Vmgr" />
+          <Binding Name="SD.TemplateBindings.SqlServerSpecific.NET20" />
+          <Binding Name="SD.TemplateBindings.SharedTemplates.NET35" />
+          <Binding Name="SD.TemplateBindings.SharedTemplates.NET20" />
+          <Binding Name="SD.TemplateBindings.General" />
+        </TemplateBindings>
+      </LastUsedPreferences>
+    </OutputType>
+  </CodeGenerationCyclePreferences>
+  <OutputSettingValues>
+    <SettingValues>
+      <SettingValue Name="1:AdapterDbGenericSubFolderName" Value="" Type="18" />
+      <SettingValue Name="1:AdapterDbSpecificNamespaceSuffix" Value="" Type="18" />
+      <SettingValue Name="1:AdapterDbSpecificProjectFileSuffix" Value="" Type="18" />
+      <SettingValue Name="1:AdapterDbSpecificSubFolderName" Value="" Type="18" />
+      <SettingValue Name="1:ConvertNulledReferenceTypesToDefaultValue" Value="false" Type="3" />
+      <SettingValue Name="1:EntityBaseClassNameDefault" Value="CommonEntityBase" Type="18" />
+      <SettingValue Name="1:GenerateAsNullableTypeDefault" Value="true" Type="3" />
+      <SettingValue Name="1:TdlEmitTimeDateInOutputFiles" Value="false" Type="3" />
+    </SettingValues>
+  </OutputSettingValues>
+  <CodeGenerationMetaDataDefaults>
+    <TargetElement Type="2">
+      <Defaults>
+        <Namespaces>
+          <Namespace Name="Vmgr" />
+          <Namespace Name="Vmgr.Data.SqlServer" />
+        </Namespaces>
+      </Defaults>
+    </TargetElement>
+    <TargetElement Type="256">
+      <Defaults>
+        <Attributes>
+          <Attribute Value="Browsable($false)" />
+        </Attributes>
+      </Defaults>
+    </TargetElement>
+  </CodeGenerationMetaDataDefaults>
+  <EntityModel>
+    <ValueTypeDefinitions />
+    <EntityDefinitions>
+      <EntityDefinition Name="Filter" GroupName="vmg">
+        <Fields>
+          <Field Name="CreateDate" Type="datetime" />
+          <Field Name="CreateUser" Type="string" MaxLength="50" />
+          <Field Name="Deactivated" Type="bool" />
+          <Field Name="Expression" Type="string" IsOptional="true" MaxLength="2147483647" />
+          <Field Name="FilterId" Type="int" Precision="10" IsPrimaryKey="true" />
+          <Field Name="FilterType" Type="string" MaxLength="50" />
+          <Field Name="Name" Type="string" MaxLength="50" />
+          <Field Name="ServerId" Type="int" Precision="10" IsAutoCreated="true" />
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true" />
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="10" />
+          <Field Name="Username" Type="string" MaxLength="50" />
+        </Fields>
+      </EntityDefinition>
+      <EntityDefinition Name="Job" GroupName="vmg">
+        <Fields>
+          <Field Name="CreateDate" Type="datetime" />
+          <Field Name="CreateUser" Type="string" MaxLength="50" />
+          <Field Name="JobId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true" />
+          <Field Name="JobKey" Type="string" MaxLength="255" />
+          <Field Name="JobKeyGroup" Type="string" MaxLength="255" />
+          <Field Name="JobStatusTypeId" Type="int" Precision="10" />
+          <Field Name="ScheduleId" Type="int" Precision="10" />
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true" />
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="50" />
+        </Fields>
+        <Forfs>
+          <Forf Name="ScheduleName" MappedField="vmg:Schedule:Name" RelationshipName="vmg.Job.Schedule-vmg.Schedule.Jobs" ViaStartNavigator="true" IsReadOnly="true" />
+          <Forf Name="ScheduleUniqueId" MappedField="vmg:Schedule:UniqueId" RelationshipName="vmg.Job.Schedule-vmg.Schedule.Jobs" ViaStartNavigator="true" IsReadOnly="true" />
+        </Forfs>
+      </EntityDefinition>
+      <EntityDefinition Name="Log" GroupName="vmg">
+        <Fields>
+          <Field Name="ApplicationName" Type="string" IsOptional="true" MaxLength="255" />
+          <Field Name="CreateDate" Type="datetime" />
+          <Field Name="CreateUser" Type="string" MaxLength="50" />
+          <Field Name="Exception" Type="string" IsOptional="true" MaxLength="2000" />
+          <Field Name="Id" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true" />
+          <Field Name="Level" Type="string" MaxLength="50" />
+          <Field Name="Logger" Type="string" MaxLength="255" />
+          <Field Name="Message" Type="string" MaxLength="4000" />
+          <Field Name="Server" Type="string" IsOptional="true" MaxLength="50" />
+          <Field Name="Thread" Type="string" MaxLength="255" />
+          <Field Name="ThreadId" Type="string" IsOptional="true" MaxLength="255" />
+        </Fields>
+      </EntityDefinition>
+      <EntityDefinition Name="Monitor" GroupName="vmg">
+        <Fields>
+          <Field Name="CreateDate" Type="datetime" />
+          <Field Name="CreateUser" Type="string" MaxLength="50" />
+          <Field Name="MonitorId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true" />
+          <Field Name="PackageId" Type="int" Precision="10" />
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true" />
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="50" />
+          <Field Name="Username" Type="string" MaxLength="50" />
+        </Fields>
+        <UniqueConstraints>
+          <UniqueConstraint Name="IxMonitor">
+            <Field Name="PackageId" />
+            <Field Name="Username" />
+          </UniqueConstraint>
+        </UniqueConstraints>
+        <Forfs>
+          <Forf Name="PackageDeactivated" MappedField="vmg:Package:Deactivated" RelationshipName="vmg.Monitor.Package-vmg.Package.Monitors" ViaStartNavigator="true" IsReadOnly="true" />
+          <Forf Name="PackageName" MappedField="vmg:Package:Name" RelationshipName="vmg.Monitor.Package-vmg.Package.Monitors" ViaStartNavigator="true" IsReadOnly="true" />
+          <Forf Name="PackageUniqueId" MappedField="vmg:Package:UniqueId" RelationshipName="vmg.Monitor.Package-vmg.Package.Monitors" ViaStartNavigator="true" IsReadOnly="true" />
+        </Forfs>
+      </EntityDefinition>
+      <EntityDefinition Name="Package" GroupName="vmg">
+        <Fields>
+          <Field Name="CreateDate" Type="datetime">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="CreateUser" Type="string" MaxLength="255">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Deactivated" Type="bool">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Description" Type="string" IsOptional="true" MaxLength="1073741823">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Name" Type="string" MaxLength="50">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Package" Type="byte[]" IsOptional="true" MaxLength="2147483647">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="PackageId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="ServerId" Type="int" Precision="10" IsAutoCreated="true" />
+          <Field Name="UniqueId" Type="guid">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="255">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+        </Fields>
+        <Forfs>
+          <Forf Name="ServerUniqueId" MappedField="vmg:Server:UniqueId" RelationshipName="vmg.Package.Server-vmg.Server.Packages" ViaStartNavigator="true" IsReadOnly="true" />
+        </Forfs>
+        <OutputSettingValues>
+          <CustomProperties>
+            <CustomProperty Name="DataContract" Value="true" />
+          </CustomProperties>
+        </OutputSettingValues>
+      </EntityDefinition>
+      <EntityDefinition Name="Plugin" GroupName="vmg">
+        <Fields>
+          <Field Name="CreateDate" Type="datetime">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="CreateUser" Type="string" MaxLength="50">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Deactivated" Type="bool">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Description" Type="string" IsOptional="true" MaxLength="2147483647">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Name" Type="string" MaxLength="255">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="PackageId" Type="int" Precision="10">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="PluginId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Schedulable" Type="bool">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="UniqueId" Type="guid">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="50">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="true" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+        </Fields>
+        <Forfs>
+          <Forf Name="PackageServerId" MappedField="vmg:Package:ServerId" RelationshipName="vmg.Plugin.Package-vmg.Package.Plugins" ViaStartNavigator="true" IsReadOnly="true" />
+          <Forf Name="PackageUniqueId" MappedField="vmg:Package:UniqueId" RelationshipName="vmg.Plugin.Package-vmg.Package.Plugins" ViaStartNavigator="true" IsReadOnly="true" />
+        </Forfs>
+        <OutputSettingValues>
+          <CustomProperties>
+            <CustomProperty Name="DataContract" Value="true" />
+          </CustomProperties>
+        </OutputSettingValues>
+      </EntityDefinition>
+      <EntityDefinition Name="Schedule" GroupName="vmg">
+        <Fields>
+          <Field Name="CreateDate" Type="datetime">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="CreateUser" Type="string" MaxLength="255">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Deactivated" Type="bool">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Description" Type="string" IsOptional="true" MaxLength="1073741823">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="End" Type="datetime" IsOptional="true">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="MisfireInstruction" Type="int" Precision="10">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Name" Type="string" MaxLength="255">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="PluginId" Type="int" IsOptional="true" Precision="10">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="RecurrenceRule" Type="string" IsOptional="true" MaxLength="1024">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="RecurrenceTypeId" Type="int" Precision="10">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="ScheduleId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="Start" Type="datetime">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="UniqueId" Type="guid">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="255">
+            <OutputSettingValues>
+              <CustomProperties>
+                <CustomProperty Name="DataMember" Value="True" />
+              </CustomProperties>
+            </OutputSettingValues>
+          </Field>
+        </Fields>
+        <UniqueConstraints>
+          <UniqueConstraint Name="IxSchedule">
+            <Field Name="Name" />
+          </UniqueConstraint>
+        </UniqueConstraints>
+        <Forfs>
+          <Forf Name="PluginDeactivated" MappedField="vmg:Plugin:Deactivated" RelationshipName="vmg.Schedule.Plugin-vmg.Plugin.Schedules" ViaStartNavigator="true" IsReadOnly="true" />
+          <Forf Name="PluginUniqueId" MappedField="vmg:Plugin:UniqueId" RelationshipName="vmg.Schedule.Plugin-vmg.Plugin.Schedules" ViaStartNavigator="true" IsReadOnly="true" />
+        </Forfs>
+        <OutputSettingValues>
+          <CustomProperties>
+            <CustomProperty Name="DataContract" Value="true" />
+          </CustomProperties>
+        </OutputSettingValues>
+      </EntityDefinition>
+      <EntityDefinition Name="Server" GroupName="vmg">
+        <Fields>
+          <Field Name="CreateDate" Type="datetime" />
+          <Field Name="CreateUser" Type="string" MaxLength="50" />
+          <Field Name="Description" Type="string" IsOptional="true" MaxLength="2147483647" />
+          <Field Name="Name" Type="string" MaxLength="255" />
+          <Field Name="RTPort" Type="int" Precision="10" />
+          <Field Name="RTProtocol" Type="string" MaxLength="10" />
+          <Field Name="ServerId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true" />
+          <Field Name="UniqueId" Type="guid" />
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true" />
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="50" />
+          <Field Name="WSPort" Type="int" Precision="10" />
+          <Field Name="WSProtocol" Type="string" MaxLength="10" />
+        </Fields>
+      </EntityDefinition>
+      <EntityDefinition Name="Setting" GroupName="vmg">
+        <Fields>
+          <Field Name="Cache" Type="bool" />
+          <Field Name="CreateDate" Type="datetime" />
+          <Field Name="CreateUser" Type="string" MaxLength="50" />
+          <Field Name="Key" Type="string" MaxLength="50" />
+          <Field Name="SettingId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true" />
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true" />
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="50" />
+          <Field Name="Value" Type="string" IsOptional="true" MaxLength="2147483647" />
+        </Fields>
+      </EntityDefinition>
+      <EntityDefinition Name="Trigger" GroupName="vmg">
+        <Fields>
+          <Field Name="CreateDate" Type="datetime" />
+          <Field Name="CreateUser" Type="string" MaxLength="50" />
+          <Field Name="Ended" Type="datetime" IsOptional="true" />
+          <Field Name="JobId" Type="int" Precision="10" />
+          <Field Name="Mayfire" Type="bool" IsOptional="true" />
+          <Field Name="Misfire" Type="bool" IsOptional="true" />
+          <Field Name="Nextfire" Type="datetime" IsOptional="true" />
+          <Field Name="Previousfire" Type="datetime" IsOptional="true" />
+          <Field Name="Started" Type="datetime" IsOptional="true" />
+          <Field Name="TriggerId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true" />
+          <Field Name="TriggerKey" Type="string" MaxLength="255" />
+          <Field Name="TriggerKeyGroup" Type="string" MaxLength="255" />
+          <Field Name="TriggerStatusTypeId" Type="int" Precision="10" />
+          <Field Name="UpdateDate" Type="datetime" IsOptional="true" />
+          <Field Name="UpdateUser" Type="string" IsOptional="true" MaxLength="50" />
+        </Fields>
+      </EntityDefinition>
+    </EntityDefinitions>
+    <Relationships>
+      <NormalRelationship Name="vmg.Filter.Server-vmg.Server.Filters" Start="vmg:Filter" End="vmg:Server" StartNavigator="Server" EndNavigator="Filters" Type="4">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="ServerId" PkField="ServerId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="vmg.Job.Schedule-vmg.Schedule.Jobs" Start="vmg:Job" End="vmg:Schedule" StartNavigator="Schedule" EndNavigator="Jobs" Type="4">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="ScheduleId" PkField="ScheduleId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="vmg.Monitor.Package-vmg.Package.Monitors" Start="vmg:Monitor" End="vmg:Package" StartNavigator="Package" EndNavigator="Monitors" Type="4">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="PackageId" PkField="PackageId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="vmg.Package.Server-vmg.Server.Packages" Start="vmg:Package" End="vmg:Server" StartNavigator="Server" EndNavigator="Packages" Type="4">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="ServerId" PkField="ServerId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="vmg.Plugin.Package-vmg.Package.Plugins" Start="vmg:Plugin" End="vmg:Package" StartNavigator="Package" EndNavigator="Plugins" Type="4">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="PackageId" PkField="PackageId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="vmg.Schedule.Plugin-vmg.Plugin.Schedules" Start="vmg:Schedule" End="vmg:Plugin" StartNavigator="Plugin" EndNavigator="Schedules" Type="4" EndIsOptional="true">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="PluginId" PkField="PluginId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="vmg.Trigger.Job-vmg.Job.Triggers" Start="vmg:Trigger" End="vmg:Job" StartNavigator="Job" EndNavigator="Triggers" Type="4">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="JobId" PkField="JobId" />
+        </FieldRelationships>
+      </NormalRelationship>
+    </Relationships>
+    <InheritanceHierarchies />
+  </EntityModel>
+  <SPCallDefinitions>
+    <SPCallDefinition Name="GetLogs" GroupName="vmg">
+      <Parameters>
+        <Parameter Name="PPageNumber" Type="int" Precision="10" />
+        <Parameter Name="PPageSize" Type="int" Precision="10" />
+        <Parameter Name="PSortBy" Type="string" MaxLength="50" />
+        <Parameter Name="PSortMode" Type="string" MaxLength="10" />
+      </Parameters>
+    </SPCallDefinition>
+    <SPCallDefinition Name="GetTriggersByPlugin" GroupName="vmg">
+      <Parameters>
+        <Parameter Name="Days" Type="int" Precision="10" />
+        <Parameter Name="UniqueId" Type="guid" />
+      </Parameters>
+    </SPCallDefinition>
+    <SPCallDefinition Name="RemoveMonitor" GroupName="vmg">
+      <Parameters>
+        <Parameter Name="MonitorId" Type="int" Precision="10" />
+      </Parameters>
+    </SPCallDefinition>
+    <SPCallDefinition Name="RemovePackage" GroupName="vmg">
+      <Parameters>
+        <Parameter Name="PackageId" Type="int" Precision="10" />
+      </Parameters>
+    </SPCallDefinition>
+    <SPCallDefinition Name="RemoveSchedule" GroupName="vmg">
+      <Parameters>
+        <Parameter Name="ScheduleId" Type="int" Precision="10" />
+      </Parameters>
+    </SPCallDefinition>
+  </SPCallDefinitions>
+  <TargetDatabases>
+    <TargetDatabase Type="2D18D138-1DD2-467E-86CC-4838250611AE">
+      <ConnectionElements>
+        <ConnectionElement Name="ServerName" Value="DEV3\SQL1" />
+        <ConnectionElement Name="CatalogName" Value="master" />
+        <ConnectionElement Name="UseWindowsAuthentication" Value="true" />
+        <ConnectionElement Name="UserID" Value="" />
+        <ConnectionElement Name="Password" Value="" />
+      </ConnectionElements>
+      <SystemSequences>
+        <Sequence Name="SCOPE_IDENTITY()" />
+        <Sequence Name="@@IDENTITY" />
+      </SystemSequences>
+      <Catalogs>
+        <Catalog Name="DOM_Config">
+          <Schemas>
+            <Schema Name="vmg">
+              <Tables>
+                <Table Name="Filter">
+                  <Fields>
+                    <Field Name="FilterId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Filter" DbType="8" Precision="10" />
+                    <Field Name="ServerId" Ordinal="2" DbType="8" Precision="10" />
+                    <Field Name="FilterType" Ordinal="3" DbType="12" Length="50" />
+                    <Field Name="Name" Ordinal="4" DbType="12" Length="50" />
+                    <Field Name="Expression" Ordinal="5" IsOptional="true" DbType="12" Length="2147483647" />
+                    <Field Name="Username" Ordinal="6" DbType="12" Length="50" />
+                    <Field Name="Deactivated" Ordinal="7" DbType="2" />
+                    <Field Name="CreateDate" Ordinal="8" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="9" DbType="12" Length="50" />
+                    <Field Name="UpdateDate" Ordinal="10" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="11" IsOptional="true" DbType="10" Length="10" />
+                  </Fields>
+                </Table>
+                <Table Name="Job">
+                  <Fields>
+                    <Field Name="JobId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Job" DbType="8" Precision="10" />
+                    <Field Name="ScheduleId" Ordinal="2" DbType="8" Precision="10" />
+                    <Field Name="JobKey" Ordinal="3" DbType="12" Length="255" />
+                    <Field Name="JobKeyGroup" Ordinal="4" DbType="12" Length="255" />
+                    <Field Name="JobStatusTypeId" Ordinal="5" DbType="8" Precision="10" />
+                    <Field Name="CreateDate" Ordinal="6" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="7" DbType="12" Length="50" />
+                    <Field Name="UpdateDate" Ordinal="8" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="9" IsOptional="true" DbType="12" Length="50" />
+                  </Fields>
+                </Table>
+                <Table Name="Log">
+                  <Fields>
+                    <Field Name="Id" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Log" DbType="8" Precision="10" />
+                    <Field Name="Thread" Ordinal="2" DbType="24" Length="255" />
+                    <Field Name="ThreadId" Ordinal="3" IsOptional="true" DbType="24" Length="255" />
+                    <Field Name="ApplicationName" Ordinal="4" IsOptional="true" DbType="24" Length="255" />
+                    <Field Name="Level" Ordinal="5" DbType="24" Length="50" />
+                    <Field Name="Logger" Ordinal="6" DbType="24" Length="255" />
+                    <Field Name="Message" Ordinal="7" DbType="24" Length="4000" />
+                    <Field Name="Exception" Ordinal="8" IsOptional="true" DbType="24" Length="2000" />
+                    <Field Name="CreateDate" Ordinal="9" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="10" DbType="12" Length="50" />
+                    <Field Name="Server" Ordinal="11" IsOptional="true" DbType="12" Length="50" />
+                  </Fields>
+                </Table>
+                <Table Name="Monitor">
+                  <Fields>
+                    <Field Name="MonitorId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Monitor" DbType="8" Precision="10" />
+                    <Field Name="PackageId" Ordinal="2" DbType="8" Precision="10" />
+                    <Field Name="Username" Ordinal="3" DbType="12" Length="50" />
+                    <Field Name="CreateDate" Ordinal="4" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="5" DbType="12" Length="50" />
+                    <Field Name="UpdateDate" Ordinal="6" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="7" IsOptional="true" DbType="12" Length="50" />
+                  </Fields>
+                  <UniqueConstraints>
+                    <UniqueConstraint Name="IX_Monitor">
+                      <Field Name="PackageId" />
+                      <Field Name="Username" />
+                    </UniqueConstraint>
+                  </UniqueConstraints>
+                </Table>
+                <Table Name="Package">
+                  <Fields>
+                    <Field Name="PackageId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Package" DbType="8" Precision="10" />
+                    <Field Name="UniqueId" Ordinal="2" DbType="25" />
+                    <Field Name="Name" Ordinal="3" DbType="12" Length="50" />
+                    <Field Name="Description" Ordinal="4" IsOptional="true" DbType="11" Length="1073741823" />
+                    <Field Name="Package" Ordinal="5" IsOptional="true" DbType="23" Length="2147483647" />
+                    <Field Name="Deactivated" Ordinal="6" DbType="2" />
+                    <Field Name="ServerId" Ordinal="7" DbType="8" Precision="10" />
+                    <Field Name="CreateDate" Ordinal="8" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="9" DbType="12" Length="255" />
+                    <Field Name="UpdateDate" Ordinal="10" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="11" IsOptional="true" DbType="12" Length="255" />
+                  </Fields>
+                </Table>
+                <Table Name="Plugin">
+                  <Fields>
+                    <Field Name="PluginId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Plugin" DbType="8" Precision="10" />
+                    <Field Name="PackageId" Ordinal="2" DbType="8" Precision="10" />
+                    <Field Name="Name" Ordinal="3" DbType="12" Length="255" />
+                    <Field Name="Description" Ordinal="4" IsOptional="true" DbType="12" Length="2147483647" />
+                    <Field Name="UniqueId" Ordinal="5" DbType="25" />
+                    <Field Name="Schedulable" Ordinal="6" DbType="2" />
+                    <Field Name="Deactivated" Ordinal="7" DbType="2" />
+                    <Field Name="CreateDate" Ordinal="8" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="9" DbType="12" Length="50" />
+                    <Field Name="UpdateDate" Ordinal="10" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="11" IsOptional="true" DbType="12" Length="50" />
+                  </Fields>
+                </Table>
+                <Table Name="Schedule">
+                  <Fields>
+                    <Field Name="ScheduleId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_schedule" DbType="8" Precision="10" />
+                    <Field Name="UniqueId" Ordinal="2" DbType="25" />
+                    <Field Name="Name" Ordinal="3" DbType="12" Length="255" />
+                    <Field Name="Description" Ordinal="4" IsOptional="true" DbType="11" Length="1073741823" />
+                    <Field Name="PluginId" Ordinal="5" IsOptional="true" DbType="8" Precision="10" />
+                    <Field Name="Start" Ordinal="6" DbType="4" />
+                    <Field Name="End" Ordinal="7" IsOptional="true" DbType="4" />
+                    <Field Name="RecurrenceTypeId" Ordinal="8" DbType="8" Precision="10" />
+                    <Field Name="RecurrenceRule" Ordinal="9" IsOptional="true" DbType="12" Length="1024" />
+                    <Field Name="MisfireInstruction" Ordinal="10" DbType="8" Precision="10" />
+                    <Field Name="Deactivated" Ordinal="11" DbType="2" />
+                    <Field Name="CreateDate" Ordinal="12" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="13" DbType="12" Length="255" />
+                    <Field Name="UpdateDate" Ordinal="14" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="15" IsOptional="true" DbType="12" Length="255" />
+                  </Fields>
+                  <UniqueConstraints>
+                    <UniqueConstraint Name="IX_schedule">
+                      <Field Name="Name" />
+                    </UniqueConstraint>
+                  </UniqueConstraints>
+                </Table>
+                <Table Name="Server">
+                  <Fields>
+                    <Field Name="ServerId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Server" DbType="8" Precision="10" />
+                    <Field Name="Name" Ordinal="2" DbType="12" Length="255" />
+                    <Field Name="Description" Ordinal="3" IsOptional="true" DbType="12" Length="2147483647" />
+                    <Field Name="UniqueId" Ordinal="4" DbType="25" />
+                    <Field Name="CreateDate" Ordinal="5" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="6" DbType="12" Length="50" />
+                    <Field Name="UpdateDate" Ordinal="7" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="8" IsOptional="true" DbType="12" Length="50" />
+                    <Field Name="WSProtocol" Ordinal="9" DbType="12" Length="10" />
+                    <Field Name="WSPort" Ordinal="10" DbType="8" Precision="10" />
+                    <Field Name="RTProtocol" Ordinal="11" DbType="12" Length="10" />
+                    <Field Name="RTPort" Ordinal="12" DbType="8" Precision="10" />
+                  </Fields>
+                </Table>
+                <Table Name="Setting">
+                  <Fields>
+                    <Field Name="SettingId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Setting" DbType="8" Precision="10" />
+                    <Field Name="Key" Ordinal="2" DbType="12" Length="50" />
+                    <Field Name="Value" Ordinal="3" IsOptional="true" DbType="12" Length="2147483647" />
+                    <Field Name="Cache" Ordinal="4" DbType="2" />
+                    <Field Name="CreateDate" Ordinal="5" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="6" DbType="12" Length="50" />
+                    <Field Name="UpdateDate" Ordinal="7" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="8" IsOptional="true" DbType="12" Length="50" />
+                  </Fields>
+                </Table>
+                <Table Name="Trigger">
+                  <Fields>
+                    <Field Name="TriggerId" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_JobTrigger" DbType="8" Precision="10" />
+                    <Field Name="JobId" Ordinal="2" DbType="8" Precision="10" />
+                    <Field Name="TriggerKey" Ordinal="3" DbType="12" Length="255" />
+                    <Field Name="TriggerKeyGroup" Ordinal="4" DbType="12" Length="255" />
+                    <Field Name="Started" Ordinal="5" IsOptional="true" DbType="4" />
+                    <Field Name="Ended" Ordinal="6" IsOptional="true" DbType="4" />
+                    <Field Name="Previousfire" Ordinal="7" IsOptional="true" DbType="4" />
+                    <Field Name="Nextfire" Ordinal="8" IsOptional="true" DbType="4" />
+                    <Field Name="Mayfire" Ordinal="9" IsOptional="true" DbType="2" />
+                    <Field Name="Misfire" Ordinal="10" IsOptional="true" DbType="2" />
+                    <Field Name="TriggerStatusTypeId" Ordinal="11" DbType="8" Precision="10" />
+                    <Field Name="CreateDate" Ordinal="12" DefaultValue="(getdate())" DbType="4" />
+                    <Field Name="CreateUser" Ordinal="13" DbType="12" Length="50" />
+                    <Field Name="UpdateDate" Ordinal="14" IsOptional="true" DbType="4" />
+                    <Field Name="UpdateUser" Ordinal="15" IsOptional="true" DbType="12" Length="50" />
+                  </Fields>
+                </Table>
+              </Tables>
+              <StoredProcedures>
+                <StoredProcedure Name="GetLogs" NumberOfResultsets="2">
+                  <Parameters>
+                    <Parameter Name="@pPageNumber" Direction="1" Ordinal="1" DbType="8" Precision="10" />
+                    <Parameter Name="@pPageSize" Direction="1" Ordinal="2" DbType="8" Precision="10" />
+                    <Parameter Name="@pSortBy" Direction="1" Ordinal="3" DbType="24" Length="50" />
+                    <Parameter Name="@pSortMode" Direction="1" Ordinal="4" DbType="24" Length="10" />
+                  </Parameters>
+                </StoredProcedure>
+                <StoredProcedure Name="GetTriggersByPlugin">
+                  <Parameters>
+                    <Parameter Name="@uniqueId" Direction="1" Ordinal="1" DbType="25" />
+                    <Parameter Name="@days" Direction="1" Ordinal="2" DbType="8" Precision="10" />
+                  </Parameters>
+                </StoredProcedure>
+                <StoredProcedure Name="RemoveMonitor">
+                  <Parameters>
+                    <Parameter Name="@MonitorId" Direction="1" Ordinal="1" DbType="8" Precision="10" />
+                  </Parameters>
+                </StoredProcedure>
+                <StoredProcedure Name="RemovePackage">
+                  <Parameters>
+                    <Parameter Name="@packageId" Direction="1" Ordinal="1" DbType="8" Precision="10" />
+                  </Parameters>
+                </StoredProcedure>
+                <StoredProcedure Name="RemoveSchedule">
+                  <Parameters>
+                    <Parameter Name="@scheduleId" Direction="1" Ordinal="1" DbType="8" Precision="10" />
+                  </Parameters>
+                </StoredProcedure>
+              </StoredProcedures>
+            </Schema>
+          </Schemas>
+          <ForeignKeyConstraints>
+            <ForeignKeyConstraint Name="vmg:Filter:FK_Filter_Server">
+              <FieldPairs>
+                <FieldPair PkField="vmg:Server:ServerId" FkField="vmg:Filter:ServerId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="vmg:Job:FK_Job_Schedule">
+              <FieldPairs>
+                <FieldPair PkField="vmg:Schedule:ScheduleId" FkField="vmg:Job:ScheduleId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="vmg:Monitor:FK_Monitor_Package">
+              <FieldPairs>
+                <FieldPair PkField="vmg:Package:PackageId" FkField="vmg:Monitor:PackageId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="vmg:Package:FK_Package_Server">
+              <FieldPairs>
+                <FieldPair PkField="vmg:Server:ServerId" FkField="vmg:Package:ServerId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="vmg:Plugin:FK_Plugin_Package">
+              <FieldPairs>
+                <FieldPair PkField="vmg:Package:PackageId" FkField="vmg:Plugin:PackageId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="vmg:Schedule:FK_Schedule_Plugin">
+              <FieldPairs>
+                <FieldPair PkField="vmg:Plugin:PluginId" FkField="vmg:Schedule:PluginId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="vmg:Trigger:FK_Trigger_Job">
+              <FieldPairs>
+                <FieldPair PkField="vmg:Job:JobId" FkField="vmg:Trigger:JobId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+          </ForeignKeyConstraints>
+        </Catalog>
+      </Catalogs>
+    </TargetDatabase>
+  </TargetDatabases>
+  <MappingStores>
+    <MappingStore Type="2D18D138-1DD2-467E-86CC-4838250611AE">
+      <EntityMappings>
+        <EntityMapping EntityName="vmg:Filter" TargetName="DOM_Config:vmg:Filter">
+          <FieldMappings>
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="Deactivated" TargetFieldName="Deactivated" />
+            <FieldMapping FieldName="Expression" TargetFieldName="Expression" />
+            <FieldMapping FieldName="FilterId" TargetFieldName="FilterId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="FilterType" TargetFieldName="FilterType" />
+            <FieldMapping FieldName="Name" TargetFieldName="Name" />
+            <FieldMapping FieldName="ServerId" TargetFieldName="ServerId" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+            <FieldMapping FieldName="Username" TargetFieldName="Username" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Job" TargetName="DOM_Config:vmg:Job">
+          <FieldMappings>
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="JobId" TargetFieldName="JobId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="JobKey" TargetFieldName="JobKey" />
+            <FieldMapping FieldName="JobKeyGroup" TargetFieldName="JobKeyGroup" />
+            <FieldMapping FieldName="JobStatusTypeId" TargetFieldName="JobStatusTypeId" />
+            <FieldMapping FieldName="ScheduleId" TargetFieldName="ScheduleId" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Log" TargetName="DOM_Config:vmg:Log">
+          <FieldMappings>
+            <FieldMapping FieldName="ApplicationName" TargetFieldName="ApplicationName" />
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="Exception" TargetFieldName="Exception" />
+            <FieldMapping FieldName="Id" TargetFieldName="Id" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="Level" TargetFieldName="Level" />
+            <FieldMapping FieldName="Logger" TargetFieldName="Logger" />
+            <FieldMapping FieldName="Message" TargetFieldName="Message" />
+            <FieldMapping FieldName="Server" TargetFieldName="Server" />
+            <FieldMapping FieldName="Thread" TargetFieldName="Thread" />
+            <FieldMapping FieldName="ThreadId" TargetFieldName="ThreadId" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Monitor" TargetName="DOM_Config:vmg:Monitor">
+          <FieldMappings>
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="MonitorId" TargetFieldName="MonitorId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="PackageId" TargetFieldName="PackageId" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+            <FieldMapping FieldName="Username" TargetFieldName="Username" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Package" TargetName="DOM_Config:vmg:Package">
+          <FieldMappings>
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="Deactivated" TargetFieldName="Deactivated" />
+            <FieldMapping FieldName="Description" TargetFieldName="Description" />
+            <FieldMapping FieldName="Name" TargetFieldName="Name" />
+            <FieldMapping FieldName="Package" TargetFieldName="Package" />
+            <FieldMapping FieldName="PackageId" TargetFieldName="PackageId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="ServerId" TargetFieldName="ServerId" />
+            <FieldMapping FieldName="UniqueId" TargetFieldName="UniqueId" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Plugin" TargetName="DOM_Config:vmg:Plugin">
+          <FieldMappings>
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="Deactivated" TargetFieldName="Deactivated" />
+            <FieldMapping FieldName="Description" TargetFieldName="Description" />
+            <FieldMapping FieldName="Name" TargetFieldName="Name" />
+            <FieldMapping FieldName="PackageId" TargetFieldName="PackageId" />
+            <FieldMapping FieldName="PluginId" TargetFieldName="PluginId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="Schedulable" TargetFieldName="Schedulable" />
+            <FieldMapping FieldName="UniqueId" TargetFieldName="UniqueId" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Schedule" TargetName="DOM_Config:vmg:Schedule">
+          <FieldMappings>
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="Deactivated" TargetFieldName="Deactivated" />
+            <FieldMapping FieldName="Description" TargetFieldName="Description" />
+            <FieldMapping FieldName="End" TargetFieldName="End" />
+            <FieldMapping FieldName="MisfireInstruction" TargetFieldName="MisfireInstruction" />
+            <FieldMapping FieldName="Name" TargetFieldName="Name" />
+            <FieldMapping FieldName="PluginId" TargetFieldName="PluginId" />
+            <FieldMapping FieldName="RecurrenceRule" TargetFieldName="RecurrenceRule" />
+            <FieldMapping FieldName="RecurrenceTypeId" TargetFieldName="RecurrenceTypeId" />
+            <FieldMapping FieldName="ScheduleId" TargetFieldName="ScheduleId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="Start" TargetFieldName="Start" />
+            <FieldMapping FieldName="UniqueId" TargetFieldName="UniqueId" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Server" TargetName="DOM_Config:vmg:Server">
+          <FieldMappings>
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="Description" TargetFieldName="Description" />
+            <FieldMapping FieldName="Name" TargetFieldName="Name" />
+            <FieldMapping FieldName="RTPort" TargetFieldName="WSPort" />
+            <FieldMapping FieldName="RTProtocol" TargetFieldName="WSProtocol" />
+            <FieldMapping FieldName="ServerId" TargetFieldName="ServerId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="UniqueId" TargetFieldName="UniqueId" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+            <FieldMapping FieldName="WSPort" TargetFieldName="RTPort" />
+            <FieldMapping FieldName="WSProtocol" TargetFieldName="RTProtocol" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Setting" TargetName="DOM_Config:vmg:Setting">
+          <FieldMappings>
+            <FieldMapping FieldName="Cache" TargetFieldName="Cache" />
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="Key" TargetFieldName="Key" />
+            <FieldMapping FieldName="SettingId" TargetFieldName="SettingId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+            <FieldMapping FieldName="Value" TargetFieldName="Value" />
+          </FieldMappings>
+        </EntityMapping>
+        <EntityMapping EntityName="vmg:Trigger" TargetName="DOM_Config:vmg:Trigger">
+          <FieldMappings>
+            <FieldMapping FieldName="CreateDate" TargetFieldName="CreateDate" />
+            <FieldMapping FieldName="CreateUser" TargetFieldName="CreateUser" />
+            <FieldMapping FieldName="Ended" TargetFieldName="Ended" />
+            <FieldMapping FieldName="JobId" TargetFieldName="JobId" />
+            <FieldMapping FieldName="Mayfire" TargetFieldName="Mayfire" />
+            <FieldMapping FieldName="Misfire" TargetFieldName="Misfire" />
+            <FieldMapping FieldName="Nextfire" TargetFieldName="Nextfire" />
+            <FieldMapping FieldName="Previousfire" TargetFieldName="Previousfire" />
+            <FieldMapping FieldName="Started" TargetFieldName="Started" />
+            <FieldMapping FieldName="TriggerId" TargetFieldName="TriggerId" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="TriggerKey" TargetFieldName="TriggerKey" />
+            <FieldMapping FieldName="TriggerKeyGroup" TargetFieldName="TriggerKeyGroup" />
+            <FieldMapping FieldName="TriggerStatusTypeId" TargetFieldName="TriggerStatusTypeId" />
+            <FieldMapping FieldName="UpdateDate" TargetFieldName="UpdateDate" />
+            <FieldMapping FieldName="UpdateUser" TargetFieldName="UpdateUser" />
+          </FieldMappings>
+        </EntityMapping>
+      </EntityMappings>
+      <TypedViewMappings />
+      <SPCallMappings>
+        <SPCallMapping SPCallName="vmg:GetLogs" TargetName="DOM_Config:vmg:GetLogs">
+          <FieldMappings>
+            <FieldMapping FieldName="PPageNumber" TargetFieldName="@pPageNumber" />
+            <FieldMapping FieldName="PPageSize" TargetFieldName="@pPageSize" />
+            <FieldMapping FieldName="PSortBy" TargetFieldName="@pSortBy" />
+            <FieldMapping FieldName="PSortMode" TargetFieldName="@pSortMode" />
+          </FieldMappings>
+        </SPCallMapping>
+        <SPCallMapping SPCallName="vmg:GetTriggersByPlugin" TargetName="DOM_Config:vmg:GetTriggersByPlugin">
+          <FieldMappings>
+            <FieldMapping FieldName="Days" TargetFieldName="@days" />
+            <FieldMapping FieldName="UniqueId" TargetFieldName="@uniqueId" />
+          </FieldMappings>
+        </SPCallMapping>
+        <SPCallMapping SPCallName="vmg:RemoveMonitor" TargetName="DOM_Config:vmg:RemoveMonitor">
+          <FieldMappings>
+            <FieldMapping FieldName="MonitorId" TargetFieldName="@MonitorId" />
+          </FieldMappings>
+        </SPCallMapping>
+        <SPCallMapping SPCallName="vmg:RemovePackage" TargetName="DOM_Config:vmg:RemovePackage">
+          <FieldMappings>
+            <FieldMapping FieldName="PackageId" TargetFieldName="@packageId" />
+          </FieldMappings>
+        </SPCallMapping>
+        <SPCallMapping SPCallName="vmg:RemoveSchedule" TargetName="DOM_Config:vmg:RemoveSchedule">
+          <FieldMappings>
+            <FieldMapping FieldName="ScheduleId" TargetFieldName="@scheduleId" />
+          </FieldMappings>
+        </SPCallMapping>
+      </SPCallMappings>
+      <TypeConversionDefinitions />
+    </MappingStore>
+  </MappingStores>
+  <ModelViews>
+    <ModelView Name="Full">
+      <EntityDefinitions />
+      <Documentation><![CDATA[]]></Documentation>
+    </ModelView>
+  </ModelViews>
+</Project>

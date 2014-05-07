@@ -1,0 +1,10 @@
+﻿using Vmgr;
+using Vmgr.ConfigSections;
+using Vmgr.Validation;
+using Vmgr.DataEntities.Generic;
+using Vmgr.DataEntities.Generic.EntityClasses;
+using Vmgr.DataEntities.Generic.HelperClasses;
+using Vmgr.DataEntities.Generic.RelationClasses;
+using Vmgr.DataEntities.Generic.FactoryClasses;
+using Vmgr.DataEntities.SqlServer;
+using Vmgr.DataEntities.Generic.Linq;

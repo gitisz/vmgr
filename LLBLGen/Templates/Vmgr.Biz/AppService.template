@@ -1,0 +1,231 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Reflection;
+using System.Security.Principal;
+using System.Text;
+using SD.LLBLGen.Pro.ORMSupportClasses;
+using Vmgr.Data.Biz.EntityServices;
+using Vmgr.Data.Biz.Logging;
+using Vmgr.Helpers;
+using System.Diagnostics;
+
+namespace <[RootNamespace]>
+{
+    public partial class AppService : IAppService, IDisposable
+    {
+        #region PRIVATE PROPERTIES
+
+        private IDataAccessAdapter _adpater;
+        private bool _isDisposed = false;
+        private string _lastSavePoint = string.Empty;
+        private IIdentity _user = null;
+
+        #endregion
+
+        #region PROTECTED PROPERTIES
+
+        internal System.Reflection.FieldInfo[] ServiceFields
+        {
+            get
+            {
+                return this.GetType().GetFields(
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+            }
+        }
+
+        #endregion
+
+        #region PUBLIC PROPERTIES
+
+        public IDataAccessAdapter Adapter
+        {
+            get
+            {
+                return this._adpater;
+            }
+        }
+
+        public IList<IValidationRule> BrokenRules
+        {
+            get
+            {
+                List<IValidationRule> rules = new List<IValidationRule>();
+
+                foreach (System.Reflection.FieldInfo p in this.ServiceFields)
+                {
+                    if (p.FieldType.GetBaseTypes()
+                        .Where(t => t == typeof(BaseEntityService))
+                        .FirstOrDefault() != null)
+                    {
+                        object service = p.GetValue(this);
+
+                        if (service != null)
+                        {
+                            rules.AddRange((service as BaseEntityService).BrokenRules);
+                        }
+                    }
+                }
+
+                return rules;
+            }
+        }
+
+        public string LastSavePoint { get { return this._lastSavePoint; } }
+
+        public IIdentity User
+        {
+            get
+            {
+                return this._user;
+            }
+        }
+
+		#endregion
+
+        #region CTOR
+
+        public AppService()
+            : this(WindowsIdentity.GetCurrent(), DataAccessAdapterFactory.CreateStandardAdapter())
+        {
+        }
+
+        public AppService(IIdentity user)
+            : this(user, DataAccessAdapterFactory.CreateStandardAdapter())
+        {
+        }
+
+        public AppService(IDataAccessAdapter adapter)
+            : this(WindowsIdentity.GetCurrent(), adapter)
+        {
+        }
+
+        public AppService(IIdentity userIdentity, IDataAccessAdapter adapter)
+        {
+            this._user = userIdentity;
+            this._adpater = adapter;
+        }
+
+        ~AppService()
+        {
+            Dispose(false);
+        }
+
+        #endregion
+
+        #region PRIVATE METHODS
+
+        private void InvalidateServiceRecursive(IService service)
+        {
+            if (service != null)
+            {
+                if (service.Services.Count > 0)
+                    foreach (IService s in service.Services)
+                        this.InvalidateServiceRecursive(s);
+
+                service.Invalidate();
+            }
+        }
+
+	  	#endregion
+
+        #region PROTECTED METHODS
+
+        protected virtual void Dispose(bool disposedStatus)
+        {
+            if (!this._isDisposed)
+            {
+                if (this._adpater != null)
+                {
+                    try
+                    {
+                        this._adpater.CloseConnection();
+                        this._adpater.Dispose();
+                        this._adpater = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        Logging.Logger.Logs.Log(string.Format("Unable to dispose of transaction {0}."
+                            , this._adpater.TransactionName)
+                            , ex
+                            , Logging.LogType.Error);
+                    }
+                    finally
+                    {
+                        this._adpater = null;
+                    }
+                }
+
+                //	This should set all services to null so this object can be disposed.
+                foreach (System.Reflection.FieldInfo p in this.ServiceFields)
+                {
+                    var m = p;
+
+                    object service = null;
+
+                    if (p.FieldType.GetInterfaces()
+                        .Where(i => i.IsAssignableFrom(typeof(IService)))
+                        .FirstOrDefault() != null)
+                    {
+                        service = p.GetValue(this);
+
+                        if (service != null && service is IService)
+                        {
+                            this.InvalidateServiceRecursive(service as IService);
+
+                            service = null;
+                        }
+                    }
+                }
+
+                this._isDisposed = true;
+            }
+        }
+
+        #endregion
+
+        #region PUBLIC METHODS
+
+        public void CreateTransaction(bool keepConnectionOpen)
+        {
+            string stack = string.Empty;
+
+#if DEBUG
+            StackTrace stackTrace = new StackTrace();           // get call stack
+            StackFrame[] stackFrames = stackTrace.GetFrames();  // get method calls (frames)
+
+            stack = string.Join(", ", stackFrames.Select(s => s.GetMethod().Name).ToArray());
+#endif
+            string transactionName = Guid.NewGuid().ToUniqueName();
+
+            if (!this.Adapter.IsTransactionInProgress)
+            {
+                Logger.Logs.Log(string.Format("Starting transaction with name '{0}'. Stack: {1}", transactionName, stack), LogType.Info);
+
+                this.Adapter.StartTransaction(IsolationLevel.ReadCommitted, transactionName);
+                this.Adapter.KeepConnectionOpen = keepConnectionOpen;
+            }
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            System.GC.SuppressFinalize(this);
+        }
+
+        public void SaveTransaction(string savePoint)
+        {
+            this._lastSavePoint = savePoint;
+
+            this.Adapter.SaveTransaction(savePoint);
+        }
+
+        #endregion
+
+        #region EVENTS
+
+        #endregion
+
+    }
+} 

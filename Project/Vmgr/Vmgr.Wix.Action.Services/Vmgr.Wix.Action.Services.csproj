@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{59D6C6DA-CCBF-49EA-9132-F683B8A9115D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vmgr.Wix.Action.Services</RootNamespace>
+    <AssemblyName>Vmgr.Wix.Action.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <WixCATargetsPath Condition=" '$(WixCATargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.CA.targets</WixCATargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Deployment.WindowsInstaller, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\WiX Toolset v3.7\SDK\Microsoft.Deployment.WindowsInstaller.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Vmgr\Crypto\CertProperties.cs">
+      <Link>Crypto\CertProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\Vmgr\Crypto\CryptContext.cs">
+      <Link>Crypto\CryptContext.cs</Link>
+    </Compile>
+    <Compile Include="..\Vmgr\Crypto\CryptKey.cs">
+      <Link>Crypto\CryptKey.cs</Link>
+    </Compile>
+    <Compile Include="..\Vmgr\Crypto\DisposableObject.cs">
+      <Link>Crypto\DisposableObject.cs</Link>
+    </Compile>
+    <Compile Include="..\Vmgr\Crypto\KeyExchangeKey.cs">
+      <Link>Crypto\KeyExchangeKey.cs</Link>
+    </Compile>
+    <Compile Include="..\Vmgr\Crypto\KeyType.cs">
+      <Link>Crypto\KeyType.cs</Link>
+    </Compile>
+    <Compile Include="..\Vmgr\Crypto\SignatureKey.cs">
+      <Link>Crypto\SignatureKey.cs</Link>
+    </Compile>
+    <Compile Include="..\Vmgr\Crypto\Win32ErrorHelper.cs">
+      <Link>Crypto\Win32ErrorHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Vmgr\Crypto\Win32Native.cs">
+      <Link>Crypto\Win32Native.cs</Link>
+    </Compile>
+    <Compile Include="AD\ActiveDirectoryContext.cs" />
+    <Compile Include="AD\ActiveDirectoryHelper.cs" />
+    <Compile Include="AD\Group.cs" />
+    <Compile Include="AD\GroupSet.cs" />
+    <Compile Include="AD\IGroup.cs" />
+    <Compile Include="AD\IUser.cs" />
+    <Compile Include="AD\User.cs" />
+    <Compile Include="AD\UserSet.cs" />
+    <Compile Include="CustomAction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceHelper\ServiceInstaller.cs" />
+    <Content Include="CustomAction.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(WixCATargetsPath)" />
+</Project>

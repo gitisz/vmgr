@@ -1,0 +1,833 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A71458D-2A6F-4B0D-8E4B-1B3D908E442C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vmgr.SharePoint</RootNamespace>
+    <AssemblyName>Vmgr.SharePoint</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Vmgr.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>GAC\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_35</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>GAC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\WINDOWS\assembly\GAC_MSIL\Microsoft.SharePoint\12.0.0.0__71e9bce111e9429c\Microsoft.SharePoint.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.1.2.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\Quartz.NET-2.1.2\bin\3.5\release\Quartz\Quartz.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.DQE.SqlServer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\LLBLGen\LLBLGen.4.1\SD.LLBLGen.Pro.DQE.SqlServer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\LLBLGen\LLBLGen.4.1\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SD.Tools.Algorithmia, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8ede9265bbb8e107, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\LLBLGen\SD.Tools.Algorithmia.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SD.Tools.BCLExtensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a3f87088dcb994e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\LLBLGen\SD.Tools.BCLExtensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SD.Tools.OrmProfiler.Interceptor, Version=1.1.0.0, Culture=neutral, PublicKeyToken=f175dc08f093a9ae, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\LLBLGen\SD.Tools.OrmProfiler.Interceptor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SD.Tools.OrmProfiler.Shared, Version=1.1.0.0, Culture=neutral, PublicKeyToken=f175dc08f093a9ae, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\LLBLGen\SD.Tools.OrmProfiler.Shared.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.Design, Version=2013.3.1015.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\Telerik\2013.3.1015.35\Telerik.Web.Design.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Telerik.Web.UI, Version=2012.1.411.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\Telerik\2013.3.1015.35\Telerik.Web.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Enumerations\AlertType.cs" />
+    <Compile Include="BaseVmgrPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BaseFramePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BaseWindowPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Enumerations\ConfirmType.cs" />
+    <Compile Include="Enumerations\FilterType.cs" />
+    <Compile Include="IWindowManager.cs" />
+    <Compile Include="PermissionModule.cs" />
+    <Compile Include="SharePointRoot\ISAPI\Vmgr\CertificatePolicy.cs" />
+    <Compile Include="SharePointRoot\ISAPI\Vmgr\AppDomainsService.asmx.cs">
+      <DependentUpon>AppDomainsService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\ISAPI\Vmgr\IAppDomainsService.cs" />
+    <Compile Include="SharePointRoot\ISAPI\Vmgr\IPermissionService.cs" />
+    <Compile Include="SharePointRoot\ISAPI\Vmgr\IPollingService.cs" />
+    <Compile Include="SharePointRoot\ISAPI\Vmgr\PermissionsService.asmx.cs">
+      <DependentUpon>PermissionsService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\ISAPI\Vmgr\PollingService.asmx.cs">
+      <DependentUpon>PollingService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\ISAPI\Vmgr\WebServiceClient.cs" />
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityRolePermissionEditorControl.ascx.cs">
+      <DependentUpon>WindowSecurityRolePermissionEditorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityRolePermissionEditorControl.ascx.designer.cs">
+      <DependentUpon>WindowSecurityRolePermissionEditorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityRolePermissionEditorControl.ascx.cs">
+      <DependentUpon>SecurityRolePermissionEditorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityRolePermissionEditorControl.ascx.designer.cs">
+      <DependentUpon>SecurityRolePermissionEditorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityRoleEditorControl.ascx.cs">
+      <DependentUpon>SecurityRoleEditorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityRoleEditorControl.ascx.designer.cs">
+      <DependentUpon>SecurityRoleEditorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityRoleEditorControl.ascx.cs">
+      <DependentUpon>WindowSecurityRoleEditorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityRoleEditorControl.ascx.designer.cs">
+      <DependentUpon>WindowSecurityRoleEditorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\DirectorySearchControl.ascx.cs">
+      <DependentUpon>DirectorySearchControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\DirectorySearchControl.ascx.designer.cs">
+      <DependentUpon>DirectorySearchControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowDirectorySearchControl.ascx.cs">
+      <DependentUpon>WindowDirectorySearchControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowDirectorySearchControl.ascx.designer.cs">
+      <DependentUpon>WindowDirectorySearchControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityMembershipEditorControl.ascx.cs">
+      <DependentUpon>SecurityMembershipEditorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityMembershipEditorControl.ascx.designer.cs">
+      <DependentUpon>SecurityMembershipEditorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityMembershipEditorControl.ascx.cs">
+      <DependentUpon>WindowSecurityMembershipEditorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityMembershipEditorControl.ascx.designer.cs">
+      <DependentUpon>WindowSecurityMembershipEditorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityControl.ascx.cs">
+      <DependentUpon>SecurityControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityControl.ascx.designer.cs">
+      <DependentUpon>SecurityControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterJobControl.ascx.cs">
+      <DependentUpon>WindowFilterJobControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterJobControl.ascx.designer.cs">
+      <DependentUpon>WindowFilterJobControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterJobControl.ascx.cs">
+      <DependentUpon>FilterJobControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterJobControl.ascx.designer.cs">
+      <DependentUpon>FilterJobControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterScheduleControl.ascx.cs">
+      <DependentUpon>WindowFilterScheduleControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterScheduleControl.ascx.designer.cs">
+      <DependentUpon>WindowFilterScheduleControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterScheduleControl.ascx.cs">
+      <DependentUpon>FilterScheduleControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterScheduleControl.ascx.designer.cs">
+      <DependentUpon>FilterScheduleControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterPackageControl.ascx.cs">
+      <DependentUpon>FilterPackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterPackageControl.ascx.designer.cs">
+      <DependentUpon>FilterPackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterPackageControl.ascx.cs">
+      <DependentUpon>WindowFilterPackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterPackageControl.ascx.designer.cs">
+      <DependentUpon>WindowFilterPackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\GridHelper.cs" />
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\LevelFilteringColumn.cs" />
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\LinqDynamic.cs" />
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MonitorPackageControl.ascx.cs">
+      <DependentUpon>MonitorPackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MonitorPackageControl.ascx.designer.cs">
+      <DependentUpon>MonitorPackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowMonitorPackageControl.ascx.cs">
+      <DependentUpon>WindowMonitorPackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowMonitorPackageControl.ascx.designer.cs">
+      <DependentUpon>WindowMonitorPackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\PerformanceChartControl.ascx.cs">
+      <DependentUpon>PerformanceChartControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\PerformanceChartControl.ascx.designer.cs">
+      <DependentUpon>PerformanceChartControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\LogsControl.ascx.cs">
+      <DependentUpon>LogsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\LogsControl.ascx.designer.cs">
+      <DependentUpon>LogsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MonitoringControl.ascx.cs">
+      <DependentUpon>MonitoringControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MonitoringControl.ascx.designer.cs">
+      <DependentUpon>MonitoringControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowTriggerHistoryControl.ascx.cs">
+      <DependentUpon>WindowTriggerHistoryControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowTriggerHistoryControl.ascx.designer.cs">
+      <DependentUpon>WindowTriggerHistoryControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\TriggerHistoryControl.ascx.cs">
+      <DependentUpon>TriggerHistoryControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\TriggerHistoryControl.ascx.designer.cs">
+      <DependentUpon>TriggerHistoryControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowScheduleEditorControl.ascx.cs">
+      <DependentUpon>WindowScheduleEditorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowScheduleEditorControl.ascx.designer.cs">
+      <DependentUpon>WindowScheduleEditorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\ScheduleEditorControl.ascx.cs">
+      <DependentUpon>ScheduleEditorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\ScheduleEditorControl.ascx.designer.cs">
+      <DependentUpon>ScheduleEditorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityRolePermissionEditor.aspx.cs">
+      <DependentUpon>WindowSecurityRolePermissionEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityRolePermissionEditor.aspx.designer.cs">
+      <DependentUpon>WindowSecurityRolePermissionEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityRoleEditor.aspx.cs">
+      <DependentUpon>WindowSecurityRoleEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityRoleEditor.aspx.designer.cs">
+      <DependentUpon>WindowSecurityRoleEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\Security.aspx.cs">
+      <DependentUpon>Security.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\Security.aspx.designer.cs">
+      <DependentUpon>Security.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\Logs.aspx.cs">
+      <DependentUpon>Logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\Logs.aspx.designer.cs">
+      <DependentUpon>Logs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityMembershipEditor.aspx.cs">
+      <DependentUpon>WindowSecurityMembershipEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityMembershipEditor.aspx.designer.cs">
+      <DependentUpon>WindowSecurityMembershipEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\WindowDirectorySearch.aspx.cs">
+      <DependentUpon>WindowDirectorySearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\WindowDirectorySearch.aspx.designer.cs">
+      <DependentUpon>WindowDirectorySearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowFilterPackage.aspx.cs">
+      <DependentUpon>WindowFilterPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowFilterPackage.aspx.designer.cs">
+      <DependentUpon>WindowFilterPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Package.ashx.cs">
+      <DependentUpon>Package.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowFilterJob.aspx.cs">
+      <DependentUpon>WindowFilterJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowFilterJob.aspx.designer.cs">
+      <DependentUpon>WindowFilterJob.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowFilterSchedule.aspx.cs">
+      <DependentUpon>WindowFilterSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowFilterSchedule.aspx.designer.cs">
+      <DependentUpon>WindowFilterSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowTriggerHistory.aspx.cs">
+      <DependentUpon>WindowTriggerHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowTriggerHistory.aspx.designer.cs">
+      <DependentUpon>WindowTriggerHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowScheduleEditor.aspx.cs">
+      <DependentUpon>WindowScheduleEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowScheduleEditor.aspx.designer.cs">
+      <DependentUpon>WindowScheduleEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\BaseControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MovePackageControl.ascx.cs">
+      <DependentUpon>MovePackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MovePackageControl.ascx.designer.cs">
+      <DependentUpon>MovePackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowMovePackageControl.ascx.cs">
+      <DependentUpon>WindowMovePackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowMovePackageControl.ascx.designer.cs">
+      <DependentUpon>WindowMovePackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SelectServerControl.ascx.cs">
+      <DependentUpon>SelectServerControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SelectServerControl.ascx.designer.cs">
+      <DependentUpon>SelectServerControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\JobControl.ascx.cs">
+      <DependentUpon>JobControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\JobControl.ascx.designer.cs">
+      <DependentUpon>JobControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SchedulerControl.ascx.cs">
+      <DependentUpon>SchedulerControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SchedulerControl.ascx.designer.cs">
+      <DependentUpon>SchedulerControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\UploadPackageControl.ascx.cs">
+      <DependentUpon>UploadPackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\UploadPackageControl.ascx.designer.cs">
+      <DependentUpon>UploadPackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\PackageManagerControl.ascx.cs">
+      <DependentUpon>PackageManagerControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\PackageManagerControl.ascx.designer.cs">
+      <DependentUpon>PackageManagerControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowUploadPackageControl.ascx.cs">
+      <DependentUpon>WindowUploadPackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowUploadPackageControl.ascx.designer.cs">
+      <DependentUpon>WindowUploadPackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowManagersControl.ascx.cs">
+      <DependentUpon>WindowManagersControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowManagersControl.ascx.designer.cs">
+      <DependentUpon>WindowManagersControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\AccessDenied.aspx.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\AccessDenied.aspx.designer.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowMovePackage.aspx.cs">
+      <DependentUpon>WindowMovePackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowMovePackage.aspx.designer.cs">
+      <DependentUpon>WindowMovePackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Server.aspx.cs">
+      <DependentUpon>Server.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Server.aspx.designer.cs">
+      <DependentUpon>Server.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\FeatureReceiver.cs" />
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Base.Master.cs">
+      <DependentUpon>Base.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Base.Master.designer.cs">
+      <DependentUpon>Base.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Frame.Master.cs">
+      <DependentUpon>Frame.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Frame.Master.designer.cs">
+      <DependentUpon>Frame.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Window.Master.cs">
+      <DependentUpon>Window.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Window.Master.designer.cs">
+      <DependentUpon>Window.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\PackageManager.aspx.cs">
+      <DependentUpon>PackageManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\PackageManager.aspx.designer.cs">
+      <DependentUpon>PackageManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowUploadPackage.aspx.cs">
+      <DependentUpon>WindowUploadPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowUploadPackage.aspx.designer.cs">
+      <DependentUpon>WindowUploadPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\Job.aspx.cs">
+      <DependentUpon>Job.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\Job.aspx.designer.cs">
+      <DependentUpon>Job.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\Scheduler.aspx.cs">
+      <DependentUpon>Scheduler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\Scheduler.aspx.designer.cs">
+      <DependentUpon>Scheduler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\WindowMonitorPackage.aspx.cs">
+      <DependentUpon>WindowMonitorPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\WindowMonitorPackage.aspx.designer.cs">
+      <DependentUpon>WindowMonitorPackage.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GAC\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Deploy\Vmgr.jpg" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <EmbeddedResource Include="Scripts\movePackage.js" />
+    <Content Include="SharePointRoot\ISAPI\Vmgr\AppDomainsService.asmx" />
+    <Content Include="SharePointRoot\ISAPI\Vmgr\PermissionsService.asmx" />
+    <Content Include="SharePointRoot\ISAPI\Vmgr\PollingService.asmx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityRolePermissionEditorControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityRolePermissionEditorControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityRoleEditorControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityRoleEditorControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\DirectorySearchControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowDirectorySearchControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityMembershipEditorControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowSecurityMembershipEditorControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SecurityControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterJobControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterJobControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterScheduleControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterScheduleControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\FilterPackageControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowFilterPackageControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MonitorPackageControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowMonitorPackageControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\PerformanceChartControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\LogsControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MonitoringControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowTriggerHistoryControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\TriggerHistoryControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowScheduleEditorControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\MovePackageControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\ScheduleEditorControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowMovePackageControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SelectServerControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\JobControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\SchedulerControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\UploadPackageControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\PackageManagerControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowUploadPackageControl.ascx" />
+    <Content Include="SharePointRoot\Template\CONTROLTEMPLATES\Vmgr\WindowManagersControl.ascx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\AccessDenied.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityRolePermissionEditor.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityRoleEditor.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\Security.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\Elements.xml" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\Logs.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Administration\WindowSecurityMembershipEditor.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\WindowDirectorySearch.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowFilterPackage.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowMovePackage.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowFilterJob.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowFilterSchedule.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowTriggerHistory.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\WindowScheduleEditor.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Server.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\Elements.xml" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\PackageManager.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Plugins\WindowUploadPackage.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\Job.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\Elements.xml" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Scheduler\Scheduler.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\WindowMonitorPackage.aspx" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\actions-view-calendar-day-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\actions-view-calendar-day-icon-misfire-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\add-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\alarm-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\alarm-on-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\apply-filter-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\black-white-diagonal-stripes.jpg" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\browse.gif" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\cancel-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\cancel-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\cancel-icon-8.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-bottom-center.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-bottom-left.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-bottom-right.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-mid-center.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-mid-left.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-mid-right.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-top-center.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-top-left.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\chart-top-right.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\dom_logo.gif" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\downArrow.jpeg" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\edit-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\error-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\favicon.ico" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\filter-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\filter-remove-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\green-check-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\green-checkmark-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\green-checkmark-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\green-checkmark-icon-48.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\green-gradient-background.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\half-vmgr.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\hardware-floppy-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\history_icon.jpg" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\hourglass-select-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\info-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\info-icon-48.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\leftArrow.jpeg" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\loading.gif" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\loading2.gif" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\logo.jpg" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\message-bar-background.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-bottom-center.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-bottom-left.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-bottom-right.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-mid-center.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-mid-left.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-mid-right.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-top-center.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-top-left.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\monitor-top-right.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-dashboard-disabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-dashboard-enabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-history-disabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-history-enabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-logs-disabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-logs-enabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-packagemgr-disabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-packagemgr-enabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-schedule-active-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-schedule-disabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-schedule-enabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-security-disabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\nav-security-enabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\navigate-left-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\navigate-right-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\new-filter-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\options-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\package-plugin-disabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\package-plugin-enabled-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\page-swap-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\pause-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\pin-blue-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\pin-green-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\pin-green-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\play-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\progress-indeterminate.gif" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\recurrence-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\red-gradient-background.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\refresh-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\rightArrow.jpeg" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\search-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\stop-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\stop-red-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\stop-yellow-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\telerikBackgrounds.gif" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\thumb-down-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\toggleSprite.gif" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\top-left.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\trafficlight-green-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\trafficlight-red-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\trash-can-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\trash-can-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\trash-can-icon-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\undo-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\unit-completed-icon.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\unlocked-icon-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\upArrow.jpeg" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\user-blue-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr-24.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr-32.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr-48.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr-64.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr-Background.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr.ico" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr.jpg" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\Vmgr.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\VmgrBanner.bmp" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\VmgrDialog.bmp" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\VmgrDialog.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\warning-icon-16.png" />
+    <Content Include="SharePointRoot\Template\IMAGES\Vmgr\warning-icon-48.png" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\animate.css" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\common.js" />
+    <Content Include="packages.config" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery-2.1.0.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery-2.1.0.min.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery-ui-1.10.4.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery-ui.css" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery.1.7.2.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery.dotdotdot.min.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery.fittext.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery.lettering.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery.signalR-2.0.3.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery.signalR-2.0.3.min.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\jquery.textillate.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\json2.min.js" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\stylesheet-frame.css" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\stylesheet-vmgr.css" />
+    <Content Include="SharePointRoot\Template\LAYOUTS\Vmgr\stylesheet-window.css" />
+    <Content Include="Deploy\Setup.exe.config" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Base.Master" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Frame.Master" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Main.Master" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Window.Master" />
+    <Content Include="solutionid.txt" />
+    <Content Include="WSPBuilder.exe.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Dashboard.aspx" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Elements.xml" />
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Feature.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\MasterPage\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SharePointRoot\Template\FEATURES\Vmgr.SharePoint.Web\Package.ashx" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <None Include="Vmgr.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vmgr\Vmgr.csproj">
+      <Project>{45B4459B-C2BA-4C67-94CC-2AAD5D59AE3C}</Project>
+      <Name>Vmgr</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2522</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+            del  "$(TargetDir)Microsoft.SharePoint.Search.*"
+            xcopy "$(ProjectDir)..\Vmgr\bin\NET35\Vmgr.dll" "$(ProjectDir)Gac" /y
+        </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>del  "$(TargetDir)*.dll"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

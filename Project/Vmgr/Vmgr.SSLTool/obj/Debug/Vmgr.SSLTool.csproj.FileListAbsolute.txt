@@ -1,0 +1,8 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SSLTool\bin\Vmgr.SSLTool.exe.config
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SSLTool\bin\Vmgr.SSLTool.exe
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SSLTool\bin\Vmgr.SSLTool.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SSLTool\bin\CommandLine.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SSLTool\bin\CommandLine.xml
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SSLTool\obj\Debug\Vmgr.SSLTool.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SSLTool\obj\Debug\Vmgr.SSLTool.exe
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SSLTool\obj\Debug\Vmgr.SSLTool.pdb

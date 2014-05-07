@@ -1,0 +1,7 @@
+obj\Debug\Product.wixobj
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix\bin\cab1.cab
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix\bin\Vmgr.Wix.msi
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.Wix\bin\Vmgr.Wix.wixpdb
+obj\Debug\Vmgr.Wix.wixproj.BindContentsFileListnull.txt
+obj\Debug\Vmgr.Wix.wixproj.BindOutputsFileListnull.txt
+obj\Debug\Vmgr.Wix.wixproj.BindBuiltOutputsFileListnull.txt

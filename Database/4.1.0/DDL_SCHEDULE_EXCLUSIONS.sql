@@ -1,0 +1,6 @@
+BEGIN TRANSACTION
+GO
+ALTER TABLE vmg.Schedule ADD
+	Exclusions nvarchar(MAX) NULL
+GO
+COMMIT

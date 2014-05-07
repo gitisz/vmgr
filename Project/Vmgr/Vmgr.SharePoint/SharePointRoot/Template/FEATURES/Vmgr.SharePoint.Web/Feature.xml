@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Feature
+    Id="2FD80FBB-412C-4ECB-8545-FAD981E6EA73"
+    Title="V-Manager SharePoint Feature"
+    Description="This feature installs the V-Manager components to the current web."
+    Version="1.0.0.0"
+    Hidden="FALSE"
+    Scope="Web"
+    DefaultResourceFile="core"
+    ImageUrl="Vmgr\logo.jpg"
+    ReceiverAssembly="Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"
+    ReceiverClass="Vmgr.SharePoint.FeatureReceiver"
+    xmlns="http://schemas.microsoft.com/sharepoint/"
+    >
+    <ElementManifests>
+        <ElementManifest Location="MasterPage\Elements.xml"/>
+        <ElementManifest Location="Plugins\Elements.xml"/>
+        <ElementManifest Location="Scheduler\Elements.xml"/>
+        <ElementManifest Location="Administration\Elements.xml"/>
+        <ElementManifest Location="Elements.xml"/>
+    </ElementManifests>
+    <ActivationDependencies>
+        <!-- Telerik.2013.3.1015.35 -->
+        <ActivationDependency FeatureId="485B6B47-7F08-4115-8CF4-49F18DE7479E"/>
+        <!-- LLBLGen.4.1.13.1213 -->
+        <ActivationDependency FeatureId="85069B1C-CAB1-45DB-B6E9-09F61D055FF8"/>
+        <!-- Log4Net.1.2.11 -->
+        <ActivationDependency FeatureId="2AE84243-E60E-43C6-9391-803164E98F70"/>
+        <!-- Quartz.2.1.2 -->
+        <ActivationDependency FeatureId="870A07DA-3072-431D-B017-AD860F8838F2"/>
+    </ActivationDependencies>
+</Feature>

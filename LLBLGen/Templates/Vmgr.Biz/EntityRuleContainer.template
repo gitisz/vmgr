@@ -1,0 +1,100 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using SD.LLBLGen.Pro.ORMSupportClasses;
+<# ProjectSpecificCustomAssemblyReferences #>
+using <[RootNamespace]>.Validation;
+
+namespace <[RootNamespace]>.EntityRules
+{
+	public partial class <[CurrentEntityName]>EntityRuleContainer
+	{
+		public static IList<IValidationRule> GetGeneratedRules(<[CurrentEntityName]>Entity <[CaseCamel CurrentEntityName]>Entity)
+        {
+			return <[CurrentEntityName]>EntityRuleContainer.GetGeneratedRules(<[CaseCamel CurrentEntityName]>Entity, string.Empty);
+        }
+        public static IList<IValidationRule> GetGeneratedRules(<[CurrentEntityName]>Entity <[CaseCamel CurrentEntityName]>Entity, string validationGroup)
+        {
+            List<IValidationRule> list = new List<IValidationRule>();
+			<[Foreach UniqueConstraint]>list.Add(new <[Foreach  UniqueConstraintEntityField]><[EntityFieldName]><[NextForeach]>Rule(<[CaseCamel CurrentEntityName]>Entity, validationGroup));
+			<[NextForeach]>	
+			<[ Foreach EntityField ]><[If IsStringField ]>list.Add(new <[EntityFieldName]>MaxLengthRule(<[CaseCamel CurrentEntityName]>Entity, validationGroup));
+			<[ EndIf ]><[ NextForeach ]>
+            return list;
+        }
+		
+		public static IList<IValidationRule> GetGeneratedRules(IEnumerable< <[CurrentEntityName]>Entity > <[CaseCamel CurrentEntityName]>EntityCollection)
+        {
+			return <[CurrentEntityName]>EntityRuleContainer.GetGeneratedRules(<[CaseCamel CurrentEntityName]>EntityCollection, string.Empty);
+        }
+		
+		public static IList<IValidationRule> GetGeneratedRules(IEnumerable< <[CurrentEntityName]>Entity > <[CaseCamel CurrentEntityName]>EntityCollection, string validationGroup)
+        {
+			List<IValidationRule> list = new List<IValidationRule>();
+			foreach(<[CurrentEntityName]>Entity <[CaseCamel CurrentEntityName]>Entity in <[CaseCamel CurrentEntityName]>EntityCollection)
+				list.AddRange(<[CurrentEntityName]>EntityRuleContainer.GetGeneratedRules(<[CaseCamel CurrentEntityName]>Entity, validationGroup));
+			
+            return list;
+        }
+
+		<[Foreach UniqueConstraint]>public class <[Foreach UniqueConstraintEntityField]><[EntityFieldName]><[NextForeach]>Rule : BaseValidationRule<<[CurrentEntityName]>Entity>
+        {
+            public <[Foreach UniqueConstraintEntityField]><[EntityFieldName]><[NextForeach]>Rule(<[CurrentEntityName]>Entity <[CaseCamel CurrentEntityName]>Entity, string validationGroup)
+            {
+                this._message = EntityOverwriteSettings.GetEntityOverwriteSetting("<[CurrentEntityName]><[Foreach UniqueConstraintEntityField]><[EntityFieldName]><[NextForeach]>") ??  "The <[CurrentEntityName]> is not unique. Duplicate <[Foreach  UniqueConstraintEntityField]><[EntityFieldName]><[NextForeach]> values are not allowed.";
+                this._validationGroup = validationGroup;
+				this._value = <[CaseCamel CurrentEntityName]>Entity;
+            }
+
+            public override bool ValidateExpression()
+            {
+                using (AppService app = new AppService(DataAccessAdapterFactory.CreateNoLockAdapter()))
+                {
+	                <[CurrentEntityName]>Entity <[CaseCamel CurrentEntityName]>Entity = new <[CurrentEntityName]>Entity();
+					<[Foreach  UniqueConstraintEntityField]><[CaseCamel CurrentEntityName]>Entity.<[EntityFieldName]> = this._value.<[EntityFieldName]>;
+					<[NextForeach]>
+
+					LinqMetaData linqMetaData = new LinqMetaData(app.Adapter);
+						
+					<[CaseCamel CurrentEntityName]>Entity = 
+						linqMetaData.<[CurrentEntityName]><[Foreach UniqueConstraintEntityField]>.Where(v => v.<[EntityFieldName]> == this._value.<[EntityFieldName]>)<[NextForeach]>.FirstOrDefault() ?? new <[CurrentEntityName]>Entity();
+	                
+					if(!<[CaseCamel CurrentEntityName]>Entity.IsNew)
+					{
+						<[Foreach PrimaryKeyEntityField ]>if (<[CaseCamel CurrentEntityName]>Entity.<[EntityFieldName]> != this._value.<[EntityFieldName]>)
+						{
+							this._isBroken = true;
+						}
+						<[ NextForeach ]>
+					}
+					
+                    linqMetaData = null;
+				}
+
+                return this._isBroken;
+            }
+        }
+		
+		<[NextForeach]><[ Foreach EntityField ]><[If IsStringField ]>public class <[EntityFieldName]>MaxLengthRule : BaseValidationRule<<[CurrentEntityName]>Entity>
+        {
+            public <[EntityFieldName]>MaxLengthRule(<[CurrentEntityName]>Entity <[CaseCamel CurrentEntityName]>Entity, string validationGroup)
+            {
+                this._message = string.Format(<[CurrentEntityName]>Fields.<[EntityFieldName]>.Name.HumanizeString() + " must be less than {0} characters.", <[CurrentEntityName]>Fields.<[EntityFieldName]>.MaxLength);
+                this._validationGroup = validationGroup;
+				this._value = <[CaseCamel CurrentEntityName]>Entity;
+            }
+
+            public override bool ValidateExpression()
+            {
+				if (this._value.<[EntityFieldName]> != null)
+					if (this._value.<[EntityFieldName]>.Length > <[CurrentEntityName]>Fields.<[EntityFieldName]>.MaxLength)
+						this._isBroken = true;
+
+                return this._isBroken;
+            }
+        }
+		<[ EndIf ]>
+		<[ NextForeach ]>
+		
+    }
+}

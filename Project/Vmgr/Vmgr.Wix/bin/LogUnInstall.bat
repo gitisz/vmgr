@@ -1,0 +1,1 @@
+MSIEXEC /x Vmgr.Wix.msi /l*v LogFile.log

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    name="Test Fail"
+    description="A packge containing a plugin that will throw an unhandled exception upon job execution."
+    uniqueId="b977fd37-978c-46a4-b95b-4f01264df078"
+    >
+    <assemblies>
+        <assembly location="Vmgr.TestFailingPlugin.dll" />
+    </assemblies>
+</package>

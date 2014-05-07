@@ -1,0 +1,540 @@
+﻿<%@ Master 
+    Language="C#" 
+    AutoEventWireup="true" 
+    CodeBehind="Main.Master.cs" 
+    Inherits="Vmgr.SharePoint.Main, Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe" %>
+<%@ Register 
+    TagPrefix="telerik" 
+    Namespace="Telerik.Web.UI" 
+    Assembly="Telerik.Web.UI, Version=2013.3.1015.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+<%@ Register TagPrefix="Vmgr" TagName="WindowManagersControl" Src="~/_CONTROLTEMPLATES/Vmgr/WindowManagersControl.ascx" %>
+<%@ Assembly Name="Vmgr, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"%> 
+<%@ Assembly Name="Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"%> 
+<%@ Register Assembly="Vmgr.SharePoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d83f0fbbbc9139fe"  Namespace="Vmgr.SharePoint" TagPrefix="cc" %>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head id="head" runat="server">
+        <title id="onetidTitle">
+            <asp:ContentPlaceHolder ID="PlaceHolderPageTitle" runat="server" />
+        </title>
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+        <link rel="shortcut icon" href="/_layouts/images/vmgr/favicon.ico" type="image/x-icon" />
+        <style type="text/css">
+            div.rtsLevel  {
+                padding-left: 5px;
+            }
+        </style>
+    </head>
+    <body onload="OnWindowResize();">
+        <form id="form" runat="server">
+            <asp:ScriptManager 
+                ID="ScriptManager" 
+                runat="server" 
+                EnablePageMethods="false" 
+                EnablePartialRendering="true" 
+                EnableScriptGlobalization="false" 
+                EnableScriptLocalization="true" 
+                />
+            <Vmgr:WindowManagersControl 
+                ID="windowManagersControl" 
+                runat="server">
+                </Vmgr:WindowManagersControl>
+            <div id="pollCountDiv"></div>
+            <telerik:RadCodeBlock runat="server">
+                <script type="text/javascript">
+                    var signalrScriptLoaded = false;
+                    var connectionState = null;
+                    var connectionStateMsg = "Disconnected.";
+                    var reconnectAttempts = 0;
+
+                    function updateGlobalMessage(msg) {
+
+                        $('#globalMessageDiv').prop('title', msg);
+                        
+                        $("#globalMessageDiv")
+                            .empty()
+                            ;
+
+                        $("#globalMessageDiv")
+                            .append("<div class='in' style='visibility: hidden; color: white; font-size: 12pt;' />")
+                        ;
+
+                        $("#globalMessageDiv")
+                            .children()
+                            .uniqueId()
+                            ;
+                          
+                        $currentMessage = $("#globalMessageDiv")
+                            .children(".in")
+                            .first();
+
+
+                        <% if(this.getBrowser()) { %>
+
+                        $currentMessage.append($("<ul class='texts' style='position: absolute; width: 300px; height: 24px;' />")
+                            .append($("<li />")
+                            .append(msg))
+                            .append($("<li />")
+                            .append(connectionStateMsg))
+                            );
+                        ;
+
+                        $currentMessage.textillate(
+                        {
+                            minDisplayTime: 15000,
+                            in: { effect: 'fadeInUp', sync: true },
+                            out: { effect: 'fadeOutUp', sync: true }
+                        });
+
+                        $currentMessage.on('inAnimationBegin.tlt', function () {
+                        });
+
+                        $currentMessage.on('inAnimationEnd.tlt', function () {
+                        }
+                        )
+                        ;
+
+                        <% }
+                        else { %>
+                        $currentMessage.css("visibility", "visible");
+                        $currentMessage.append(msg);
+                        <% } %>
+
+                    }
+
+                    function updateGlobalMessageDiv() {
+                        var windowWidth = getViewportWidth();
+                        $("#globalMessageDiv").width(windowWidth - 220);
+                        $("#globalMessage").width(windowWidth - 215);
+                        $("#globalMessage").height(30);
+                        updateGlobalMessage("The server is offline.")
+                    }
+
+                    function OnUpdateGlobalMessageDiv() { updateGlobalMessageDiv(); Sys.Application.remove_load(OnUpdateGlobalMessageDiv); }
+
+                    Sys.Application.add_load(OnUpdateGlobalMessageDiv);
+
+                    addEvent(window, "resize", updateGlobalMessageDiv);
+
+                    function configureGlobalSignal() {
+
+                        if (!signalrScriptLoaded) {
+
+                            signalrScriptLoaded = true;
+
+                            $.getScript('<%= this.GetHubConnectionUrl() + "/signalr/hubs" %>')
+                                .done(function (script, status) {
+                                    configureGlobalMessaging();
+                                }
+                                )
+                                .fail(function (jqxhr, settings, exception) {
+                                    signalrScriptLoaded = false;
+                                }
+                            )
+                            ;
+                        }
+                    }
+
+                    function configureGlobalMessaging() {
+
+                        var connection = $.hubConnection("<%= this.GetHubConnectionUrl() %>");
+                        var vmgrHub = connection.createHubProxy('vmgrHub');
+
+                        connection.logging = true;
+
+                        connection.reconnecting(function () {
+                            updateGlobalMessage("Trying to reconnect.");
+                        }
+                        )
+                        ;
+
+                        connection.reconnected(function () {
+                            reconnectAttempts = 0;
+                            updateGlobalMessage("Connection re-established: " + new Date().toTimeString() + "");
+                        }
+                        )
+                        ;
+
+                        connection.error(function (err) {
+
+                            if (err)
+                                updateGlobalMessage("Error: " + err.message);
+                            else
+                                updateGlobalMessage("An unknown error occurred.");
+                        }
+                        )
+                        ;
+
+                        connection.disconnected(function () {
+
+                            if (reconnectAttempts < 5) {
+                                reconnectAttempts++;
+                                setTimeout(function () {
+                                    connection.start({});
+                                }, 1000);
+
+                            }
+                            updateGlobalMessage("Disconnected.");
+                        }
+                        )
+                        ;
+
+                        connection.stateChanged(function (change) {
+
+                            var oldState = null,
+                                newState = null;
+
+                            for (var p in $.signalR.connectionState) {
+                                if ($.signalR.connectionState[p] === change.oldState) {
+                                    oldState = p;
+                                }
+
+                                if ($.signalR.connectionState[p] === change.newState) {
+                                    newState = p;
+                                }
+                            }
+
+                            connectionState = newState;
+                            connectionStateMsg = "Current state: " + newState + ".";
+
+                            var changedStateMsg = 'Connection state changed from: ' + oldState + ' to: ' + newState + ".";
+
+                            updateGlobalMessage(changedStateMsg);
+
+                            var imageMessageStatus = $("#<%= imageMessageStatus.ClientID %>");
+
+                            if (newState == "connecting")
+                                imageMessageStatus.attr("src", "/_layouts/images/Vmgr/stop-yellow-icon-32.png");
+                            else if (newState == "connected")
+                                imageMessageStatus.attr("src", "/_layouts/images/Vmgr/unit-completed-icon.png");
+                            else if (newState == "reconnecting")
+                                imageMessageStatus.attr("src", "/_layouts/images/Vmgr/stop-yellow-icon-32.png");
+                            else if (newState == "disconnected")
+                                imageMessageStatus.attr("src", "/_layouts/images/Vmgr/stop-red-icon-32.png");
+                        }
+                        )
+                        ;
+
+                        vmgrHub.on('addGlobalMessage', (function (message) {
+                            updateGlobalMessage(message);
+                        }
+                        )
+                        )
+                        ;
+
+                        var start = function () {
+                            connection.start({})
+                                .then(function () {
+                                }
+                                )
+                            ;
+                        }
+                        ;
+
+                        start();
+                    }
+
+                    function OnIsStarted() {
+                        if (pollCount <= 5) {
+                            $.ajax({
+                                type: "POST",
+                                url: "<%= pollingServiceUrl %>",
+                                cache: false,
+                                contentType: "application/json; charset=utf-8",
+                                data: "{ 'serverId':'<%= serverId %>' }",
+                                dataType: "json",
+                                success: OnPollingServiceSuccess,
+                                error: OnPollingServiceFail
+                            });
+                        }
+                        pollCount++;
+                    }
+
+                    function OnPollingServiceSuccess(data, status) {
+
+                        var imageServerStatus = $("#<%= imageServerStatus.ClientID %>");
+
+                        if (data.d) {
+                            imageServerStatus.attr("src", "/_layouts/images/Vmgr/trafficlight-green-icon-32.png");
+                            configureGlobalSignal();
+                        } else {
+                            imageServerStatus.attr("src", "/_layouts/images/Vmgr/trafficlight-red-icon-32.png");
+                        }
+
+                        pollCount--;
+                    }
+
+                    function OnPollingServiceFail(xmlRequest) {
+                        pollCount++;
+                    }
+
+                    var pollInterval = setInterval(function () { OnIsStarted() }, 1000);
+
+                    var pollCount = 0;
+
+                </script>
+            </telerik:RadCodeBlock>
+            <div class="content">
+                <div id="body-content">
+                    <div id="body-content-body">
+                        <div style="padding: 5px 2px 1px 10px;">
+                            <table  style="border-collapse: collapse; padding: 0px;" >
+                                <tr>
+                                    <td id="onetidPageTitleAreaFrame">
+                                        <table border="0" style="border-collapse: collapse; width: 100%; padding: 0px;">
+                                            <tr>
+                                                <td style="
+                                                    width: 154px; 
+                                                    height: 76px;
+                                                    background: url('/_layouts/images/vmgr/half-vmgr.png') no-repeat bottom left;
+                                                    "
+                                                    >
+                                                    &nbsp;
+                                                </td>
+                                                <td valign="top" class="ms-titlearea" style="padding-left: 3px; width: auto;">
+                                                    <table border="0" style="width: 100%; border-collapse: collapse; padding: 0px;">
+                                                        <tr>
+                                                            <td style="padding-left: 4px;"> 
+                                                                <asp:HyperLink
+                                                                    runat="server"
+                                                                    ID="hyperLinkBreadCrumbSite"
+                                                                    Font-Size="9pt"
+                                                                    ></asp:HyperLink> >
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    ID="labelBreadCrumbSubSite"
+                                                                    Font-Size="9pt"
+                                                                    ></asp:Label>
+                                                            </td>
+                                                            <td style="text-align: right; width: 150px; padding-right: 5px;">
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    ID="labelUser"
+                                                                    ></asp:Label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="onetidPageTitle" style="padding-top: 6px; padding-left: 3px;" colspan="2">
+                                                                <h2 class="ms-pagetitle">
+                                                                    <asp:ContentPlaceHolder ID="PlaceHolderPageTitleInTitleArea" runat="server" />
+                                                                </h2>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="Td1" style="padding-top: 3px; font-style: italic;" colspan="2">
+                                                                <h3 class="ms-pagetitle" style="font-size: 8pt;">
+                                                                    <asp:ContentPlaceHolder ID="PlaceHolderTitleDescription" runat="server" />
+                                                                </h3>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                            <tr>
+                                <td style="vertical-align: top; background: url('/_layouts/images/Vmgr/black-white-diagonal-stripes.jpg'); ">
+                                    <div style="height: 40px; background-image: url('/_layouts/images/Vmgr/message-bar-background.png'); background-repeat: repeat-x;">
+                                        <table>
+                                            <tr>
+                                                <td style="vertical-align: top; width: 32px; padding-left: 4px; padding-top: 3px;">
+                                                    <asp:Image
+                                                        runat="server"
+                                                        ID="imageServerStatus"
+                                                        ImageUrl="/_layouts/images/Vmgr/trafficlight-red-icon-32.png"
+                                                        />
+                                                </td>
+                                                <td style="vertical-align: top; padding-left: 5px; padding-top: 8px; width: 120px;">
+                                                    <asp:HyperLink
+                                                        runat="server"
+                                                        ID="hyperLinkServer"
+                                                        Font-Size="12pt"
+                                                        ForeColor="White"
+                                                        Font-Underline="false"
+                                                        onmouseover="this.style.textDecoration = 'underline'"
+                                                        onmouseout="this.style.textDecoration = 'none'"
+                                                        >
+                                                    </asp:HyperLink>    
+                                                </td>
+                                                <td style="vertical-align: top; width: 32px;">
+                                                    <asp:Image
+                                                        runat="server"
+                                                        ID="imageMessageStatus"
+                                                        ImageUrl="/_layouts/images/Vmgr/stop-red-icon-32.png"
+                                                        />
+                                                </td>
+                                                <td style="vertical-align: top; padding-top: 8px;">
+                                                    <div style="position: relative; height: 24px; width: 100%;">
+                                                        <div id="globalMessageDiv" class="msgContainer" 
+                                                            style="position: absolute; top: 0px; left: 0px; height: 24px;">
+                                                            <div id="globalMessage" class="in" style="visibility: hidden; color: white; font-size: 12pt;">
+                                                                <ul class="texts">
+                                                                    <li>
+                                                                        Disconnected.
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div style="">
+                                        <table 
+                                            style="border-collapse: collapse; width: 100%; padding: 0px;"
+                                            runat="server"
+                                            >
+                                            <tr>
+                                                <td style="
+                                                    padding: 0px; 
+                                                    vertical-align: top; 
+                                                    width: 170px;
+                                                    background-color: #696A6C;
+                                                    "
+                                                    runat="server"
+                                                    id="tdMenu"
+                                                    >
+                                                    <div id="menuContent" style="
+                                                        background-color: #696A6C;
+                                                        padding-top: 10px;
+                                                        position: relative; 
+                                                        "
+                                                        >
+                                                        <style type="text/css">
+
+                                                            .Main .rmRootGroup {
+                                                                background-color: #696A6C !important;
+                                                                border-color: transparent !important;
+                                                            }
+
+                                                            .Main .rmItem {
+                                                                padding: 5px;
+                                                            }
+
+                                                            .Main .rmLink {
+                                                                padding: 0px;
+                                                            }
+
+                                                            .Main a.rmLink {
+                                                                height: 38px;
+                                                                background-color: transparent !important;
+                                                                border-color: transparent !important;
+                                                            }
+                                                    
+                                                            .Main a.rmLink:hover {
+                                                                border-collapse: collapse !important;
+                                                            }
+
+                                                            .Main .rmVertical .rmSlide {
+                                                                margin-top: -1px;
+                                                                margin-left: -10px;
+                                                                border-left-color: transparent !important;
+                                                                z-index: 2999 !important;
+                                                            }
+
+                                                            .Main .rmVertical .rmSlide a:hover {
+                                                                padding-top: 7px;
+                                                                font-size: 11pt;
+                                                                color: white;
+                                                                text-decoration: underline;
+                                                            }
+
+                                                            .Main .rmText {
+                                                                padding-top: 8px !important;
+                                                                padding-left: 8px !important;
+                                                                font-size: 10pt;
+                                                                color: white;
+                                                            }
+
+                                                            .Main .rmLeftImage {
+                                                                margin-right: 5px;
+                                                            }
+
+                                                            .Main .rmVertical .rmSlide .rmText {
+                                                                padding-top: 7px;
+                                                                font-size: 10pt;
+                                                                color: white;
+                                                            }
+
+                                                            .Main .rmGroup, 
+                                                            .Main .rmMultiColumn, 
+                                                            .Main .rmGroup .rmVertical {
+                                                                border-left-color: transparent !important;
+                                                                background-color: #696A6C !important;
+                                                                background-image: none;
+                                                            }
+
+                                                            .Main .rmRootGroup, 
+                                                            .Main .RadMenu_Default a.rmLink, 
+                                                            .Main .rmGroup .rmText, 
+                                                            .Main .rmVertical .rmText, 
+                                                            .Main .rmLeftArrow, 
+                                                            .Main .rmRightArrow, 
+                                                            .Main .rmTopArrow, 
+                                                            .Main .rmBottomArrow {
+                                                                background-image: none;
+                                                                cursor: hand; cursor: pointer;
+                                                            }
+                                                        </style>
+                                                        <telerik:RadMenu
+                                                            runat="server" 
+                                                            ID="menuMain"
+                                                            Skin="Default"
+                                                            CssClass="Main"
+                                                            Flow="Vertical"
+                                                            Width="165px"
+                                                            style="z-index: 2999;"
+                                                            >
+                                                        </telerik:RadMenu>
+                                                        <div style="position: absolute; bottom: -50px; right: 10px;">
+                                                            <telerik:RadButton
+                                                                runat="server"
+                                                                ID="buttonExpandContract" 
+                                                                AutoPostBack="true"
+                                                                ToolTip="Contract menu"
+                                                                Font-Size="10pt"
+                                                                style="cursor: hand; cursor: pointer;"
+                                                                Width="16px"
+                                                                Height="16px"
+                                                                OnClick="buttonExpandContract_Click"
+                                                                >
+                                                                <Image ImageUrl="/_layouts/images/Vmgr/navigate-left-icon-32.png" />
+                                                            </telerik:RadButton>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="
+                                                    vertical-align: top; 
+                                                    background: url('/_layouts/images/Vmgr/top-left.png') no-repeat top left; 
+                                                    border-collapse: collapse; 
+                                                    width: auto;
+                                                    border: none;
+                                                    ">
+                                                    <div 
+                                                        id="mainContent" 
+                                                        style="overflow-y: scroll; overflow-x: hidden; position: relative;">
+                                                        <div style="overflow: hidden;">
+                                                            <asp:ContentPlaceHolder id="PlaceHolderMain" runat="server">
+				                                            </asp:ContentPlaceHolder>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="push">
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

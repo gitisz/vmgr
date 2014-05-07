@@ -1,0 +1,193 @@
+﻿html, body, form 
+{
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, Tahoma, Arial;
+    font-size: 9pt;
+    overflow: hidden;
+}
+        
+.rpExpandHandle
+{
+    display: none !important;
+}
+            
+.ms-titlearea {
+	FONT-FAMILY: tahoma; LETTER-SPACING: 0.1em; COLOR: #666666; FONT-SIZE: 8pt
+}
+
+.ms-titlearea A {
+	COLOR: #3966bf; TEXT-DECORATION: none
+}
+
+.ms-titlearea A:hover {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+
+.ms-pagetitle {
+	MARGIN: 0px 0px 4px; FONT-FAMILY: verdana; COLOR: #000000; FONT-SIZE: 16pt; FONT-WEIGHT: normal
+}
+
+.ms-pagetitle A {
+	MARGIN: 0px; COLOR: #000000; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+
+.ms-pagetitle A:hover {
+	
+}
+
+.ms-inputuserfield {
+	FONT-FAMILY: Verdana,sans-serif; FONT-SIZE: 8pt;
+}
+        
+.ms-inputuserfield {
+	border: #a5a5a5 1px solid; 
+}
+        
+div.ms-inputuserfield A {
+	font-style: normal; 
+	color: #000000; 
+	font-weight: normal; 
+	text-decoration: none;
+}
+        
+div.ms-inputuserfield {
+	padding-left: 1px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+        
+.ms-formvalidation {
+	font-family: verdana; 
+	color: #ff0000; 
+	font-size: 8pt;
+}
+
+table{
+  table-layout:fixed;
+}
+
+.RadGrid .rgFilterRow INPUT
+{
+    margin-top: 4px !important;
+}
+
+.RadGrid .rgMasterTable
+{
+    border-collapse: collapse !important;
+}
+
+.RadGrid_Default
+{
+    border-width: 0px 0px 1px 0px !important;
+}
+    
+.RadGrid_Default .MasterAsset
+{
+    border-width: 1px !important;D:\PROJECTS\Vmgr\Projects\Vmgr\Vmgr.SharePoint\SharePointRoot\Template\FEATURES\Vmgr.Web\FeatureReceiver.cs
+}
+    
+.RadGrid .rgDetailTable
+{
+    border-left: 0px;
+}
+    
+.RadGrid .rgRow A
+    , .RadGrid .rgRow A:Hover
+    , .RadGrid .rgAltRow A
+    , .RadGrid .rgAltRow A:Hover
+{
+    color: #003399;
+}
+    
+.RadGrid .rgSelectedRow TD A
+{
+        color: White !important; 
+}
+    
+.RadGrid .rgSelectedRow TD.pinned-link A, .RadGrid TD.pinned-link A:HOVER
+{
+    color: Black !important;
+}
+    
+.pageWrapper
+{
+    position: relative;
+    height: 500px;
+    background-color: White;
+    background: url('/_layouts/images/Vmgr/black-white-diagonal-stripes.jpg')
+}
+    
+.pageWrapper p
+{
+    margin: 0px;
+    padding: 0px;
+}
+    
+.pageWrapper table.detail td
+{
+    font-size: 8.5pt;
+    padding: 3px;
+    vertical-align: top;
+}
+    
+.tabStrip
+{
+    position:absolute;
+    top:35;
+    z-index: 1;
+}
+
+.multiPage
+{
+    position:absolute;
+    top: 60px;
+    border: 1px solid gray;
+    width: 100%;
+    background-color: White;
+}
+    
+.rbToggleCheckbox {
+    background-image: url("/_layouts/images/Vmgr/ToggleSprite.gif");
+}
+    
+.rbTogglePinnedChecked
+{
+    background-image: url("/_layouts/images/Vmgr/pin-green-icon-24.png") no-repeat;
+}
+
+.rbToggleRadioChecked {
+    background-position: -4px -80px;
+}
+    
+.TelerikModalOverlay
+{
+    width: 99.9% !important;
+    overflow: hidden !important;
+}
+
+.radToolBar .rtbText {
+    float: left !important;
+}
+    
+.radToolBar .rtbChoiceArrow {
+    float: right !important;
+}
+            
+.RadToolBar_Default .rtbMiddle
+{
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+}
+    
+.RadToolBar_Default .rtbOuter
+{
+    border: none !important;
+}
+    
+.RadWindow .rwTitlebarControls TD
+{
+    padding: 2px !important;
+}
+    

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Module Name="Vmgr" Url="_catalogs/masterpage" List="116">
+        <File Name="Main.Master" Url="MasterPage\Main.Master" Type="GhostableInLibrary">
+            <Property Name="ContentType" Value="$Resources:cmscore,contenttype_masterpage_name;" />
+        </File>
+        <File Path="MasterPage\Window.Master" Name="Window.Master" Url="MasterPage/Window.Master" />
+        <File Path="MasterPage\Frame.Master" Name="Frame.Master" Url="MasterPage/Frame.Master" />
+        <File Path="MasterPage\Base.Master" Name="Base.Master" Url="MasterPage/Base.Master" />
+    </Module>
+</Elements>

@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<Wix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+    <Product Id="????????-????-????-????-????????????"
+             Codepage="1252"
+             Language="1033"
+             Manufacturer="Your Company"
+             Name="Your Product"
+             Version="0.0.0.0">
+        <Package Id="????????-????-????-????-????????????"
+                 Comments="Summary of the package."
+                 Compressed="yes"
+                 Description="Description of your product"
+                 InstallerVersion="200" />
+        <Property Id="CERT_SIZE">0</Property>
+        <Media Id="1"
+               Cabinet="Product.cab"
+               EmbedCab="yes" />
+        <Directory Id="TARGETDIR"
+                   Name="SourceDir">
+            <Directory Id="ProgramFilesFolder"
+                       Name=".">
+                <Directory Id="INSTALLDIR"
+                           LongName="Your Program"
+                           Name="YOURPROG">
+                    <Component Id="YourComponent"
+                               Guid="PUT-GUID-HERE">
+                        <CreateFolder />
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+        <Binary Id="WixUI_Bmp_Banner"
+                src="WixUI_Bmp_Banner" />
+        <Binary Id="WixUI_Bmp_Banner"
+                src="WixUI_Bmp_Banner" />
+        <Binary Id="WixUI_Bmp_Banner"
+                src="WixUI_Bmp_Banner" />
+        <Binary Id="WixUI_Bmp_Banner"
+                src="WixUI_Bmp_Banner" />
+        <Binary Id="WixUI_Bmp_Banner"
+                src="WixUI_Bmp_Banner" />
+        <Binary Id="WixUI_Bmp_Banner"
+                src="WixUI_Bmp_Banner" />
+        <Feature Id="YourFeature"
+                 ConfigurableDirectory="TARGETDIR"
+                 Level="1"
+                 Title="Feature Title">
+            <ComponentRef Id="YourComponent" />
+        </Feature>
+        <UI>
+            <TextStyle Id="Font3"
+                       FaceName="Tahoma"
+                       Size="10"
+                       Bold="yes" />
+            <TextStyle Id="Font2"
+                       FaceName="Tahoma"
+                       Size="8" />
+            <TextStyle Id="Font5"
+                       FaceName="Tahoma"
+                       Size="8" />
+            <TextStyle Id="Font1"
+                       FaceName="Tahoma"
+                       Size="8" />
+            <TextStyle Id="Font4"
+                       FaceName="Tahoma"
+                       Size="8"
+                       Red="0"
+                       Green="0"
+                       Blue="0" />
+            <TextStyle Id="Font6"
+                       FaceName="Microsoft Sans Serif"
+                       Size="8"
+                       Red="0"
+                       Green="0"
+                       Blue="0" />
+            <Dialog Id="CreateCertificateDlg"
+                    X="50"
+                    Y="50"
+                    Width="370"
+                    Height="270"
+                    Title="[ProductName] Setup"
+                    NoMinimize="yes">
+                <Control Id="bitMapBanner"
+                         Type="Bitmap"
+                         X="0"
+                         Y="0"
+                         Width="370"
+                         Height="44" />
+                <Control Id="textDescription"
+                         Type="Text"
+                         X="25"
+                         Y="23"
+                         Width="280"
+                         Height="15"
+                         TabSkip="yes"
+                         Transparent="yes"
+                         NoPrefix="yes">
+                    <Text>Create a self-signed certificate.</Text>
+                </Control>
+                <Control Id="lineBottom"
+                         Type="Line"
+                         X="0"
+                         Y="234"
+                         Width="370"
+                         Height="2" />
+                <Control Id="textTitle"
+                         Type="Text"
+                         X="15"
+                         Y="6"
+                         Width="200"
+                         Height="15"
+                         TabSkip="yes"
+                         Transparent="yes"
+                         NoPrefix="yes">
+                    <Text>{\Font6}Create Certificate</Text>
+                </Control>
+                <Control Id="lineBanner"
+                         Type="Line"
+                         X="0"
+                         Y="44"
+                         Width="370"
+                         Height="2" />
+                <Control Id="pushButtonBack"
+                         Type="PushButton"
+                         X="192"
+                         Y="243"
+                         Width="56"
+                         Height="17"
+                         TabSkip="no">
+                    <Text>&amp;Back</Text>
+                    <Publish Event="NewDialog"
+                             Value="(unused)">1</Publish>
+                </Control>
+                <Control Id="pushButtonNext"
+                         Type="PushButton"
+                         X="248"
+                         Y="243"
+                         Width="56"
+                         Height="17"
+                         TabSkip="no">
+                    <Text>&amp;Next &gt;</Text>
+                    <Publish Event="SpawnWaitDialog"
+                             Value="(unused)">CostingComplete = 1</Publish>
+                    <Publish Event="NewDialog"
+                             Value="(unused)" />
+                </Control>
+                <Control Id="pushButtonCancel"
+                         Type="PushButton"
+                         X="309"
+                         Y="244"
+                         Width="56"
+                         Height="17"
+                         TabSkip="no">
+                    <Text>Cancel</Text>
+                    <Publish Event="SpawnDialog"
+                             Value="(unused)">1</Publish>
+                </Control>
+                <Control Id="editCertificateName"
+                         Type="Edit"
+                         X="121"
+                         Y="62"
+                         Width="146"
+                         Height="15"
+                         Property="VMGR_CERT_NAME"
+                         TabSkip="no">
+                    <Text>{32767}</Text>
+                    <Condition Action="enable">VMGR_CERTIFICATE_NEEDED &lt;&gt; "" AND VMGR_CERTIFICATE_NEEDED = "TRUE"</Condition>
+                    <Condition Action="disable">VMGR_CERTIFICATE_NEEDED = "" OR VMGR_CERTIFICATE_NEEDED = "0"</Condition>
+                </Control>
+                <Control Id="textOrganization"
+                         Type="Text"
+                         X="34"
+                         Y="85"
+                         Width="82"
+                         Height="15"
+                         TabSkip="yes"
+                         RightAligned="yes">
+                    <Text>Organization:</Text>
+                </Control>
+                <Control Id="editOrganization"
+                         Type="Edit"
+                         X="121"
+                         Y="82"
+                         Width="146"
+                         Height="15"
+                         Property="VMGR_CERT_ORGANIZATION"
+                         TabSkip="no">
+                    <Text>{32767}</Text>
+                    <Condition Action="enable">VMGR_CERTIFICATE_NEEDED &lt;&gt; "" AND VMGR_CERTIFICATE_NEEDED = "TRUE"</Condition>
+                    <Condition Action="disable">VMGR_CERTIFICATE_NEEDED = "" OR VMGR_CERTIFICATE_NEEDED = "0"</Condition>
+                </Control>
+                <Control Id="textOrgUnit"
+                         Type="Text"
+                         X="34"
+                         Y="105"
+                         Width="82"
+                         Height="15"
+                         TabSkip="yes"
+                         RightAligned="yes">
+                    <Text>Org Unit:</Text>
+                </Control>
+                <Control Id="editOrgUnit"
+                         Type="Edit"
+                         X="121"
+                         Y="103"
+                         Width="146"
+                         Height="15"
+                         Property="VMGR_CERT_ORGUNIT"
+                         TabSkip="no">
+                    <Text>{32767}</Text>
+                    <Condition Action="enable">VMGR_CERTIFICATE_NEEDED &lt;&gt; "" AND VMGR_CERTIFICATE_NEEDED = "TRUE"</Condition>
+                    <Condition Action="disable">VMGR_CERTIFICATE_NEEDED = "" OR VMGR_CERTIFICATE_NEEDED = "0"</Condition>
+                </Control>
+                <Control Id="textLocation"
+                         Type="Text"
+                         X="34"
+                         Y="124"
+                         Width="82"
+                         Height="15"
+                         TabSkip="yes"
+                         RightAligned="yes">
+                    <Text>Location:</Text>
+                </Control>
+                <Control Id="editLocation"
+                         Type="Edit"
+                         X="121"
+                         Y="123"
+                         Width="146"
+                         Height="15"
+                         Property="VMGR_CERT_LOCATION"
+                         TabSkip="no">
+                    <Text>{32767}</Text>
+                    <Condition Action="enable">VMGR_CERTIFICATE_NEEDED &lt;&gt; "" AND VMGR_CERTIFICATE_NEEDED = "TRUE"</Condition>
+                    <Condition Action="disable">VMGR_CERTIFICATE_NEEDED = "" OR VMGR_CERTIFICATE_NEEDED = "0"</Condition>
+                </Control>
+                <Control Id="textCountry"
+                         Type="Text"
+                         X="80"
+                         Y="166"
+                         Width="38"
+                         Height="15"
+                         TabSkip="yes"
+                         RightAligned="yes">
+                    <Text>Country:</Text>
+                </Control>
+                <Control Id="editCountry"
+                         Type="Edit"
+                         X="122"
+                         Y="164"
+                         Width="52"
+                         Height="15"
+                         Property="VMGR_CERT_COUNTRY"
+                         TabSkip="no">
+                    <Text>{32767}</Text>
+                    <Condition Action="enable">VMGR_CERTIFICATE_NEEDED &lt;&gt; "" AND VMGR_CERTIFICATE_NEEDED = "TRUE"</Condition>
+                    <Condition Action="disable">VMGR_CERTIFICATE_NEEDED = "" OR VMGR_CERTIFICATE_NEEDED = "0"</Condition>
+                </Control>
+                <Control Id="textSize"
+                         Type="Text"
+                         X="34"
+                         Y="184"
+                         Width="82"
+                         Height="15"
+                         TabSkip="yes"
+                         RightAligned="yes">
+                    <Text>Size:</Text>
+                </Control>
+                <Control Id="comboBoxSize"
+                         Type="ComboBox"
+                         X="122"
+                         Y="183"
+                         Width="51"
+                         Height="16"
+                         Property="VMGR_CERT_SIZE"
+                         TabSkip="no"
+                         Sorted="yes"
+                         ComboList="yes">
+                    <ComboBox Property="VMGR_CERT_SIZE" />
+                    <Condition Action="enable">VMGR_CERTIFICATE_NEEDED &lt;&gt; "" AND VMGR_CERTIFICATE_NEEDED = "TRUE"</Condition>
+                    <Condition Action="disable">VMGR_CERTIFICATE_NEEDED = "" OR VMGR_CERTIFICATE_NEEDED = "0"</Condition>
+                </Control>
+                <Control Id="Edit4"
+                         Type="Edit"
+                         X="121"
+                         Y="143"
+                         Width="52"
+                         Height="15"
+                         TabSkip="no">
+                    <Text>{32767}</Text>
+                </Control>
+                <Control Id="Text5"
+                         Type="Text"
+                         X="40"
+                         Y="146"
+                         Width="75"
+                         Height="17"
+                         TabSkip="yes"
+                         RightAligned="yes">
+                    <Text>State:</Text>
+                </Control>
+                <Control Id="Text6"
+                         Type="Text"
+                         X="41"
+                         Y="65"
+                         Width="75"
+                         Height="15"
+                         TabSkip="yes"
+                         RightAligned="yes">
+                    <Text>Name:</Text>
+                </Control>
+                <Control Id="PushButton7"
+                         Type="PushButton"
+                         X="122"
+                         Y="203"
+                         Width="145"
+                         Height="16"
+                         TabSkip="no">
+                    <Text>Generate Certificate</Text>
+                </Control>
+                <Control Id="GroupBox8"
+                         Type="GroupBox"
+                         X="15"
+                         Y="49"
+                         Width="340"
+                         Height="178"
+                         >
+                    <Text>Certificate Properties:</Text>
+                </Control>
+            </Dialog>
+        </UI>
+    </Product>
+</Wix>

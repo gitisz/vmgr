@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AC43880F-D36A-4A1D-BCB7-0090352476EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Files", "Build Files", "{CBFF709F-5CC7-4E97-9B13-F74C25D68356}"
+	ProjectSection(SolutionItems) = preProject
+		Release.build = Release.build
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vmgr", "Vmgr\Vmgr.csproj", "{45B4459B-C2BA-4C67-94CC-2AAD5D59AE3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vmgr.SharePoint", "Vmgr.SharePoint\Vmgr.SharePoint.csproj", "{8A71458D-2A6F-4B0D-8E4B-1B3D908E442C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FD51626D-5675-417E-8AE1-026830C7A021}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vmgr.TestPlugin", "Vmgr.TestPlugin\Vmgr.TestPlugin.csproj", "{C77CFD19-91E2-4802-A23F-7ADBC36255A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LLBLGen", "LLBLGen", "{5189CE95-1DC6-4EBB-9651-70C33C01CBA0}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\LLBLGen\Vmgr.LLBLGen.llblgenproj = ..\..\LLBLGen\Vmgr.LLBLGen.llblgenproj
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vmgr.CleanLogs", "Vmgr.CleanLogs\Vmgr.CleanLogs.csproj", "{0CFED079-F1FC-4ACA-AA0C-4460DA2C8EFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45B4459B-C2BA-4C67-94CC-2AAD5D59AE3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B4459B-C2BA-4C67-94CC-2AAD5D59AE3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B4459B-C2BA-4C67-94CC-2AAD5D59AE3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B4459B-C2BA-4C67-94CC-2AAD5D59AE3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A71458D-2A6F-4B0D-8E4B-1B3D908E442C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A71458D-2A6F-4B0D-8E4B-1B3D908E442C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A71458D-2A6F-4B0D-8E4B-1B3D908E442C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A71458D-2A6F-4B0D-8E4B-1B3D908E442C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C77CFD19-91E2-4802-A23F-7ADBC36255A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C77CFD19-91E2-4802-A23F-7ADBC36255A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C77CFD19-91E2-4802-A23F-7ADBC36255A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C77CFD19-91E2-4802-A23F-7ADBC36255A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CFED079-F1FC-4ACA-AA0C-4460DA2C8EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CFED079-F1FC-4ACA-AA0C-4460DA2C8EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CFED079-F1FC-4ACA-AA0C-4460DA2C8EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CFED079-F1FC-4ACA-AA0C-4460DA2C8EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C77CFD19-91E2-4802-A23F-7ADBC36255A9} = {AC43880F-D36A-4A1D-BCB7-0090352476EF}
+		{0CFED079-F1FC-4ACA-AA0C-4460DA2C8EFA} = {AC43880F-D36A-4A1D-BCB7-0090352476EF}
+	EndGlobalSection
+EndGlobal

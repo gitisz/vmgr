@@ -1,0 +1,7 @@
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SharePoint\GAC\Vmgr.SharePoint.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SharePoint\GAC\Vmgr.SharePoint.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SharePoint\obj\Debug\Vmgr.SharePoint.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SharePoint\obj\Debug\Vmgr.SharePoint.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SharePoint\obj\Debug\Vmgr.SharePoint.pdb
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SharePoint\GAC\Newtonsoft.Json.dll
+D:\PROJECTS\Vmgr\Project\Vmgr\Vmgr.SharePoint\GAC\Newtonsoft.Json.xml

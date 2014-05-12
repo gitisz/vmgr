@@ -420,6 +420,7 @@ namespace Vmgr.Packager
                                 try
                                 {
                                     BasicHttpBinding binding = new BasicHttpBinding();
+                                    binding.SendTimeout = new TimeSpan(0, 3, 0); // 3 minuites
 
                                     if (Settings.GetSetting(Settings.Setting.WSProtocol).Equals("https", StringComparison.InvariantCultureIgnoreCase))
                                     {

@@ -232,6 +232,9 @@ namespace Vmgr.Packaging
                 else
                 {
                     Directory.Delete(path, true);
+
+                    System.Threading.Thread.Sleep(2000);    // Seems it could be that the directory won't get recreated in come cases, so give it some rest.
+
                     Directory.CreateDirectory(path);
                 }
 

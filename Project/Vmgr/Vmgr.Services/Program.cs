@@ -16,9 +16,7 @@ namespace Vmgr.Services
         /// </summary>
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Press ENTER to start.");
-            System.Console.ReadLine();
-            
+           
             Service s = new Service();
             s.Start();
 

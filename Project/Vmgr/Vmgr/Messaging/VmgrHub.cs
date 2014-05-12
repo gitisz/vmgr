@@ -72,7 +72,7 @@ namespace Vmgr.Messaging
     {
         public void Configuration(IAppBuilder app)
         {
-            app.Map("/signalr", map =>
+            app.Map("", map =>
             {
                 HubConfiguration config = new HubConfiguration
                 {

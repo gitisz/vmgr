@@ -13,13 +13,13 @@ namespace Vmgr.SharePoint {
     public partial class Dashboard {
         
         /// <summary>
-        /// RadCodeBlock1 control.
+        /// PanelWeHateIe8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadCodeBlock RadCodeBlock1;
+        protected global::System.Web.UI.WebControls.Panel PanelWeHateIe8;
         
         /// <summary>
         /// monitoringControl control.

@@ -29,6 +29,11 @@
         <div style="font-size: 8pt;">
             <p style="margin: 0px; padding: 2px;">V-Manager is a pluggable service that makes it easy to develop applications requiring schedulable jobs or on-demand processes.</p>
         </div>
+        <asp:Panel ID="PanelWeHateIe8" Visible="false" runat="server">
+            <div style="color: orange; font-size: 8pt;">
+                Due to limitations in IE8, this application will not fully support this browser.  To take full advantage of V-Manager, please use a mordern browser.
+            </div>
+        </asp:Panel>
         <br />
         <Vmgr:MonitoringControl 
             runat="server"

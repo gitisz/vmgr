@@ -10,6 +10,9 @@ using System.Net.NetworkInformation;
 using Owin;
 using Microsoft.Owin.Cors;
 using Vmgr.Monitoring;
+using System;
+using Microsoft.AspNet.SignalR.Client;
+using Vmgr.Packaging;
 
 namespace Vmgr.Messaging
 {
@@ -65,6 +68,53 @@ namespace Vmgr.Messaging
                 Clients.All.moveProgress(progress);
             else
                 Clients.Group(progress.Group).moveProgress(progress);
+        }
+    }
+
+    public class VmgrClient
+    {
+        private readonly static Lazy<VmgrClient> _instance =
+            new Lazy<VmgrClient>(() => new VmgrClient());
+
+        public static VmgrClient Instance
+        {
+            get
+            {
+                return _instance.Value;
+            }
+        }
+
+        private HubConnection Connection
+        {
+            get;
+            set;
+        }
+
+        public IHubProxy Proxy
+        {
+            get;
+            set;
+        }
+
+        private VmgrClient()
+        {
+            Connection = new HubConnection(string.Format("{0}://{1}:{2}/"
+                , PackageManager.Manage.Server.RTProtocol
+                , PackageManager.Manage.Server.RTFqdn
+                , PackageManager.Manage.Server.RTPort
+                )
+                )
+                ;
+
+            Proxy = Connection.CreateHubProxy("VmgrHub");
+
+            lock (Connection)
+            {
+                if (Connection.State == ConnectionState.Disconnected)
+                {
+                    Connection.Start().Wait();
+                }
+            }
         }
     }
 

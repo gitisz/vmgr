@@ -1,9 +1,9 @@
 ﻿USE [DOM_Config]
 GO
-/****** Object:  Schema [vmg]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  Schema [vmg]    Script Date: 05/14/2014 12:38:43 ******/
 CREATE SCHEMA [vmg] AUTHORIZATION [dbo]
 GO
-/****** Object:  Table [vmg].[Log]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Log]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -31,7 +31,7 @@ CREATE TABLE [vmg].[Log](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  StoredProcedure [vmg].[GetLogs]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  StoredProcedure [vmg].[GetLogs]    Script Date: 05/14/2014 12:38:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -114,7 +114,7 @@ BEGIN
 			, ' ' AS CreateUser
 END
 GO
-/****** Object:  Table [vmg].[SecurityRole]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[SecurityRole]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -138,7 +138,7 @@ CREATE TABLE [vmg].[SecurityRole](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[SecurityPermission]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[SecurityPermission]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -157,7 +157,7 @@ CREATE TABLE [vmg].[SecurityPermission](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[Setting]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Setting]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,7 +177,7 @@ CREATE TABLE [vmg].[Setting](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[Server]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Server]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -203,7 +203,7 @@ CREATE TABLE [vmg].[Server](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[SecuritySiteMap]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[SecuritySiteMap]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -223,7 +223,7 @@ CREATE TABLE [vmg].[SecuritySiteMap](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[SecurityRolePermission]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[SecurityRolePermission]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -248,7 +248,7 @@ CREATE TABLE [vmg].[SecurityRolePermission](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[SecurityMembership]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[SecurityMembership]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -269,7 +269,7 @@ CREATE TABLE [vmg].[SecurityMembership](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[Filter]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Filter]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -292,7 +292,7 @@ CREATE TABLE [vmg].[Filter](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [vmg].[DeleteLogs]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  StoredProcedure [vmg].[DeleteLogs]    Script Date: 05/14/2014 12:38:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -315,7 +315,7 @@ BEGIN
 
 END
 GO
-/****** Object:  Table [vmg].[Package]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Package]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -342,7 +342,7 @@ CREATE TABLE [vmg].[Package](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [vmg].[Monitor]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Monitor]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -366,7 +366,7 @@ CREATE TABLE [vmg].[Monitor](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [vmg].[RemoveFilter]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  StoredProcedure [vmg].[RemoveFilter]    Script Date: 05/14/2014 12:38:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -393,7 +393,7 @@ BEGIN
 
 END
 GO
-/****** Object:  Table [vmg].[Plugin]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Plugin]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -415,7 +415,7 @@ CREATE TABLE [vmg].[Plugin](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [vmg].[RemoveMonitor]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  StoredProcedure [vmg].[RemoveMonitor]    Script Date: 05/14/2014 12:38:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -442,7 +442,7 @@ BEGIN
 
 END
 GO
-/****** Object:  Table [vmg].[Schedule]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Schedule]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -475,7 +475,7 @@ CREATE TABLE [vmg].[Schedule](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[Job]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Job]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -496,7 +496,7 @@ CREATE TABLE [vmg].[Job](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [vmg].[Trigger]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Table [vmg].[Trigger]    Script Date: 05/14/2014 12:38:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -523,7 +523,7 @@ CREATE TABLE [vmg].[Trigger](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [vmg].[RemoveSchedule]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  StoredProcedure [vmg].[RemoveSchedule]    Script Date: 05/14/2014 12:38:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -566,7 +566,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [vmg].[RemovePlugin]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  StoredProcedure [vmg].[RemovePlugin]    Script Date: 05/14/2014 12:38:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -620,7 +620,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [vmg].[RemovePackage]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  StoredProcedure [vmg].[RemovePackage]    Script Date: 05/14/2014 12:38:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -687,7 +687,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [vmg].[GetTriggersByPlugin]    Script Date: 04/22/2014 16:48:49 ******/
+/****** Object:  StoredProcedure [vmg].[GetTriggersByPlugin]    Script Date: 05/14/2014 12:38:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -717,106 +717,106 @@ BEGIN
 
 END
 GO
-/****** Object:  Default [DF_Filter_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_Filter_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Filter] ADD  CONSTRAINT [DF_Filter_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_Job_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_Job_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Job] ADD  CONSTRAINT [DF_Job_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_Log_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_Log_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Log] ADD  CONSTRAINT [DF_Log_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_Monitor_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_Monitor_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Monitor] ADD  CONSTRAINT [DF_Monitor_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_PackageCreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_PackageCreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Package] ADD  CONSTRAINT [DF_PackageCreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_Plugin_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_Plugin_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Plugin] ADD  CONSTRAINT [DF_Plugin_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_schedule_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_schedule_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Schedule] ADD  CONSTRAINT [DF_schedule_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_SecurityMembership_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_SecurityMembership_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[SecurityMembership] ADD  CONSTRAINT [DF_SecurityMembership_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_SecurityRole_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_SecurityRole_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[SecurityRole] ADD  CONSTRAINT [DF_SecurityRole_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_SecurityRolePermission_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_SecurityRolePermission_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[SecurityRolePermission] ADD  CONSTRAINT [DF_SecurityRolePermission_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_SecuritySiteMap_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_SecuritySiteMap_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[SecuritySiteMap] ADD  CONSTRAINT [DF_SecuritySiteMap_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_Server_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_Server_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Server] ADD  CONSTRAINT [DF_Server_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  Default [DF_Trigger_CreateDate]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  Default [DF_Trigger_CreateDate]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Trigger] ADD  CONSTRAINT [DF_Trigger_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
-/****** Object:  ForeignKey [FK_Filter_Server]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_Filter_Server]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Filter]  WITH CHECK ADD  CONSTRAINT [FK_Filter_Server] FOREIGN KEY([ServerId])
 REFERENCES [vmg].[Server] ([ServerId])
 GO
 ALTER TABLE [vmg].[Filter] CHECK CONSTRAINT [FK_Filter_Server]
 GO
-/****** Object:  ForeignKey [FK_Job_Schedule]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_Job_Schedule]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Job]  WITH CHECK ADD  CONSTRAINT [FK_Job_Schedule] FOREIGN KEY([ScheduleId])
 REFERENCES [vmg].[Schedule] ([ScheduleId])
 GO
 ALTER TABLE [vmg].[Job] CHECK CONSTRAINT [FK_Job_Schedule]
 GO
-/****** Object:  ForeignKey [FK_Monitor_Package]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_Monitor_Package]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Monitor]  WITH CHECK ADD  CONSTRAINT [FK_Monitor_Package] FOREIGN KEY([PackageId])
 REFERENCES [vmg].[Package] ([PackageId])
 GO
 ALTER TABLE [vmg].[Monitor] CHECK CONSTRAINT [FK_Monitor_Package]
 GO
-/****** Object:  ForeignKey [FK_Package_Server]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_Package_Server]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Package]  WITH CHECK ADD  CONSTRAINT [FK_Package_Server] FOREIGN KEY([ServerId])
 REFERENCES [vmg].[Server] ([ServerId])
 GO
 ALTER TABLE [vmg].[Package] CHECK CONSTRAINT [FK_Package_Server]
 GO
-/****** Object:  ForeignKey [FK_Plugin_Package]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_Plugin_Package]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Plugin]  WITH CHECK ADD  CONSTRAINT [FK_Plugin_Package] FOREIGN KEY([PackageId])
 REFERENCES [vmg].[Package] ([PackageId])
 GO
 ALTER TABLE [vmg].[Plugin] CHECK CONSTRAINT [FK_Plugin_Package]
 GO
-/****** Object:  ForeignKey [FK_Schedule_Plugin]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_Schedule_Plugin]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Schedule]  WITH CHECK ADD  CONSTRAINT [FK_Schedule_Plugin] FOREIGN KEY([PluginId])
 REFERENCES [vmg].[Plugin] ([PluginId])
 GO
 ALTER TABLE [vmg].[Schedule] CHECK CONSTRAINT [FK_Schedule_Plugin]
 GO
-/****** Object:  ForeignKey [FK_SecurityMembership_SecurityRole]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_SecurityMembership_SecurityRole]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[SecurityMembership]  WITH CHECK ADD  CONSTRAINT [FK_SecurityMembership_SecurityRole] FOREIGN KEY([SecurityRoleId])
 REFERENCES [vmg].[SecurityRole] ([SecurityRoleId])
 GO
 ALTER TABLE [vmg].[SecurityMembership] CHECK CONSTRAINT [FK_SecurityMembership_SecurityRole]
 GO
-/****** Object:  ForeignKey [FK_SecurityRolePermission_SecurityPermission]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_SecurityRolePermission_SecurityPermission]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[SecurityRolePermission]  WITH CHECK ADD  CONSTRAINT [FK_SecurityRolePermission_SecurityPermission] FOREIGN KEY([SecurityPermissionId])
 REFERENCES [vmg].[SecurityPermission] ([SecurityPermissionId])
 GO
 ALTER TABLE [vmg].[SecurityRolePermission] CHECK CONSTRAINT [FK_SecurityRolePermission_SecurityPermission]
 GO
-/****** Object:  ForeignKey [FK_SecurityRolePermission_SecurityRole]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_SecurityRolePermission_SecurityRole]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[SecurityRolePermission]  WITH CHECK ADD  CONSTRAINT [FK_SecurityRolePermission_SecurityRole] FOREIGN KEY([SecurityRoleId])
 REFERENCES [vmg].[SecurityRole] ([SecurityRoleId])
 GO
 ALTER TABLE [vmg].[SecurityRolePermission] CHECK CONSTRAINT [FK_SecurityRolePermission_SecurityRole]
 GO
-/****** Object:  ForeignKey [FK_SecuritySiteMap_SecurityPermission]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_SecuritySiteMap_SecurityPermission]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[SecuritySiteMap]  WITH CHECK ADD  CONSTRAINT [FK_SecuritySiteMap_SecurityPermission] FOREIGN KEY([SecurityPermissionId])
 REFERENCES [vmg].[SecurityPermission] ([SecurityPermissionId])
 GO
 ALTER TABLE [vmg].[SecuritySiteMap] CHECK CONSTRAINT [FK_SecuritySiteMap_SecurityPermission]
 GO
-/****** Object:  ForeignKey [FK_Trigger_Job]    Script Date: 04/22/2014 16:48:48 ******/
+/****** Object:  ForeignKey [FK_Trigger_Job]    Script Date: 05/14/2014 12:38:42 ******/
 ALTER TABLE [vmg].[Trigger]  WITH CHECK ADD  CONSTRAINT [FK_Trigger_Job] FOREIGN KEY([JobId])
 REFERENCES [vmg].[Job] ([JobId])
 GO

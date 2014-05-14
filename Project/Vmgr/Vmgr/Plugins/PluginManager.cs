@@ -48,8 +48,6 @@ namespace Vmgr.Plugins
         private PerformanceCounter _cpuCounter = null;
         private PerformanceCounter _processCounter = null;
         private PerformanceCounter _memoryCounter = null;
-        private IHubProxy _proxy = null;
-        private HubConnection _hubConnection = null;
 
 #endif
         #endregion
@@ -331,7 +329,7 @@ namespace Vmgr.Plugins
 #if NET_40
             AppDomain.MonitoringIsEnabled = true;
 
-            PluginManager<P>.Manage.MonitorTimer = new Timer(6000);
+            PluginManager<P>.Manage.MonitorTimer = new Timer(3000);
             PluginManager<P>.Manage.MonitorTimer.Elapsed += monitorTimer_Elapsed;
 
             using (AppService app = new AppService())
@@ -540,47 +538,6 @@ namespace Vmgr.Plugins
 
 #if NET_40
 
-        private HubConnection hubConnection
-        {
-            get
-            {
-                if (this._hubConnection == null)
-                {
-                    _hubConnection = new HubConnection(string.Format("{0}://{1}:{2}/"
-                        , PackageManager.Manage.Server.RTProtocol
-                        , PackageManager.Manage.Server.RTFqdn
-                        , PackageManager.Manage.Server.RTPort
-                        )
-                        )
-                        ;
-
-                    IHubProxy proxy = _hubConnection.CreateHubProxy("VmgrHub");
-                }
-
-                return this._hubConnection;
-            }
-        }
-
-        private IHubProxy proxy
-        {
-            get
-            {
-                if (this._proxy == null)
-                {
-                    _proxy = hubConnection.CreateHubProxy("VmgrHub");
-                    hubConnection.Start().Wait();
-                }
-
-                if (hubConnection.State == ConnectionState.Disconnected)
-                {
-                    _proxy = hubConnection.CreateHubProxy("VmgrHub");
-                    hubConnection.Start().Wait();
-                }
-
-                return this._proxy;
-            }
-        }
-
         private void monitorTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             try
@@ -623,7 +580,7 @@ namespace Vmgr.Plugins
                 PluginManager<P>.Manage.Monitors.Add(monitor);
 
                 for (int i = 0; i < PluginManager<P>.Manage.Monitors.Count; i++)
-                    PluginManager<P>.Manage.Monitors[i].Seconds += 6;
+                    PluginManager<P>.Manage.Monitors[i].Seconds += 2;
 
                 PluginManager<P>.Manage.OnMonitor();
             }
@@ -637,7 +594,8 @@ namespace Vmgr.Plugins
         {
             try
             {
-                proxy.Invoke("Monitor"
+                VmgrClient.Instance.Proxy
+                    .Invoke("Monitor"
                     , AppDomain.CurrentDomain.FriendlyName
                     , PluginManager<P>.Manage.Monitors.OrderBy(mon => mon.Date)
                     )

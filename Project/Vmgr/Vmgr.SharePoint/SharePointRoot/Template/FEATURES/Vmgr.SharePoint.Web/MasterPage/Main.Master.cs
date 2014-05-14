@@ -524,8 +524,11 @@ namespace Vmgr.SharePoint
             this.head.Controls.AddAt(0, this.JQueryLettering);
             this.head.Controls.AddAt(0, this.JQueryFittext);
 
-            if(this.getBrowser())
+            if (this.getBrowser())
                 this.head.Controls.AddAt(0, this.JQueryTextillate);
+            else
+            {
+            }
             
             this.head.Controls.AddAt(0, this.JQueryUiCssPath);
             this.head.Controls.AddAt(0, this.JQueryUI);

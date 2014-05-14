@@ -23,54 +23,11 @@ namespace Vmgr.Operations
         #region PRIVATE PROPERTIES
 
         private ServerMetaData _server = null;
-        private HubConnection _hubConnection = null;
-        private IHubProxy _proxy = null;
 
         #endregion
 
         #region PROTECTED PROPERTIES
 
-        protected HubConnection hubConnection
-        {
-            get
-            {
-                if (this._hubConnection == null)
-                {
-                    _hubConnection = new HubConnection(string.Format("{0}://{1}:{2}/"
-                        , PackageManager.Manage.Server.RTProtocol
-                        , PackageManager.Manage.Server.RTFqdn
-                        , PackageManager.Manage.Server.RTPort
-                        )
-                        )
-                        ;
-
-                    IHubProxy proxy = _hubConnection.CreateHubProxy("VmgrHub");
-                }
-
-                return this._hubConnection;
-            }
-        }
-
-        protected IHubProxy proxy
-        {
-            get
-            {
-                if (this._proxy == null)
-                {
-                    _proxy = hubConnection.CreateHubProxy("VmgrHub");
-                    hubConnection.Start().Wait();
-                }
-
-                if (hubConnection.State == ConnectionState.Disconnected)
-                {
-                    _proxy = hubConnection.CreateHubProxy("VmgrHub");
-                    hubConnection.Start().Wait();
-                }
-
-                return this._proxy;
-            }
-        }
-        
         protected ServerMetaData server
         {
             get
@@ -108,7 +65,8 @@ namespace Vmgr.Operations
         {
             try
             {
-                proxy.Invoke("MoveProgress", moveProgress)
+                VmgrClient.Instance.Proxy
+                    .Invoke("MoveProgress", moveProgress)
                     .Wait()
                     ;
             }

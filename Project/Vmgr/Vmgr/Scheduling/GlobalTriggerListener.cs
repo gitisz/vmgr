@@ -38,10 +38,6 @@ namespace Vmgr.Scheduling
         private TimeSpan _totalElapsedTime = TimeSpan.Zero;
         private bool _isRunning = false;
 
-#if NET_40
-        private HubConnection _hubConnection = null;
-        private IHubProxy _proxy = null;
-#endif
 
         #endregion
 
@@ -71,52 +67,11 @@ namespace Vmgr.Scheduling
 
 #if NET_40
 
-        protected HubConnection hubConnection
-        {
-            get
-            {
-                if (this._hubConnection == null)
-                {
-                    _hubConnection = new HubConnection(string.Format("{0}://{1}:{2}/"
-                        , PackageManager.Manage.Server.RTProtocol
-                        , PackageManager.Manage.Server.RTFqdn
-                        , PackageManager.Manage.Server.RTPort
-                        )
-                        )
-                        ;
-
-                    IHubProxy proxy = _hubConnection.CreateHubProxy("VmgrHub");
-                }
-
-                return this._hubConnection;
-            }
-        }
-
-        protected IHubProxy proxy
-        {
-            get
-            {
-                if (this._proxy == null)
-                {
-                    _proxy = hubConnection.CreateHubProxy("VmgrHub");
-                    hubConnection.Start().Wait();
-                }
-
-                if (hubConnection.State == ConnectionState.Disconnected)
-                {
-                    _proxy = hubConnection.CreateHubProxy("VmgrHub");
-                    hubConnection.Start().Wait();
-                }
-
-                return this._proxy;
-            }
-        }
-
         private void OnNotifyClient()
         {
             try
             {
-                proxy
+                VmgrClient.Instance.Proxy
                     .Invoke("Schedule"
                         , this._schedule.UniqueId
                         , new Schedule
